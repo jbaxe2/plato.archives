@@ -1,0 +1,34 @@
+<style>
+  p {
+    font-weight: bold;
+  }
+
+  div[footer] {
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  material-button {
+    background-color: #a44 !important;
+    color: white !important;
+    font-weight: bold !important;
+  }
+</style>
+
+<modal [visible]="showError">
+  <material-dialog headered>
+    <div header>
+      <h3>
+        <material-icon icon="error_outline" baseline></material-icon>
+        Warning!
+      </h3>
+    </div>
+
+    <p>{{error}}</p>
+
+    <div footer>
+      <material-button raised (trigger)="showError = false">Close</material-button>
+    </div>
+  </material-dialog>
+</modal>

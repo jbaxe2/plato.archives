@@ -1,4 +1,8 @@
-plato.archives:  A course archives viewer for Plato.
+# plato.archives:  A course archives viewer for Plato.
+
+## 0.4.20180621
+- Added some course, resource, user, and enrollment/roster components.
+- Added the base error handling for the application.
 
 ## 0.1.20180621
 - Changed scheme for versioning, with dated patch level.

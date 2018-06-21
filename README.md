@@ -9,7 +9,7 @@ Features to be included:
   - This will include LTI-based authentication.
   - Faculty will only be able to view course archives specifically authorized.
 - Selecting an archived course to view.
-- Viewing course archive materials by component:
+- Viewing course archive materials by resource type:
   - Course content (by content area).
   - Discussions, blogs, assignments, etc.
   - Grade center.
