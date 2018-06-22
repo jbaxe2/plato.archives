@@ -17,6 +17,8 @@ const String _LOGOUT_URI = '/plato/cleanup/session';
 class AuthenticationService {
   bool _isAuthenticated;
 
+  bool get isAuthenticated => _isAuthenticated;
+
   AuthenticatedUser _authenticatedUser;
 
   AuthenticatedUser get authenticatedUser => _authenticatedUser;
