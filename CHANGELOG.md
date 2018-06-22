@@ -1,5 +1,8 @@
 # plato.archives:  A course archives viewer for Plato.
 
+## 0.15.1+1
+- Fixed a typo.
+
 ## 0.15.1
 - Added progress, workflow, and archive components/services.
 - Added more code to already created components/services.
@@ -34,7 +37,7 @@ etc.
 - Changed scheme for versioning, with dated patch level.
 - Established the project for an initial git commit.
 
-# 0.0.2
+## 0.0.2
 - Established the start of the Plato archives viewer application.
 
 ## 0.0.1
