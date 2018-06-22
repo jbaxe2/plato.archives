@@ -1,5 +1,10 @@
 # plato.archives:  A course archives viewer for Plato.
 
+## 0.15.1
+- Added progress, workflow, and archive components/services.
+- Added more code to already created components/services.
+- Slight refactorings.
+
 ## 0.13.2
 - Added Angular metadata annotations to services and components.
 

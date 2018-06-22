@@ -6,6 +6,8 @@ import 'package:angular/core.dart';
 
 import 'authenticated_user.dart';
 
+const String _SESSION_URI = '/plato/retrieve/session';
+
 const String _AUTHENTICATE_URI = '/plato/authenticate/learn';
 
 const String _LOGOUT_URI = '/plato/cleanup/session';
@@ -17,8 +19,16 @@ class AuthenticationService {
 
   AuthenticatedUser _authenticatedUser;
 
-  /// The [AuthenticationService] constructor...
-  AuthenticationService() {
+  AuthenticatedUser get authenticatedUser => _authenticatedUser;
+
+  static AuthenticationService _instance;
+
+  /// The [AuthenticationService] factory constructor...
+  factory AuthenticationService() =>
+    _instance ?? (_instance = new AuthenticationService._());
+
+  /// The [AuthenticationService] private constructor...
+  AuthenticationService._() {
     _isAuthenticated = false;
   }
 
@@ -30,7 +40,7 @@ class AuthenticationService {
   /// The [authenticate] method...
   Future<void> authenticate (String username, String password) async {
     if (_isAuthenticated) {
-      return;  // (throw error)
+      return;  // (throw error, or do nothing?)
     }
   }
 

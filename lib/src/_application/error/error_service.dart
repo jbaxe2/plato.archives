@@ -1,4 +1,4 @@
-library plato.archives.services.application.error;
+library plato.archives.services.error;
 
 import 'dart:async' show StreamController;
 

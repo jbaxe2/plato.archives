@@ -7,8 +7,14 @@ import 'package:angular/core.dart';
 /// The [EnrollmentsService] class...
 @Injectable()
 class EnrollmentsService {
-  /// The [EnrollmentsService] constructor...
-  EnrollmentsService();
+  static EnrollmentsService _instance;
+
+  /// The [EnrollmentsService] factory constructor...
+  factory EnrollmentsService() =>
+    _instance ?? (_instance = new EnrollmentsService._());
+
+  /// The [EnrollmentsService] private constructor...
+  EnrollmentsService._();
 
   /// The [loadEnrollments] method...
   Future<void> loadEnrollments (String archiveId) async {
