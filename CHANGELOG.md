@@ -1,5 +1,8 @@
 # plato.archives:  A course archives viewer for Plato.
 
+## 0.15.2
+- Start of fleshing out the user module.
+
 ## 0.15.1+2
 - Added an 'isAuthenticated' getter to the authentication service.
 

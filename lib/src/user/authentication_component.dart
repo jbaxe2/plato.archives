@@ -1,7 +1,11 @@
 library plato.archives.components.user.authentication;
 
+import 'dart:async' show Future;
+
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
+
+import '../_application/progress/progress_service.dart';
 
 import 'authenticated_user.dart';
 import 'authentication_service.dart';
@@ -11,13 +15,33 @@ import 'authentication_service.dart';
   selector: 'authentication',
   templateUrl: 'authentication_component.html',
   directives: [coreDirectives, materialDirectives],
-  providers: [AuthenticationService]
+  providers: [AuthenticationService, ProgressService]
 )
 class AuthenticationComponent {
+  String username;
+
+  String password;
+
   AuthenticatedUser authenticatedUser;
 
   final AuthenticationService _authenticationService;
 
+  final ProgressService _progressService;
+
   /// The [AuthenticationComponent] constructor...
-  AuthenticationComponent (this._authenticationService);
+  AuthenticationComponent (this._authenticationService, this._progressService);
+
+  /// The [authenticate] method...
+  Future<void> authenticate() async {
+    if (username.isEmpty || password.isEmpty) {
+      return;
+    }
+
+    try {
+      _progressService.invoke ('Attempting to verify Plato credentials.');
+      await _authenticationService.authenticate (username, password);
+    } catch (_) {}
+
+    _progressService.revoke();
+  }
 }

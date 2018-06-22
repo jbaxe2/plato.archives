@@ -5,6 +5,23 @@
   </p>
 
   <div>
-    <p><em>Here will be the controls to authenticate...</em></p>
+    <material-input
+      floatingLabel
+      label="Plato Username"
+      [(ngModel)]="username"
+      (keyup.enter)="authenticate()"
+      [disabled]="isAuthenticated"></material-input><br>
+
+    <material-input
+      floatingLabel
+      label="Plato Password"
+      type="password"
+      [(ngModel)]="password"
+      (keyup.enter)="authenticate()"
+      [disabled]="isAuthenticated"></material-input><br>
+
+    <material-button raised [disabled]="isAuthenticated" (trigger)="authenticate()">
+      <material-icon icon="vpn_key"></material-icon> &nbsp; Authenticate
+    </material-button>
   </div>
 </div>
