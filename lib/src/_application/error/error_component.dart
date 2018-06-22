@@ -10,8 +10,8 @@ import 'plato_exception.dart';
 @Component(
   selector: 'plato-error',
   templateUrl: 'error_component.html',
-  directives: const [coreDirectives, materialDirectives],
-  providers: const [materialProviders, ErrorService]
+  directives: [coreDirectives, materialDirectives],
+  providers: [ErrorService]
 )
 class ErrorComponent implements OnInit {
   String error;

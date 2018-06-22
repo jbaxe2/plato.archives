@@ -8,6 +8,8 @@ class Enrollment {
 
   final String userId;
 
+  final String role;
+
   /// The [Enrollment] constructor...
-  Enrollment (this.id, this.courseId, this.userId);
+  Enrollment (this.id, this.courseId, this.userId, this.role);
 }

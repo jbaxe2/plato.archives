@@ -1,11 +1,10 @@
 library plato.archives.models.resource.content_area;
 
+import '../resource.dart';
+
 /// The [ContentArea] class...
-class ContentArea {
-  final String id;
-
-  final String label;
-
+class ContentArea extends Resource {
   /// The [ContentArea] constructor...
-  ContentArea (this.id, this.label);
+  ContentArea (String id, String label) :
+    super (id, label, 'course/x-bb-coursetoc');
 }

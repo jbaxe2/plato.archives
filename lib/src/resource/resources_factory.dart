@@ -9,7 +9,7 @@ class ResourcesFactory {
 
   /// The [createResource] method...
   Resource createResource (
-    String id, String title, String type, dynamic extra
+    String id, String title, String type, [dynamic extra]
   ) {
     Resource resource;
 

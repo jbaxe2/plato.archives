@@ -1,8 +1,11 @@
-library plato.archives.services.resource.resources;
+library plato.archives.services.resources;
 
 import 'dart:async' show Future;
 
+import 'package:angular/core.dart';
+
 /// The [ResourcesService] class...
+@Injectable()
 class ResourcesService {
   /// The [ResourcesService] constructor...
   ResourcesService();

@@ -5,14 +5,14 @@ import 'package:angular_test/angular_test.dart';
 
 import 'package:test/test.dart';
 
-import 'package:plato.archives/src/plato_archives.dart';
+import 'package:plato.archives/src/plato_archives_component.dart';
 import 'package:plato.archives/src/plato_archives.template.dart' as ng;
 
 void main() {
   final testBed =
-    NgTestBed.forComponent<PlatoArchives>(ng.PlatoArchivesNgFactory);
+    NgTestBed.forComponent<PlatoArchivesComponent>(ng.PlatoArchivesNgFactory);
 
-  NgTestFixture<PlatoArchives> fixture;
+  NgTestFixture<PlatoArchivesComponent> fixture;
 
   setUp(() async {
     fixture = await testBed.create();

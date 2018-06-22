@@ -1,8 +1,11 @@
-library plato.archives.services.enrollment.enrollments;
+library plato.archives.services.enrollments;
 
 import 'dart:async' show Future;
 
+import 'package:angular/core.dart';
+
 /// The [EnrollmentsService] class...
+@Injectable()
 class EnrollmentsService {
   /// The [EnrollmentsService] constructor...
   EnrollmentsService();
@@ -12,8 +15,8 @@ class EnrollmentsService {
     ;
   }
 
-  /// The [loadFacultyEnrollment] method...
-  Future<void> loadFacultyEnrollment (String archiveId) async {
+  /// The [loadInstructorEnrollment] method...
+  Future<void> loadInstructorEnrollment (String archiveId) async {
     ;
   }
 }
