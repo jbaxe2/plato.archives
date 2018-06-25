@@ -1,17 +1,20 @@
 library plato.archives.factory.user;
 
+import '../_application/factory/plato_factory.dart';
+
 import 'session/session_user.dart';
 
 import 'improper_user.dart';
 import 'user.dart';
 
 /// The [UserFactory] class...
-class UserFactory {
+class UserFactory implements PlatoFactory<User> {
   /// The [UserFactory] constructor...
   UserFactory();
 
-  /// The [createUser] method...
-  User createUser (String type, Map<String, dynamic> rawUser) {
+  /// The [create] method...
+  @override
+  User create (Map<String, dynamic> rawUser, [String type = 'session']) {
     User user;
 
     try {
@@ -29,6 +32,22 @@ class UserFactory {
     }
 
     return user;
+  }
+
+  /// The [createAll] method...
+  @override
+  Iterable<User> createAll (
+    Iterable<Map<String, dynamic>> rawUsers, [String type = 'archive']
+  ) {
+    var users = new List<User>();
+
+    try {
+      rawUsers.forEach ((Map<String, dynamic> rawUser) {
+        users.add (create (rawUser, type));
+      });
+    } catch (_) { rethrow; }
+
+    return users;
   }
 
   /// The [_createSessionUser] method...

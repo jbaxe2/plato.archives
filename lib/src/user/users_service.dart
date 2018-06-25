@@ -51,7 +51,7 @@ class UsersService {
         ..['password'] = password
         ..['isLtiSession'] = isLtiSession;
 
-      user = (new UserFactory()).createUser ('session', rawUser);
+      user = (new UserFactory()).create (rawUser, 'session');
     } catch (_) {
       throw new ImproperUser ('Unable to retrieve the user information.');
     }

@@ -1,5 +1,9 @@
 # plato.archives:  A course archives viewer for Plato.
 
+## 0.15.4+1
+- Created a base factory for other factories to implement, and refactored
+current factories to conform to the interface.
+
 ## 0.15.4
 - Refactored and added code for archives, courses, enrollments, users, roster.
 
