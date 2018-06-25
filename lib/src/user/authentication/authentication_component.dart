@@ -21,6 +21,8 @@ class AuthenticationComponent {
 
   String password;
 
+  bool get isAuthenticated => _authenticationService.isAuthenticated;
+
   final AuthenticationService _authenticationService;
 
   final ProgressService _progressService;

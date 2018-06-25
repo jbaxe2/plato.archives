@@ -8,7 +8,7 @@ import 'package:http/http.dart' show Client, Response;
 
 import 'session/session_user.dart';
 
-import 'improper_user_error.dart';
+import 'improper_user.dart';
 import 'user.dart';
 import 'user_factory.dart';
 
@@ -53,7 +53,7 @@ class UsersService {
 
       user = (new UserFactory()).createUser ('session', rawUser);
     } catch (_) {
-      throw new ImproperUserError ('Unable to retrieve the user information.');
+      throw new ImproperUser ('Unable to retrieve the user information.');
     }
 
     return user;
@@ -62,6 +62,15 @@ class UsersService {
   /// The [retrieveRoster] method...
   Future<List<User>> retrieveRoster (String archiveId) async {
     var roster = new List<User>();
+
+    try {
+      final Response rosterResponse = await _http.get (_RETRIEVE_ROSTER_URI);
+
+      final List<Map<String, dynamic>> rawRoster =
+        (json.decode (rosterResponse.body) as Map)['roster'];
+    } catch (_) {
+      ;
+    }
 
     return roster;
   }

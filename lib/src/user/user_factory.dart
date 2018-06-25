@@ -2,7 +2,7 @@ library plato.archives.factory.user;
 
 import 'session/session_user.dart';
 
-import 'improper_user_error.dart';
+import 'improper_user.dart';
 import 'user.dart';
 
 /// The [UserFactory] class...
@@ -25,7 +25,7 @@ class UserFactory {
         default: throw rawUser;
       }
     } catch (_) {
-      throw new ImproperUserError ('An improper user error has occurred.');
+      throw new ImproperUser ('An improper user error has occurred.');
     }
 
     return user;

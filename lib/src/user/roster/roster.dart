@@ -1,11 +1,13 @@
 library plato.archives.models.enrollment.roster;
 
-import 'enrollment.dart';
+import '../user.dart';
 
 /// The [Roster] class...
 class Roster {
-  final List<Enrollment> enrollments;
+  final String courseId;
+
+  final List<User> users;
 
   /// The [Roster] constructor...
-  Roster (this.enrollments);
+  Roster (this.courseId, this.users);
 }

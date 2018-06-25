@@ -1,5 +1,8 @@
 # plato.archives:  A course archives viewer for Plato.
 
+## 0.15.4
+- Refactored and added code for archives, courses, enrollments, users, roster.
+
 ## 0.15.3
 - Provided distinction between user, session user, and authentication controls;
 refactored and added code appropriately.

@@ -6,10 +6,16 @@ class Enrollment {
 
   final String courseId;
 
+  final String courseName;
+
   final String userId;
 
   final String role;
 
+  final bool available;
+
   /// The [Enrollment] constructor...
-  Enrollment (this.id, this.courseId, this.userId, this.role);
+  Enrollment (
+    this.id, this.courseId, this.courseName, this.userId, this.role, this.available
+  );
 }
