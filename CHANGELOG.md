@@ -1,5 +1,12 @@
 # plato.archives:  A course archives viewer for Plato.
 
+## 0.15.3
+- Provided distinction between user, session user, and authentication controls;
+refactored and added code appropriately.
+
+## 0.15.2+1
+- Additional creation of user module code.
+
 ## 0.15.2
 - Start of fleshing out the user module.
 

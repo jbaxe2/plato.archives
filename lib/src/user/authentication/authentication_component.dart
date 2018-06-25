@@ -5,9 +5,8 @@ import 'dart:async' show Future;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import '../_application/progress/progress_service.dart';
+import '../../_application/progress/progress_service.dart';
 
-import 'authenticated_user.dart';
 import 'authentication_service.dart';
 
 /// The [AuthenticationComponent] class...
@@ -21,8 +20,6 @@ class AuthenticationComponent {
   String username;
 
   String password;
-
-  AuthenticatedUser authenticatedUser;
 
   final AuthenticationService _authenticationService;
 

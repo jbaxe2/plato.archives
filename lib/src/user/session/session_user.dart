@@ -1,29 +1,29 @@
-library plato.archives.models.user.authenticated;
+library plato.archives.models.user.session;
 
-import 'user.dart';
+import '../user.dart';
 
-/// The [AuthenticatedUser] class...
-class AuthenticatedUser extends User {
+/// The [SessionUser] class...
+class SessionUser extends User {
   final String password;
 
   final bool _isLtiSession;
 
   bool get isLtiSession => _isLtiSession;
 
-  static AuthenticatedUser _instance;
+  static SessionUser _instance;
 
-  /// The [AuthenticatedUser] factory constructor...
-  factory AuthenticatedUser (
+  /// The [SessionUser] factory constructor...
+  factory SessionUser (
     String id, String username, String password, String firstName,
     String lastName, String email, [bool isLtiSession = false]
   ) {
-    return _instance ?? (_instance = new AuthenticatedUser._ (
+    return _instance ?? (_instance = new SessionUser._ (
       id, username, password, firstName, lastName, email, isLtiSession
     ));
   }
 
-  /// The [AuthenticatedUser] private constructor...
-  AuthenticatedUser._ (
+  /// The [SessionUser] private constructor...
+  SessionUser._ (
     String id, String username, this.password, String firstName,
     String lastName, String email, [this._isLtiSession = false]
   ) : super (id, username, firstName, lastName, email);

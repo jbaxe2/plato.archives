@@ -1,14 +1,12 @@
 library plato.archives.services.authentication;
 
 import 'dart:async' show Future;
+import 'dart:convert' show json;
 
 import 'package:angular/core.dart';
 import 'package:http/http.dart' show Client, Response;
 
 import 'authentication_error.dart';
-import 'authenticated_user.dart';
-
-const String _SESSION_URI = '/plato/retrieve/session';
 
 const String _AUTHENTICATE_URI = '/plato/authenticate/learn';
 
@@ -20,10 +18,6 @@ class AuthenticationService {
   bool _isAuthenticated;
 
   bool get isAuthenticated => _isAuthenticated;
-
-  AuthenticatedUser _authenticatedUser;
-
-  AuthenticatedUser get authenticatedUser => _authenticatedUser;
 
   final Client _http;
 
@@ -38,15 +32,6 @@ class AuthenticationService {
     _isAuthenticated = false;
   }
 
-  /// The [checkIfSessionExists] method...
-  Future<bool> checkIfSessionExists() async {
-    if (_isAuthenticated) {
-      return true;
-    }
-
-    return false;
-  }
-
   /// The [authenticate] method...
   Future<void> authenticate (String username, String password) async {
     if (_isAuthenticated) {
@@ -55,15 +40,29 @@ class AuthenticationService {
 
     if (username.isEmpty || password.isEmpty) {
       throw new AuthenticationError (
-        'Cannot authenticate with a username or password.'
+        'Cannot authenticate without a username or password.'
       );
+    }
+
+    try {
+      final Response authResponse = await _http.post (
+        _AUTHENTICATE_URI,
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: {'username': username, 'password': password}
+      );
+
+      final Map<String, dynamic> rawAuth = json.decode (authResponse.body) as Map;
+
+      if (true == rawAuth['learn.user.authenticated']) {
+        _isAuthenticated = true;
+      } else {
+        throw _isAuthenticated;
+      }
+    } catch (_) {
+      throw new AuthenticationError ('Authentication for the Plato user has failed.');
     }
   }
 
   /// The [logout] method...
-  Future<void> logout() async {
-    if (!_isAuthenticated) {
-      return;  // (throw error, or do nothing?)
-    }
-  }
+  Future<void> logout() async => await _http.get (_LOGOUT_URI);
 }
