@@ -1,5 +1,9 @@
 # plato.archives:  A course archives viewer for Plato.
 
+## 0.15.4+2
+- Updated Dart SDK to version 2.0.0-dev.65.0.
+- Updated some minor styling for CodeFactor code review issues.
+
 ## 0.15.4+1
 - Created a base factory for other factories to implement, and refactored
 current factories to conform to the interface.
