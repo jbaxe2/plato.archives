@@ -14,8 +14,11 @@ class Enrollment {
 
   final bool available;
 
+  final bool forArchive;
+
   /// The [Enrollment] constructor...
   Enrollment (
-    this.id, this.courseId, this.courseName, this.userId, this.role, this.available
+    this.id, this.courseId, this.courseName, this.userId, this.role,
+    this.available, {this.forArchive = false}
   );
 }

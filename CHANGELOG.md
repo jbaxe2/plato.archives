@@ -1,5 +1,12 @@
 # plato.archives:  A course archives viewer for Plato.
 
+## 0.16.0
+- Start of creating application caching layer.
+- Start of creating enrollments factory and related code.
+
+## 0.15.4+3
+- Updated dependency constraints.
+
 ## 0.15.4+2
 - Updated Dart SDK to version 2.0.0-dev.65.0.
 - Updated some minor styling for CodeFactor code review issues.
@@ -52,6 +59,7 @@ etc.
   - Minor will typically be used to provide the amount of groups of modules,
   components, and services.  This will be reset to '0' upon major increment.
   - Patch will correspond to adding to or refactoring existing components.
+  - Fix will include updating Dart SDK or dependencies, resolving typos, etc.
 
 ## 0.4.20180621
 - Added some course, resource, user, and enrollment/roster components.

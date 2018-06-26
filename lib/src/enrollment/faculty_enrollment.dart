@@ -6,6 +6,9 @@ import 'enrollment.dart';
 class FacultyEnrollment extends Enrollment {
   /// The [FacultyEnrollment] constructor...
   FacultyEnrollment (
-    String id, String courseId, String courseName, String userId, bool available
-  ) : super (id, courseId, courseName, userId, 'Instructor', available);
+    String id, String courseId, String courseName, String userId,
+    bool available, {bool forArchive = true}
+  ) : super (
+    id, courseId, courseName, userId, 'Instructor', available, forArchive: forArchive
+  );
 }
