@@ -15,13 +15,18 @@ class ResourcesService {
   /// The [ResourcesService] private constructor...
   ResourcesService._();
 
+  /// The [loadResourcesTypes] method...
+  Future<void> loadResourcesTypes (String archiveId) async {
+    ;
+  }
+
   /// The [loadResourcesByType] method...
-  Future<void> loadResourcesByType (String type) async {
+  Future<void> loadResourcesByType (String archiveId, String type) async {
     ;
   }
 
   /// The [loadResource] method...
-  Future<void> loadResource (String resourceId) async {
+  Future<void> loadResource (String archiveId, String resourceId) async {
     ;
   }
 }

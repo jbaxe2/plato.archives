@@ -19,6 +19,6 @@ class Enrollment {
   /// The [Enrollment] constructor...
   Enrollment (
     this.id, this.courseId, this.courseName, this.userId, this.role,
-    this.available, {this.forArchive = false}
+    this.available, {this.forArchive = true}
   );
 }

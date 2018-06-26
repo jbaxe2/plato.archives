@@ -34,8 +34,8 @@ class RetrieveArchivesService {
     _facultyArchives = new List<FacultyEnrollment>();
   }
 
-  /// The [retrieveFacultyEnrollments] method...
-  Future<void> retrieveFacultyEnrollments() async {
+  /// The [retrieveFacultyArchives] method...
+  Future<void> retrieveFacultyArchives() async {
     try {
       final Response retrieveArchivesResponse =
         await _http.get (_RETRIEVE_ARCHIVES_URI);
