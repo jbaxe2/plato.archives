@@ -1,5 +1,8 @@
 # plato.archives:  A course archives viewer for Plato.
 
+## 0.16.1+1
+- Refactored some code for enrollment and archive modules.
+
 ## 0.16.1
 - Added code for enrollment factory.
 - Refactored some code for enrollment and archive modules.

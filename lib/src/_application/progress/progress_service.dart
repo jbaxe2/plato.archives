@@ -2,7 +2,7 @@ library plato.archives.services.progress;
 
 import 'dart:async' show StreamController;
 
-import 'package:angular/core.dart';
+import 'package:angular/core.dart' show Injectable;
 
 /// The [ProgressService] class...
 @Injectable()

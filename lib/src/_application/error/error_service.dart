@@ -2,7 +2,7 @@ library plato.archives.services.error;
 
 import 'dart:async' show StreamController;
 
-import 'package:angular/core.dart';
+import 'package:angular/core.dart' show Injectable;
 
 import 'plato_exception.dart';
 

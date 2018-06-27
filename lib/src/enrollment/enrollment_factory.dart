@@ -91,10 +91,9 @@ class EnrollmentFactory implements PlatoFactory<Enrollment> {
 
   /// The [_createFacultyEnrollment] method...
   FacultyEnrollment _createFacultyEnrollment (Map<String, dynamic> rawEnrollment) {
-    String role =
-      (rawEnrollment['learn.membership.role'] as String).toLowerCase();
+    String role = (rawEnrollment['learn.membership.role'] as String);
 
-    if ('instructor' != role) {
+    if ('instructor' != role.toLowerCase()) {
       throw new ImproperEnrollment (
         'Attempted to create a faculty enrollment without an instructor role.'
       );

@@ -2,7 +2,7 @@ library plato.archives.services.resources;
 
 import 'dart:async' show Future;
 
-import 'package:angular/core.dart';
+import 'package:angular/core.dart' show Injectable;
 
 /// The [ResourcesService] class...
 @Injectable()

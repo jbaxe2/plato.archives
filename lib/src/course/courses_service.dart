@@ -2,7 +2,7 @@ library plato.archives.services.courses;
 
 import 'dart:async' show Future;
 
-import 'package:angular/core.dart';
+import 'package:angular/core.dart' show Injectable;
 
 /// The [CoursesService] class...
 @Injectable()
@@ -14,11 +14,6 @@ class CoursesService {
 
   /// The [CoursesService] private constructor...
   CoursesService._();
-
-  /// The [loadArchivesListForFaculty] method...
-  Future<void> loadArchivesListForFaculty (String username) async {
-    ;
-  }
 
   /// The [loadArchivedCourse] method...
   Future<void> loadArchivedCourse (String archiveId) async {

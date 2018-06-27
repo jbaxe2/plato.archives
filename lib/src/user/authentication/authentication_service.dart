@@ -3,7 +3,7 @@ library plato.archives.services.authentication;
 import 'dart:async' show Future;
 import 'dart:convert' show json;
 
-import 'package:angular/core.dart';
+import 'package:angular/core.dart' show Injectable;
 import 'package:http/http.dart' show Client, Response;
 
 import 'authentication_error.dart';
