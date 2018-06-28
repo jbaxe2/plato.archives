@@ -1,5 +1,9 @@
 # plato.archives:  A course archives viewer for Plato.
 
+## 0.16.3
+- Start of creating tests.
+- Refactoring across code base.
+
 ## 0.16.2
 - Start of adding archive selection for faculty archive enrollments.
 

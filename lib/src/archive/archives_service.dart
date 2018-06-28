@@ -46,7 +46,9 @@ class ArchivesService {
       _facultyArchives =
         (new EnrollmentFactory()).createAll (rawArchives, 'faculty');
     } catch (_) {
-      throw new NonRetrievableArchive();
+      throw new NonRetrievableArchive (
+        'The list of faculty archive enrollments were not retrievable.'
+      );
     }
   }
 }

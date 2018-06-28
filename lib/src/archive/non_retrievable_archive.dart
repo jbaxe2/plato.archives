@@ -4,6 +4,6 @@ import '../_application/error/plato_exception.dart';
 
 class NonRetrievableArchive extends PlatoException {
   NonRetrievableArchive (
-    [String message = 'The list of archives were not retrievable.']
+    [String message = 'A non-retrievable archive error has occurred.']
   ) : super (message);
 }

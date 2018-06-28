@@ -7,4 +7,10 @@ abstract class Registry<S, T> {
 
   /// The [unregister] method...
   T unregister (S key);
+
+  /// The [retrieve] method...
+  T retrieve (S key);
+
+  /// The [refresh] method...
+  T refresh (S key, T newResource);
 }

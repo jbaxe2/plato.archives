@@ -4,6 +4,10 @@
   </p>
 
   <div *ngIf="archiveEnrollments.isNotEmpty">
+    <p>
+      Please select an archive enrollment to review.
+    </p>
+
     <material-radio-group [(ngModel)]="selected">
       <span *ngFor="let enrollment of archiveEnrollments">
         <material-radio [value]="enrollment">

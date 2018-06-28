@@ -23,4 +23,25 @@ class SimpleRegistry implements Registry<String, dynamic> {
   /// The [unregister] method...
   @override
   dynamic unregister (String key) => _registry.remove (key);
+
+  /// The [retrieve] method...
+  @override
+  dynamic retrieve (String key) {
+    if (_registry.containsKey (key)) {
+      return _registry[key];
+    }
+  }
+
+  /// The [refresh] method...
+  @override
+  dynamic refresh (String key, dynamic newResource) {
+    dynamic oldResource;
+
+    if (_registry.containsKey (key)) {
+      oldResource = _registry[key];
+      _registry[key] = newResource;
+    }
+
+    return oldResource;
+  }
 }
