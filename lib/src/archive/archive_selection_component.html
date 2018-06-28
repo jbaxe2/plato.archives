@@ -1,3 +1,15 @@
 <div>
-  <p>Here will be controls to select an archive to view.</p>
+  <p *ngIf="archiveEnrollments.isEmpty">
+    There are no archived enrollments to select from for reviewing.
+  </p>
+
+  <div *ngIf="archiveEnrollments.isNotEmpty">
+    <material-radio-group [(ngModel)]="selected">
+      <span *ngFor="let enrollment of archiveEnrollments">
+        <material-radio [value]="enrollment">
+          [{{enrollment.courseId}}] {{enrollment.courseName}}
+        </material-radio>
+      </span>
+    </material-radio-group>
+  </div>
 </div>
