@@ -9,6 +9,7 @@ import 'package:angular/core.dart' show Injectable;
 class ProgressService {
   StreamController<String> messageStreamController;
 
+  /**
   static ProgressService _instance;
 
   /// The [ProgressService] factory constructor...
@@ -19,6 +20,10 @@ class ProgressService {
   ProgressService._() {
     messageStreamController = new StreamController<String>.broadcast();
   }
+  **/
+
+  /// The [ProgressService] constructor...
+  ProgressService();
 
   /// The [invoke] method...
   void invoke (String message) => messageStreamController.add (

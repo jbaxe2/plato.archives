@@ -13,6 +13,7 @@ class ErrorService {
 
   bool errorRaised;
 
+  /**
   static ErrorService _instance;
 
   /// The [ErrorService] factory constructor...
@@ -23,6 +24,10 @@ class ErrorService {
     errorStreamController = new StreamController<PlatoException>.broadcast();
     errorRaised = false;
   }
+  **/
+
+  /// The [ErrorService] constructor...
+  ErrorService();
 
   /// The [raiseError] method...
   void raiseError (PlatoException exception) {

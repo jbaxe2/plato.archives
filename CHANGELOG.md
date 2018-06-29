@@ -1,5 +1,9 @@
 # plato.archives:  A course archives viewer for Plato.
 
+## 0.16.4+1
+- Fixed a grammatical error.
+- Start of transitioning to new beta version of Angular 5.0.
+
 ## 0.16.4
 - Created a welcome component.
 - Start of fleshing out the workflow component; included authentication and
