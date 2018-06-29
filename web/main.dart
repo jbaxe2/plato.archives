@@ -1,11 +1,27 @@
 library plato.archives;
+import 'dart:async' show runZoned;
+import 'dart:html' show window;
 
 import 'package:angular/angular.dart';
 
-// ignore: uri_does_not_exist
-import 'package:plato/plato_archives.template.dart' as pa;
+import 'package:http/http.dart' show Client;
+import 'package:http/browser_client.dart' show BrowserClient;
+
+import 'package:plato.archives/src/plato_archives_component.template.dart' as pa;
+
+import 'main.template.dart' as pa_main;
+
+/// Generate the [BrowserClient] injector...
+@GenerateInjector(
+  [Provider (Client, useClass: BrowserClient)]
+)
+final InjectorFactory clientInjector = pa_main.clientInjector$Injector;
 
 /// The [main] function...
 void main() {
-  runApp (pa.PlatoArchivesNgFactory);
+  runZoned (() {
+    runApp (pa.PlatoArchivesNgFactory, createInjector: clientInjector);
+  }, onError: (e) {
+    window.console.log ('Uncaught error:\n${e.toString()}');
+  });
 }

@@ -1,11 +1,37 @@
-<div>
-  <p>Here will be controls providing an overall workflow of the application.</p>
+<style>
+  material-stepper {}
 
-  <p>
-    <span>Step 1:  Authentication</span><br>
-    <span>Step 2:  Archive course selection</span><br>
-    <span>Step 3:  Tool / content selection</span><br>
-    <span>Step 4:  Specific instance of tool / content selection</span><br>
-    <span>Step 5:  View of selected specific instance of tool / content</span>
-  </p>
-</div>
+  div.step-container {}
+</style>
+
+<material-stepper>
+  <template step name="Authentication">
+    <div class="step-container">
+      <authentication></authentication>
+    </div>
+  </template>
+
+  <template step name="Archive Course Selection">
+    <div class="step-container">
+      <archive-selection></archive-selection>
+    </div>
+  </template>
+
+  <template step name="Tool Type / Content Selection">
+    <div class="step-container">
+      <p>Here will be options to select a tool type or content.</p>
+    </div>
+  </template>
+
+  <template step name="Specific Tool / Content Selection">
+    <div class="step-container">
+      <p>Here will be options to select a specific tool or piece of content.</p>
+    </div>
+  </template>
+
+  <template step name="Tool / Content View">
+    <div class="step-container">
+      <p>Here will be a view of the specifically selected resource.</p>
+    </div>
+  </template>
+</material-stepper>

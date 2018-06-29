@@ -1,5 +1,17 @@
 # plato.archives:  A course archives viewer for Plato.
 
+## 0.16.4
+- Created a welcome component.
+- Start of fleshing out the workflow component; included authentication and
+archive selection.
+- Created a build file.
+- Set up main to run the application, added an injector for services using
+HTTP requests.
+
+## 0.16.3+1
+- Updated Dart SDK to version 2.0.0-dev.66.0.
+- Updated dependency version.
+
 ## 0.16.3
 - Start of creating tests.
 - Refactoring across code base.
