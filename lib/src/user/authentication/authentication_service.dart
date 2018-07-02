@@ -21,6 +21,7 @@ class AuthenticationService {
 
   final Client _http;
 
+  /**
   static AuthenticationService _instance;
 
   /// The [AuthenticationService] factory constructor...
@@ -29,6 +30,12 @@ class AuthenticationService {
 
   /// The [AuthenticationService] private constructor...
   AuthenticationService._ (this._http) {
+    _isAuthenticated = false;
+  }
+  **/
+
+  /// The [AuthenticationService] constructor...
+  AuthenticationService (this._http) {
     _isAuthenticated = false;
   }
 

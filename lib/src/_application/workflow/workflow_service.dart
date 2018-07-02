@@ -5,6 +5,7 @@ import 'package:angular/core.dart' show Injectable;
 /// The [WorkflowService] class...
 @Injectable()
 class WorkflowService {
+  /**
   static WorkflowService _instance;
 
   /// The [WorkflowService] factory constructor...
@@ -12,4 +13,8 @@ class WorkflowService {
 
   /// The [WorkflowService] private constructor...
   WorkflowService._();
+  **/
+
+  /// The [WorkflowService] constructor.....
+  WorkflowService();
 }

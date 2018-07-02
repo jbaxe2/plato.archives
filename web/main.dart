@@ -9,6 +9,16 @@ import 'package:http/browser_client.dart' show BrowserClient;
 
 import 'package:plato.archives/src/_application/error/error_service.dart';
 import 'package:plato.archives/src/_application/progress/progress_service.dart';
+import 'package:plato.archives/src/_application/workflow/workflow_service.dart';
+
+import 'package:plato.archives/src/archive/archives_service.dart';
+import 'package:plato.archives/src/course/courses_service.dart';
+import 'package:plato.archives/src/enrollment/enrollments_service.dart';
+import 'package:plato.archives/src/resource/resources_service.dart';
+
+import 'package:plato.archives/src/user/users_service.dart';
+import 'package:plato.archives/src/user/authentication/authentication_service.dart';
+import 'package:plato.archives/src/user/session/session_service.dart';
 
 import 'package:plato.archives/src/plato_archives_component.template.dart' as pa;
 
@@ -23,8 +33,8 @@ class PlatoArchives {
   PlatoArchives();
 
   /// The [run] method...
-  void run() {
-    runZoned (() async {
+  void run() async {
+    runZoned (() {
       runApp (pa.PlatoArchivesNgFactory, createInjector: _createInjector());
     }, onError: (e) {
       window.console.log ('Uncaught error:\n${e.toString()}');
@@ -35,8 +45,11 @@ class PlatoArchives {
   InjectorFactory _createInjector() {
     @GenerateInjector([
       ClassProvider (Client, useClass: BrowserClient),
-      ClassProvider (ErrorService),
-      ClassProvider (ProgressService)
+      ClassProvider (ErrorService), ClassProvider (ProgressService),
+      ClassProvider (WorkflowService), ClassProvider (ArchivesService),
+      ClassProvider (CoursesService), ClassProvider (EnrollmentsService),
+      ClassProvider (ResourcesService), ClassProvider (UsersService),
+      ClassProvider (AuthenticationService), ClassProvider (SessionService)
     ])
     InjectorFactory clientInjector = pa_main.clientInjector$Injector;
 

@@ -10,6 +10,7 @@ import 'package:http/http.dart' show Client;
 class EnrollmentsService {
   final Client _http;
 
+  /**
   static EnrollmentsService _instance;
 
   /// The [EnrollmentsService] factory constructor...
@@ -18,6 +19,10 @@ class EnrollmentsService {
 
   /// The [EnrollmentsService] private constructor...
   EnrollmentsService._ (this._http);
+  **/
+
+  /// The [EnrollmentsService] constructor...
+  EnrollmentsService (this._http);
 
   /// The [loadArchiveEnrollments] method...
   Future<void> loadArchiveEnrollments (String archiveId) async {

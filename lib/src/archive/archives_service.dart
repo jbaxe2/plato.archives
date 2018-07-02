@@ -23,6 +23,7 @@ class ArchivesService {
 
   final Client _http;
 
+  /**
   static ArchivesService _instance;
 
   /// The [ArchivesService] factory constructor...
@@ -31,6 +32,12 @@ class ArchivesService {
 
   /// The [ArchivesService] private constructor...
   ArchivesService._ (this._http) {
+    _facultyArchives = new List<FacultyEnrollment>();
+  }
+  **/
+
+  /// The [ArchivesService] constructor...
+  ArchivesService (this._http) {
     _facultyArchives = new List<FacultyEnrollment>();
   }
 

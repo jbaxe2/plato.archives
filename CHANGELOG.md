@@ -1,4 +1,10 @@
-# plato.archives:  A course archives viewer for Plato.
+# plato.archives:  An archived courses viewer for Plato.
+
+## 0.16.4+2
+- Updated Angular-based dependencies to beta version.
+- Added all services to explicitly-generated injector, with [ClassProvider].
+  - This should allow for only one instance of a service to be created using
+  dependency injection, without having to force services to be singleton.
 
 ## 0.16.4+1
 - Fixed a grammatical error.
