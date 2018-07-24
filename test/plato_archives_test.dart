@@ -1,27 +1,30 @@
 @TestOn('browser')
-library plato.archives.test;
+library plato.archives.tests;
 
 import 'package:angular_test/angular_test.dart';
 
 import 'package:test/test.dart';
 
-import 'package:plato.archives/src/plato_archives_component.dart';
-import 'package:plato.archives/src/plato_archives_component.template.dart' as ng;
+//import 'package:plato.archives/src/plato_archives_component.dart';
+//import 'package:plato.archives/src/plato_archives_component.template.dart' as ng;
+
+import 'services/services_test.dart';
 
 import 'testable.dart';
 
-void main() {
-  final testBed =
-    NgTestBed.forComponent<PlatoArchivesComponent>(ng.PlatoArchivesNgFactory);
+void main() => (new PlatoArchivesTester()).run();
+//{
+  //final testBed =
+    //NgTestBed.forComponent<PlatoArchivesComponent>(ng.PlatoArchivesNgFactory);
 
-  NgTestFixture<PlatoArchivesComponent> fixture;
+  //NgTestFixture<PlatoArchivesComponent> fixture;
 
-  setUp(() async {
-    fixture = await testBed.create();
-  });
+  //setUp(() async {
+  //  fixture = await testBed.create();
+  //});
 
   // Testing info: https://webdev.dartlang.org/angular/guide/testing
-}
+//}
 
 /// The [PlatoArchivesTester] class...
 class PlatoArchivesTester implements Testable {
@@ -44,7 +47,7 @@ class PlatoArchivesTester implements Testable {
 
   /// The [_testServices] method...
   void _testServices() {
-    ;
+    (new ServicesTester()).run();
   }
 
   /// The [_testComponents] method...

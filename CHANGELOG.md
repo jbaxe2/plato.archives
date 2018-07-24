@@ -1,5 +1,10 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.16.4+3
+- Updated Dart SDK to version 2.0.0-dev.69.2.
+- Updated dependency version constraints.
+- Created a test relating to dependency injection of services. 
+
 ## 0.16.4+2
 - Updated Angular-based dependencies to beta version.
 - Added all services to explicitly-generated injector, with [ClassProvider].
