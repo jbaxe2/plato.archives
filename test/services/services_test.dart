@@ -12,6 +12,12 @@ import '../testable.dart';
 
 import 'services_test.template.dart' as services_tester;
 
+/// An injector for use with tests.
+@GenerateInjector([
+  ClassProvider (UsersService)
+])
+InjectorFactory testInjector = services_tester.testInjector$Injector;
+
 /// The [ServicesTester] class...
 class ServicesTester implements Testable {
   /// The [ServicesTester] constructor...
@@ -30,11 +36,6 @@ class ServicesTester implements Testable {
     test (
       'Two service instances from the same injector reference the same object.',
       () {
-        @GenerateInjector([
-          ClassProvider (UsersService)
-        ])
-        InjectorFactory testInjector = services_tester.testInjector$Injector;
-
         UsersService usersService1 =
           ((() => testInjector) as Injector).get (UsersService);
 
