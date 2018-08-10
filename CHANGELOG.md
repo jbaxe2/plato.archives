@@ -1,5 +1,13 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.16.5
+- Updated Dart SDK to version 2.0.0.
+- Updated dependency version constraints.
+- Factored out styles from component HTML into separated files, due to style
+tags now generating a warning during build processes.
+- Refactored directives to explicitly include what is needed for some particular
+component.
+
 ## 0.16.4+3
 - Updated Dart SDK to version 2.0.0-dev.69.5.
 - Updated dependency version constraints.

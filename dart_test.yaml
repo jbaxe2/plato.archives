@@ -1,14 +1,14 @@
 # Plato Archives Viewer tests configuration
 
+test_on: 'browser'
+
 platforms: [chrome]
 
-test_on: 'browser'
+paths:
+- test/
+
+filename: 'plato_archives_test.dart'
 
 timeout: 'none'
 
 reporter: expanded
-
-filename: 'plato_archives_test.dart'
-
-paths:
-- test/

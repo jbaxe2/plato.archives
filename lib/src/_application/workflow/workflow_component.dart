@@ -12,8 +12,9 @@ import 'workflow_service.dart';
 @Component(
   selector: 'workflow',
   templateUrl: 'workflow_component.html',
+  styleUrls: ['workflow_component.css'],
   directives: [
-    coreDirectives, materialDirectives,
+    MaterialStepperComponent,
     AuthenticationComponent, ArchiveSelectionComponent
   ],
   providers: [WorkflowService]

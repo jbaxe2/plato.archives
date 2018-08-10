@@ -13,7 +13,10 @@ import 'authentication_service.dart';
 @Component(
   selector: 'authentication',
   templateUrl: 'authentication_component.html',
-  directives: [coreDirectives, materialDirectives],
+  directives: [
+    MaterialButtonComponent, MaterialIconComponent, MaterialInputComponent,
+    NgModel
+  ],
   providers: [AuthenticationService, ProgressService]
 )
 class AuthenticationComponent {

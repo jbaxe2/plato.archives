@@ -1,7 +1,7 @@
 library plato.archives.components.enrollment.roster;
 
 import 'package:angular/angular.dart';
-import 'package:angular_components/angular_components.dart';
+//import 'package:angular_components/angular_components.dart';
 
 import '../users_service.dart';
 
@@ -11,7 +11,6 @@ import 'roster.dart';
 @Component(
   selector: 'roster',
   templateUrl: 'roster_component.html',
-  directives: [coreDirectives, materialDirectives],
   providers: [UsersService]
 )
 class RosterComponent {

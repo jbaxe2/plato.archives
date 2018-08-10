@@ -15,7 +15,9 @@ import 'archives_service.dart';
 @Component(
   selector: 'archive-selection',
   templateUrl: 'archive_selection_component.html',
-  directives: [coreDirectives, materialDirectives],
+  directives: [
+    MaterialRadioComponent, MaterialRadioGroupComponent, NgIf, NgFor
+  ],
   providers: [ArchivesService, ProgressService]
 )
 class ArchiveSelectionComponent implements AfterViewInit {

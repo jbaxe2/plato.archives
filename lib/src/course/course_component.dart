@@ -1,7 +1,7 @@
 library plato.archives.components.course;
 
 import 'package:angular/angular.dart';
-import 'package:angular_components/angular_components.dart';
+//import 'package:angular_components/angular_components.dart';
 
 import 'course.dart';
 import 'courses_service.dart';
@@ -10,7 +10,6 @@ import 'courses_service.dart';
 @Component(
   selector: 'course',
   templateUrl: 'course_component.html',
-  directives: [coreDirectives, materialDirectives],
   providers: [CoursesService]
 )
 class CourseComponent {

@@ -12,7 +12,15 @@ import 'services/services_test.dart';
 
 import 'testable.dart';
 
-void main() => (new PlatoArchivesTester()).run();
+import 'plato_archives_test.template.dart' as pat;
+
+/// The [main] function...
+void main() {
+  pat.initReflector();
+
+  (new PlatoArchivesTester()).run();
+}
+
 //{
   //final testBed =
     //NgTestBed.forComponent<PlatoArchivesComponent>(ng.PlatoArchivesNgFactory);
