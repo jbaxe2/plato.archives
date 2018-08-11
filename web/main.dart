@@ -46,12 +46,12 @@ class PlatoArchives {
   /// The [run] method...
   void run() async {
     runZoned (() {
-      runApp (pa.PlatoArchivesComponentNgFactory, createInjector: _generateInjector());
+      runApp (pa.PlatoArchivesComponentNgFactory, createInjector: _retrieveInjector());
     }, onError: (e) {
       window.console.log ('Uncaught error:\n${e.toString()}');
     });
   }
 
-  /// The [_generateInjector] method...
-  InjectorFactory _generateInjector() => clientInjector;
+  /// The [_retrieveInjector] method...
+  InjectorFactory _retrieveInjector() => clientInjector;
 }

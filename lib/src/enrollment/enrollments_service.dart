@@ -10,17 +10,6 @@ import 'package:http/http.dart' show Client;
 class EnrollmentsService {
   final Client _http;
 
-  /**
-  static EnrollmentsService _instance;
-
-  /// The [EnrollmentsService] factory constructor...
-  factory EnrollmentsService (Client http) =>
-    _instance ?? (_instance = new EnrollmentsService._ (http));
-
-  /// The [EnrollmentsService] private constructor...
-  EnrollmentsService._ (this._http);
-  **/
-
   /// The [EnrollmentsService] constructor...
   EnrollmentsService (this._http);
 

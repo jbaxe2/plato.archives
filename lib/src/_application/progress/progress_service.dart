@@ -9,19 +9,6 @@ import 'package:angular/core.dart' show Injectable;
 class ProgressService {
   StreamController<String> messageStreamController;
 
-  /**
-  static ProgressService _instance;
-
-  /// The [ProgressService] factory constructor...
-  factory ProgressService() =>
-    _instance ?? (_instance = new ProgressService._());
-
-  /// The [ProgressService] private constructor...
-  ProgressService._() {
-    messageStreamController = new StreamController<String>.broadcast();
-  }
-  **/
-
   /// The [ProgressService] constructor...
   ProgressService();
 

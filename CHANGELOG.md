@@ -1,5 +1,10 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.16.6
+- Resolved test build errors.
+- Removed deprecated service constructors, using the configured DI.
+- Start of creating new tests.
+
 ## 0.16.5
 - Updated Dart SDK to version 2.0.0.
 - Updated dependency version constraints.
