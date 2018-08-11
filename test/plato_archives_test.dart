@@ -8,7 +8,7 @@ import 'package:test/test.dart';
 //import 'package:plato.archives/src/plato_archives_component.dart';
 //import 'package:plato.archives/src/plato_archives_component.template.dart' as ng;
 
-import 'services/services_test.dart';
+import 'services/services_test.dart' as services;
 
 import 'testable.dart';
 
@@ -55,7 +55,7 @@ class PlatoArchivesTester implements Testable {
 
   /// The [_testServices] method...
   void _testServices() {
-    (new ServicesTester()).run();
+    services.main();
   }
 
   /// The [_testComponents] method...

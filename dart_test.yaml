@@ -9,6 +9,6 @@ paths:
 
 filename: 'plato_archives_test.dart'
 
-timeout: 'none'
-
 reporter: expanded
+
+timeout: 'none'

@@ -12,6 +12,8 @@ import '../testable.dart';
 
 import 'services_test.template.dart' as services_tester;
 
+void main() => (new ServicesTester()).run();
+
 /// An injector for use with tests.
 @GenerateInjector([
   ClassProvider (UsersService)
