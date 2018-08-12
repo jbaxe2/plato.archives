@@ -7,6 +7,7 @@ import 'package:test/test.dart';
 
 import 'services/services_test.dart' as services;
 
+import 'simple_registry_test.dart' as simple_registry;
 import 'testable.dart';
 
 /// The [main] function...
@@ -21,9 +22,14 @@ class PlatoArchivesTester implements Testable {
   void run() {
     tearDown (disposeAnyRunningTest);
 
+    _testSupport();
     _testDomain();
     _testServices();
     _testComponents();
+  }
+
+  void _testSupport() {
+    simple_registry.main();
   }
 
   /// The [_testDomain] method...

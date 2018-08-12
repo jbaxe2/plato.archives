@@ -11,7 +11,7 @@ class ResourcesFactory implements PlatoFactory<Resource> {
 
   /// The [create] method...
   @override
-  Resource create (Map<String, dynamic> rawResource, [String type]) {
+  Resource create (Map<String, String> rawResource, [String type]) {
     Resource resource;
 
     try {
@@ -28,7 +28,7 @@ class ResourcesFactory implements PlatoFactory<Resource> {
   /// The [createAll] method...
   @override
   Iterable<Resource> createAll (
-    Iterable<Map<String, dynamic>> rawResources, [String type]
+    Iterable<Map<String, String>> rawResources, [String type]
   ) {
     var resources = new List<Resource>();
 

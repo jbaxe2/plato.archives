@@ -1,5 +1,9 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.16.6+1
+- Added a few more tests.
+- Minor refactoring.
+
 ## 0.16.6
 - Resolved test build errors.
 - Removed deprecated service constructors, using the configured DI.

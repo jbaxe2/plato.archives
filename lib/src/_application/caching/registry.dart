@@ -13,4 +13,13 @@ abstract class Registry<S, T> {
 
   /// The [refresh] method...
   T refresh (S key, T newResource);
+
+  /// The [contains] method...
+  bool contains (S key);
+
+  /// The [isEmpty] method...
+  bool isEmpty();
+
+  /// The [clear] method...
+  void clear();
 }

@@ -14,7 +14,7 @@ class UserFactory implements PlatoFactory<User> {
 
   /// The [create] method...
   @override
-  User create (Map<String, dynamic> rawUser, [String type = 'session']) {
+  User create (covariant Map<String, Object> rawUser, [String type = 'session']) {
     User user;
 
     try {
@@ -23,7 +23,7 @@ class UserFactory implements PlatoFactory<User> {
           user = _createSessionUser (rawUser);
           break;
         case 'archive':
-          user = _createArchiveUser (rawUser);
+          user = _createArchiveUser (rawUser.cast());
           break;
         default: throw rawUser;
       }
@@ -37,12 +37,12 @@ class UserFactory implements PlatoFactory<User> {
   /// The [createAll] method...
   @override
   Iterable<User> createAll (
-    Iterable<Map<String, dynamic>> rawUsers, [String type = 'archive']
+    covariant Iterable<Map<String, Object>> rawUsers, [String type = 'archive']
   ) {
     var users = new List<User>();
 
     try {
-      rawUsers.forEach ((Map<String, dynamic> rawUser) {
+      rawUsers.forEach ((Map<String, Object> rawUser) {
         users.add (create (rawUser, type));
       });
     } catch (_) { rethrow; }
@@ -51,7 +51,7 @@ class UserFactory implements PlatoFactory<User> {
   }
 
   /// The [_createSessionUser] method...
-  SessionUser _createSessionUser (Map<String, dynamic> rawUser) {
+  SessionUser _createSessionUser (covariant Map<String, Object> rawUser) {
     return new SessionUser (
       rawUser['banner.user.cwid'], rawUser['learn.user.username'],
       rawUser['password'], rawUser['learn.user.firstName'],

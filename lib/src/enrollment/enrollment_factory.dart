@@ -15,7 +15,8 @@ class EnrollmentFactory implements PlatoFactory<Enrollment> {
   /// The [create] method...
   @override
   Enrollment create (
-    Map<String, dynamic> rawEnrollment, [String type = '', bool fromArchive = false]
+    covariant Map<String, Object> rawEnrollment,
+    [String type = '', bool fromArchive = false]
   ) {
     if (!(rawEnrollment.containsKey ('banner.user.cwid') &&
           rawEnrollment.containsKey ('learn.user.username') &&
@@ -52,7 +53,7 @@ class EnrollmentFactory implements PlatoFactory<Enrollment> {
   /// The [createAll] method...
   @override
   List<Enrollment> createAll (
-    Iterable<Map<String, dynamic>> rawEnrollments,
+    covariant Iterable<Map<String, Object>> rawEnrollments,
     [String type = '', bool fromArchives = false]
   ) {
     var enrollments = new List<Enrollment>();
@@ -69,18 +70,20 @@ class EnrollmentFactory implements PlatoFactory<Enrollment> {
   }
 
   Enrollment _createRegularEnrollment (
-    Map<String, dynamic> rawEnrollment, [bool fromArchive = false]
+    covariant Map<String, Object> rawEnrollment, [bool fromArchive = false]
   ) {
     return new Enrollment (
       ('${rawEnrollment['learn.course.id']}_${rawEnrollment['banner.user.cwid']}'),
       rawEnrollment['learn.course.id'], rawEnrollment['learn.course.name'],
       rawEnrollment['banner.user.cwid'], rawEnrollment['learn.membership.role'],
-      rawEnrollment['learn.membership.available']
+      rawEnrollment['learn.membership.available'], forArchive: fromArchive
     );
   }
 
   /// The [_createArchiveEnrollment] method...
-  ArchiveEnrollment _createArchiveEnrollment (Map<String, dynamic> rawEnrollment) {
+  ArchiveEnrollment _createArchiveEnrollment (
+    covariant Map<String, Object> rawEnrollment
+  ) {
     return new ArchiveEnrollment (
       ('${rawEnrollment['learn.course.id']}_${rawEnrollment['banner.user.cwid']}'),
       rawEnrollment['learn.course.id'], rawEnrollment['learn.course.name'],
@@ -90,7 +93,9 @@ class EnrollmentFactory implements PlatoFactory<Enrollment> {
   }
 
   /// The [_createFacultyEnrollment] method...
-  FacultyEnrollment _createFacultyEnrollment (Map<String, dynamic> rawEnrollment) {
+  FacultyEnrollment _createFacultyEnrollment (
+    covariant Map<String, Object> rawEnrollment
+  ) {
     String role = (rawEnrollment['learn.membership.role'] as String);
 
     if ('instructor' != role.toLowerCase()) {
