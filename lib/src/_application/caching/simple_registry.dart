@@ -1,5 +1,6 @@
 library plato.archives.caching.registry.simple;
 
+import 'improper_registry_entry.dart';
 import 'registry.dart';
 
 /// The [SimpleRegistry] class...
@@ -19,7 +20,13 @@ class SimpleRegistry implements Registry<String, Object> {
   /// The [register] method...
   @override
   void register (String key, covariant Object resource) {
-    _registry.putIfAbsent (key, () => resource);
+    if (_registry.containsKey (key)) {
+      throw new ImproperRegistryEntry (
+        'Unable to register a value that has already been registered.'
+      );
+    }
+
+    _registry[key] = resource;
   }
 
   /// The [unregister] method...
@@ -39,7 +46,11 @@ class SimpleRegistry implements Registry<String, Object> {
   dynamic refresh (String key, covariant Object newResource) {
     dynamic oldResource;
 
-    if (_registry.containsKey (key)) {
+    if (!_registry.containsKey (key)) {
+      throw new ImproperRegistryEntry (
+        'Unable to refresh a registry entry value when that entry does not exist.'
+      );
+    } else {
       oldResource = _registry[key];
       _registry[key] = newResource;
     }

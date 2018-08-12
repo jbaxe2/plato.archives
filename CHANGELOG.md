@@ -1,5 +1,11 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.16.6+2
+- Reverted services back to explicit singletons, to guarantee only one instance
+per service will be run across the application.
+- Added more tests.
+- Some refactoring.
+
 ## 0.16.6+1
 - Added a few more tests.
 - Minor refactoring.

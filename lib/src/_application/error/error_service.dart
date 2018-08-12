@@ -9,12 +9,18 @@ import 'plato_exception.dart';
 /// The [ErrorService] class...
 @Injectable()
 class ErrorService {
-  StreamController<PlatoException> errorStreamController;
+  final StreamController<PlatoException> errorStreamController =
+    new StreamController<PlatoException>.broadcast();
 
   bool errorRaised;
 
-  /// The [ErrorService] constructor...
-  ErrorService();
+  static ErrorService _instance;
+
+  /// The [ErrorService] factory constructor...
+  factory ErrorService() => _instance ?? (_instance = new ErrorService._());
+
+  /// The [ErrorService] private constructor...
+  ErrorService._();
 
   /// The [raiseError] method...
   void raiseError (PlatoException exception) {

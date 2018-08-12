@@ -19,10 +19,16 @@ const String _RETRIEVE_ROSTER_URI = '/plato/retrieve/roster/archive';
 /// The [UsersService] class...
 @Injectable()
 class UsersService {
-  Client _http;
+  final Client _http;
 
-  /// The [UsersService] constructor...
-  UsersService (this._http);
+  static UsersService _instance;
+
+  /// The [UsersService] factory constructor...
+  factory UsersService (Client http) =>
+    _instance ?? (_instance = new UsersService._ (http));
+
+  /// The [UsersService] private constructor...
+  UsersService._ (this._http);
 
   /// The [retrieveUser] method...
   Future<SessionUser> retrieveUser (

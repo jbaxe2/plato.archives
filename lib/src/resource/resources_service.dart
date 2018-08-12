@@ -7,8 +7,14 @@ import 'package:angular/core.dart' show Injectable;
 /// The [ResourcesService] class...
 @Injectable()
 class ResourcesService {
-  /// The [ResourcesService] constructor...
-  ResourcesService();
+  static ResourcesService _instance;
+
+  /// The [ResourcesService] factory constructor;
+  factory ResourcesService() =>
+    _instance ?? (_instance = new ResourcesService._());
+
+  /// The [ResourcesService] private constructor...
+  ResourcesService._ ();
 
   /// The [loadResourcesTypes] method...
   Future<void> loadResourcesTypes (String archiveId) async {

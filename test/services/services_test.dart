@@ -6,7 +6,6 @@ import 'package:http/browser_client.dart' show BrowserClient;
 
 import 'package:angular/angular.dart';
 
-//import 'package:angular_test/angular_test.dart';
 import 'package:test/test.dart';
 
 import 'package:plato.archives/src/user/users_service.dart';
@@ -35,6 +34,7 @@ class ServicesTester implements Testable {
   void run() {
     group ('Services:', () {
       _testTwoInjectedServiceInstancesAreSameObject();
+      _testDirectlyCreatingTwoServiceInstancesAreSameObject();
     });
   }
 
@@ -50,6 +50,21 @@ class ServicesTester implements Testable {
           testInjector().get (UsersService);
 
         expect ((usersService1 == usersService2), true);
+      }
+    );
+  }
+
+  /// The [_testDirectlyCreatingTwoServiceInstancesAreSameObject] method...
+  void _testDirectlyCreatingTwoServiceInstancesAreSameObject() {
+    test (
+      'Directly creating two instances of a service reference the same object.',
+      () {
+        var client = new BrowserClient();
+
+        var usersService1 = new UsersService (client);
+        var usersService2 = new UsersService (client);
+
+        expect (usersService1 == usersService2, true);
       }
     );
   }

@@ -25,8 +25,14 @@ class SessionService {
 
   final Client _http;
 
-  /// The [SessionService] constructor...
-  SessionService (this._http) {
+  static SessionService _instance;
+
+  /// The [SessionService] factory constructor...
+  factory SessionService (Client http) =>
+    _instance ?? (_instance = new SessionService._ (http));
+
+  /// The [SessionService] private constructor...
+  SessionService._ (this._http) {
     _sessionExists = false;
     _isLtiSession = false;
   }

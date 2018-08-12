@@ -27,4 +27,9 @@ class SessionUser extends User {
     String id, String username, this.password, String firstName,
     String lastName, String email, [this._isLtiSession = false]
   ) : super (id, username, firstName, lastName, email);
+
+  /// The [clear] method...
+  void clear() {
+    _instance = null;
+  }
 }

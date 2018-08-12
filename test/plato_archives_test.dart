@@ -5,6 +5,9 @@ import 'package:angular_test/angular_test.dart';
 
 import 'package:test/test.dart';
 
+import 'factory/enrollment_factory_test.dart' as enrollment_factory;
+import 'factory/user_factory_test.dart' as user_factory;
+
 import 'services/services_test.dart' as services;
 
 import 'simple_registry_test.dart' as simple_registry;
@@ -28,13 +31,15 @@ class PlatoArchivesTester implements Testable {
     _testComponents();
   }
 
+  /// The [_testSupport] method...
   void _testSupport() {
     simple_registry.main();
   }
 
   /// The [_testDomain] method...
   void _testDomain() {
-    ;
+    user_factory.main();
+    enrollment_factory.main();
   }
 
   /// The [_testServices] method...

@@ -3,6 +3,7 @@ library plato.archives.tests.registry.simple;
 
 import 'package:test/test.dart';
 
+import 'package:plato.archives/src/_application/caching/improper_registry_entry.dart';
 import 'package:plato.archives/src/_application/caching/simple_registry.dart';
 
 import 'testable.dart';
@@ -19,19 +20,21 @@ class SimpleRegistryTester implements Testable {
   @override
   void run() {
     group ('Simple registry:', () {
-      _testAddingValueIsActuallyAdded();
+      _testRegistryContainsAddedValue();
       _testAddValuesAndClearResultsInEmptyRegistry();
       _testValueIsRetrievableAfterBeingAdded();
+      _testRegistryDoesNotContainValueRemoved();
+      _testRetrievingValueIsRefreshedValue();
+      _testRefreshNonRegisteredIsImproper();
+      _testRefreshNonRegisteredDoesNotContainValue();
     });
   }
 
-  /// The [_testAddingValueIsActuallyAdded] method...
-  void _testAddingValueIsActuallyAdded() {
-    test ('Adding a value to a registry will cause it to contain that value.', () {
-      const int value = 0;
-
+  /// The [_testRegistryContainsAddedValue] method...
+  void _testRegistryContainsAddedValue() {
+    test ('Adding a value to the registry will cause it to contain that value.', () {
       var registry = new SimpleRegistry()
-        ..register ('key1', value);
+        ..register ('key1', 0);
 
       expect (registry.contains ('key1'), true);
 
@@ -42,12 +45,9 @@ class SimpleRegistryTester implements Testable {
   /// The [_testAddValuesAndClearResultsInEmptyRegistry] method...
   void _testAddValuesAndClearResultsInEmptyRegistry() {
     test ('Adding values to the registry and then clearing it will empty the registry.', () {
-      const int value1 = 1;
-      const int value2 = 2;
-
       var registry = new SimpleRegistry()
-        ..register ('key1', value1)
-        ..register ('key2', value2)
+        ..register ('key1', 1)
+        ..register ('key2', 2)
         ..clear();
 
       expect (registry.isEmpty(), true);
@@ -67,6 +67,83 @@ class SimpleRegistryTester implements Testable {
       int retrieved = registry.retrieve ('key1') as int;
 
       expect ((value == retrieved), true);
+
+      registry.clear();
+    });
+  }
+
+  /// The [_testRegistryDoesNotContainValueRemoved] method...
+  void _testRegistryDoesNotContainValueRemoved() {
+    test (
+      'Removing a value from the registry causes it to not be part of the registry.',
+      () {
+        const int value = 0;
+
+        var registry = new SimpleRegistry()
+          ..register ('key1', value);
+
+        assert (!registry.isEmpty());
+
+        int removed = registry.unregister ('key1');
+
+        assert (value == removed);
+        expect (registry.contains ('key1'), false);
+
+        registry.clear();
+      }
+    );
+  }
+
+  /// The [_testRetrievingValueIsRefreshedValue] method...
+  void _testRetrievingValueIsRefreshedValue() {
+    test ('Refreshing a value retrieves the refreshed value.', () {
+      const int value2 = 2;
+
+      var registry = new SimpleRegistry()
+        ..register ('theKey', 1)
+        ..refresh ('theKey', value2);
+
+      int retrieved = registry.retrieve ('theKey') as int;
+
+      expect (value2 == retrieved, true);
+
+      registry.clear();
+    });
+  }
+
+  /// The [_testRefreshNonRegisteredIsImproper] method...
+  void _testRefreshNonRegisteredIsImproper() {
+    test ('Refreshing a non-registered value throws an improper error.', () {
+      const String expected =
+        'Unable to refresh a registry entry value when that entry does not exist.';
+
+      var registry = new SimpleRegistry();
+      Exception error;
+
+      try {
+        registry.refresh ('nonExistingKey', 1);
+      } catch (e) {
+        error = e;
+      }
+
+      assert (error is ImproperRegistryEntry);
+      expect (error.toString() == expected, true);
+
+      registry.clear();
+    });
+  }
+
+  /// The [_testRefreshNonRegisteredDoesNotContainValue] method...
+  void _testRefreshNonRegisteredDoesNotContainValue() {
+    test ('Registry does not contain a non-registered refreshed value.', () {
+      const int value = 1;
+      var registry = new SimpleRegistry();
+
+      try {
+        registry.refresh ('nonExistingKey', value);
+      } catch (_) {}
+
+      expect (registry.contains ('nonExistingKey'), false);
 
       registry.clear();
     });
