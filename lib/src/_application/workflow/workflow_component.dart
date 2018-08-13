@@ -1,7 +1,11 @@
 library plato.archives.components.workflow;
 
+import 'dart:async' show Future;
+
 import 'package:angular/angular.dart';
+
 import 'package:angular_components/angular_components.dart';
+import 'package:angular_components/model/action/async_action.dart';
 
 import '../../_application/patron/patron_component.dart';
 import '../../archive/archive_selection_component.dart';
@@ -24,4 +28,9 @@ class WorkflowComponent {
 
   /// The [WorkflowComponent] constructor...
   WorkflowComponent (this._workflowService);
+
+  /// The [verifyAuthenticated] method...
+  Future<void> verifyAuthenticated (AsyncAction<bool> action) async {
+    action.cancelIf (Future.value (!_workflowService.hasAuthenticated));
+  }
 }

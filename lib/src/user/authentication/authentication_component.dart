@@ -13,6 +13,7 @@ import 'authentication_service.dart';
 @Component(
   selector: 'authentication',
   templateUrl: 'authentication_component.html',
+  styleUrls: ['authentication_component.css'],
   directives: [
     materialInputDirectives,
     MaterialButtonComponent, MaterialIconComponent, MaterialInputComponent,
@@ -32,7 +33,10 @@ class AuthenticationComponent {
   final ProgressService _progressService;
 
   /// The [AuthenticationComponent] constructor...
-  AuthenticationComponent (this._authenticationService, this._progressService);
+  AuthenticationComponent (this._authenticationService, this._progressService) {
+    username = '';
+    password = '';
+  }
 
   /// The [authenticate] method...
   Future<void> authenticate() async {

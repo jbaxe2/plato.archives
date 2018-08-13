@@ -1,6 +1,15 @@
-<div>
-  <p>
-    Here will be a welcome message for the application,
-    as well as some directions.
-  </p>
-</div>
+<material-expansionpanel
+    name="Welcome to the Plato Archived Courses Viewer"
+    secondaryText="(click here to hide or show welcome)"
+    [expanded]="true"
+    [showSaveCancel]="false">
+  <div id="welcome-container">
+    <p>
+      Welcome to Plato archived courses viewer!  Using this viewer, you will be
+      able to review the content, used tools, and other related areas from old
+      courses that were archived from Plato.<br><br>
+      Not everything will be available right away, but more archived course
+      features will be added as time goes.  Feature requests are always welcome.
+    </p>
+  </div>
+</material-expansionpanel>

@@ -1,5 +1,8 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.16.6+4
+- Some more workflow functionality relating to authentication/session.
+
 ## 0.16.6+3
 - Some refactoring to resolve build issues.
 - Start of really fleshing out the application; work on authentication and

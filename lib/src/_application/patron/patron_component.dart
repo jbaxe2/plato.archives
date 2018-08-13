@@ -50,6 +50,10 @@ class PatronComponent implements OnInit {
   /// The [ngOnInit] method...
   @override
   Future<void> ngOnInit() async {
+    if (_isAuthenticated) {
+      return;
+    }
+
     _progressService.invoke ('Determining if a current session exists.');
 
     try {
@@ -59,7 +63,7 @@ class PatronComponent implements OnInit {
 
         await retrievePatronInfo();
       } else {
-        _listenForAuthentication();
+        await _listenForAuthentication();
       }
     } catch (_) {}
 
@@ -67,7 +71,7 @@ class PatronComponent implements OnInit {
   }
 
   /// The [_listenForAuthentication] method...
-  void _listenForAuthentication() {
+  Future<void> _listenForAuthentication() async {
     _authenticationService.authenticationStream.listen (
       (bool authenticationResult) async {
         if (_isAuthenticated = authenticationResult) {

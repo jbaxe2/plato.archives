@@ -1,3 +1,7 @@
-body {
-  font-family: Roboto, Helvetica, Arial, sans-serif;
+::ng-deep body {
+  font-family: Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+welcome {
+  margin-bottom: 15px;
 }

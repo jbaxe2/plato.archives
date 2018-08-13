@@ -5,6 +5,10 @@ import 'package:angular/core.dart' show Injectable;
 /// The [WorkflowService] class...
 @Injectable()
 class WorkflowService {
+  bool hasAuthenticated;
+
   /// The [WorkflowService] constructor.....
-  WorkflowService();
+  WorkflowService() {
+    hasAuthenticated = false;
+  }
 }

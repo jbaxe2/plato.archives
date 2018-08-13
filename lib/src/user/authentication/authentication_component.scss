@@ -1,0 +1,12 @@
+@import 'package:angular_components/css/material/material';
+@import 'package:angular_components/material_input/mixins';
+
+material-input {
+  @include input-label-color(black);
+  @include material-input-focused-underline-color(black);
+}
+
+material-button {
+  background-color: #1f4f21;
+  color: white;
+}

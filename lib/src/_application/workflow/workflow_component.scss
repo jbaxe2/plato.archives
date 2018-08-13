@@ -3,7 +3,7 @@
 @import 'package:angular_components/material_yes_no_buttons/mixins';
 
 @include material-stepper-theme(
-  $step-color: #1f4f21, $button-color: #bbb
+  $step-color: #1f4f21, $button-color: #47380a
 );
 
 material-stepper {}

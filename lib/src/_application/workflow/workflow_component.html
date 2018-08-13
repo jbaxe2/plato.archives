@@ -1,6 +1,6 @@
 <material-stepper>
   <template step name="Authentication">
-    <div class="step-container">
+    <div class="step-container" (continue)="verifyAuthenticated($event)">
       <patron></patron>
     </div>
   </template>
@@ -23,7 +23,7 @@
     </div>
   </template>
 
-  <template step name="Tool / Content View">
+  <template step canContinue="false" name="Tool / Content View">
     <div class="step-container">
       <p>Here will be a view of the specifically selected resource.</p>
     </div>
