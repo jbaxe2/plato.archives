@@ -1,7 +1,7 @@
 library plato.archives.services.authentication;
 
-import 'dart:async' show Future;
-import 'dart:convert' show json;
+import 'dart:async' show Future, Stream, StreamController;
+import 'dart:convert' show json, utf8;
 
 import 'package:angular/core.dart' show Injectable;
 import 'package:http/http.dart' show Client, Response;
@@ -18,6 +18,11 @@ class AuthenticationService {
   bool _isAuthenticated;
 
   bool get isAuthenticated => _isAuthenticated;
+
+  final StreamController<bool> _authenticationController =
+    new StreamController<bool>.broadcast();
+
+  Stream<bool> get authenticationStream => _authenticationController.stream;
 
   final Client _http;
 
@@ -51,10 +56,11 @@ class AuthenticationService {
         body: {'username': username, 'password': password}
       );
 
-      final Map<String, dynamic> rawAuth = json.decode (authResponse.body) as Map;
+      final Map<String, dynamic> rawAuth =
+        json.decode (utf8.decode (authResponse.bodyBytes)) as Map;
 
       if (true == rawAuth['learn.user.authenticated']) {
-        _isAuthenticated = true;
+        _authenticationController.add (_isAuthenticated = true);
       } else {
         throw _isAuthenticated;
       }
@@ -64,5 +70,9 @@ class AuthenticationService {
   }
 
   /// The [logout] method...
-  Future<void> logout() async => await _http.get (_LOGOUT_URI);
+  Future<void> logout() async {
+    await _http.get (_LOGOUT_URI);
+
+    _authenticationController.add (_isAuthenticated = false);
+  }
 }

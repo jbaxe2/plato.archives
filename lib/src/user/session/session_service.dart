@@ -1,7 +1,7 @@
 library plato.archives.services.session;
 
 import 'dart:async' show Future;
-import 'dart:convert' show json;
+import 'dart:convert' show json, utf8;
 
 import 'package:angular/core.dart' show Injectable;
 import 'package:http/http.dart' show Client, Response;
@@ -47,7 +47,7 @@ class SessionService {
       final Response sessionResponse = await _http.get (_RETRIEVE_URI);
 
       final Map<String, dynamic> rawSession =
-        (json.decode (sessionResponse.body) as Map)['session'];
+        (json.decode (utf8.decode (sessionResponse.bodyBytes)) as Map)['session'];
 
       if ((rawSession.containsKey ('plato.session.exists')) &&
           (rawSession.containsKey ('learn.user.authenticated'))) {

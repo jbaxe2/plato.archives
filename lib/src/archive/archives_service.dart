@@ -1,7 +1,7 @@
 library plato.archives.services.archives;
 
 import 'dart:async' show Future;
-import 'dart:convert' show json;
+import 'dart:convert' show json, utf8;
 
 import 'package:angular/core.dart' show Injectable;
 import 'package:http/http.dart' show Client, Response;
@@ -40,8 +40,10 @@ class ArchivesService {
       final Response retrieveArchivesResponse =
         await _http.get (_RETRIEVE_ARCHIVES_URI);
 
+      String rawArchivesJson = utf8.decode (retrieveArchivesResponse.bodyBytes);
+
       List<Map<String, String>> rawArchives =
-        (json.decode (retrieveArchivesResponse.body) as Map)['archives'];
+        (json.decode (rawArchivesJson) as Map)['archives'];
 
       _facultyArchives =
         (new EnrollmentFactory()).createAll (rawArchives, 'faculty');

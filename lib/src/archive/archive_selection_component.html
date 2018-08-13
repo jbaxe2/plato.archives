@@ -5,14 +5,16 @@
 
   <div *ngIf="archiveEnrollments.isNotEmpty">
     <p>
-      Please select an archive enrollment to review.
+      Please select an archive enrollment to review.  Then click the
+      <strong>Continue</strong> button, and we'll see what that archive
+      contains.
     </p>
 
     <material-radio-group [(ngModel)]="selected">
       <span *ngFor="let enrollment of archiveEnrollments">
         <material-radio [value]="enrollment">
           [{{enrollment.courseId}}] {{enrollment.courseName}}
-        </material-radio>
+        </material-radio><br>
       </span>
     </material-radio-group>
   </div>

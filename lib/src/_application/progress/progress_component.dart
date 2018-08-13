@@ -34,12 +34,10 @@ class ProgressComponent implements OnInit {
   /// The [ngOnInit] method...
   @override
   void ngOnInit() {
-    _progressService.messageStreamController.stream.listen (
-      (String theMessage) {
-        message = theMessage ?? _defaultMessage;
+    _progressService.messageStream.listen ((String theMessage) {
+      message = theMessage ?? _defaultMessage;
 
-        isVisible = (null != theMessage);
-      }
-    );
+      isVisible = (null != theMessage);
+    });
   }
 }

@@ -1,0 +1,17 @@
+<div>
+  <authentication *ngIf="!isAuthenticated"></authentication>
+
+  <p *ngIf="isAuthenticated && null == patron">
+    <em>Retrieving your Plato user information; please wait.</em>
+  </p>
+
+  <div *ngIf="null != patron">
+    <p>
+      Hello, <strong>{{patron.firstName}} {{patron.lastName}}</strong>!  We are
+      now ready to start reviewing your archived courses.<br><br>
+      Let's start by seeing what course archives you have to review.  Please
+      click the <strong>Continue</strong> button to proceed with selecting a
+      course archive.
+    </p>
+  </div>
+</div>

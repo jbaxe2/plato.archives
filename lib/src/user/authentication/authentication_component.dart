@@ -14,6 +14,7 @@ import 'authentication_service.dart';
   selector: 'authentication',
   templateUrl: 'authentication_component.html',
   directives: [
+    materialInputDirectives,
     MaterialButtonComponent, MaterialIconComponent, MaterialInputComponent,
     NgModel
   ],
@@ -42,6 +43,8 @@ class AuthenticationComponent {
     try {
       _progressService.invoke ('Attempting to verify Plato credentials.');
       await _authenticationService.authenticate (username, password);
+
+      isAuthenticated;
     } catch (_) {}
 
     _progressService.revoke();

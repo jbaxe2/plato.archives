@@ -37,6 +37,10 @@ class ArchiveSelectionComponent implements AfterViewInit {
   /// The [ngAfterViewInit] method...
   @override
   Future<void> ngAfterViewInit() async {
+    if (archiveEnrollments.isNotEmpty) {
+      return;
+    }
+
     _progressService.invoke ('Determining if there are any archives to review.');
 
     try {

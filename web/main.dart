@@ -30,11 +30,12 @@ void main() => (new PlatoArchives()).run();
 /// The generated injector for the application services.
 @GenerateInjector([
   ClassProvider (Client, useClass: BrowserClient),
+
   ClassProvider (ErrorService), ClassProvider (ProgressService),
   ClassProvider (WorkflowService), ClassProvider (ArchivesService),
   ClassProvider (CoursesService), ClassProvider (EnrollmentsService),
   ClassProvider (ResourcesService), ClassProvider (UsersService),
-  ClassProvider (AuthenticationService), ClassProvider (SessionService)
+  ClassProvider (AuthenticationService), ClassProvider (SessionService),
 ])
 final InjectorFactory clientInjector = pa_main.clientInjector$Injector;
 

@@ -1,7 +1,7 @@
 library plato.archives.services.user;
 
 import 'dart:async' show Future;
-import 'dart:convert' show json;
+import 'dart:convert' show json, utf8;
 
 import 'package:angular/core.dart' show Injectable;
 import 'package:http/http.dart' show Client, Response;
@@ -31,24 +31,17 @@ class UsersService {
   UsersService._ (this._http);
 
   /// The [retrieveUser] method...
-  Future<SessionUser> retrieveUser (
-    String username, {String password = '', bool isLtiSession = false}
-  ) async {
+  Future<SessionUser> retrieveUser ({bool isLtiSession = false}) async {
     SessionUser user;
 
     try {
       final Response userResponse = await _http.get (_RETRIEVE_USER_URI);
 
       final Map<String, dynamic> rawUser =
-        (json.decode (userResponse.body) as Map)['user'];
-
-      if (rawUser['learn.user.username'] != username) {
-        throw username;
-      }
+        (json.decode (utf8.decode (userResponse.bodyBytes)) as Map)['user'];
 
       rawUser
-        ..['username'] = username
-        ..['password'] = password
+        ..['password'] = ''
         ..['isLtiSession'] = isLtiSession;
 
       user = (new UserFactory()).create (rawUser, 'session');

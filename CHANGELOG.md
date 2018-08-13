@@ -1,5 +1,10 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.16.6+3
+- Some refactoring to resolve build issues.
+- Start of really fleshing out the application; work on authentication and
+session type components/services, developing the start of the workflow.
+
 ## 0.16.6+2
 - Reverted services back to explicit singletons, to guarantee only one instance
 per service will be run across the application.

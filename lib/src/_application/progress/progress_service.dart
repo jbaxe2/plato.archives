@@ -1,13 +1,16 @@
 library plato.archives.services.progress;
 
-import 'dart:async' show StreamController;
+import 'dart:async' show Stream, StreamController;
 
 import 'package:angular/core.dart' show Injectable;
 
 /// The [ProgressService] class...
 @Injectable()
 class ProgressService {
-  StreamController<String> messageStreamController;
+  final StreamController<String> _messageStreamController =
+    new StreamController<String>();
+
+  Stream<String> get messageStream => _messageStreamController.stream;
 
   static ProgressService _instance;
 
@@ -18,10 +21,10 @@ class ProgressService {
   ProgressService._();
 
   /// The [invoke] method...
-  void invoke (String message) => messageStreamController.add (
+  void invoke (String message) => _messageStreamController.add (
     message ?? '(Status indicator invoked with unkown message.)'
   );
 
   /// The [revoke] method...
-  void revoke() => messageStreamController.add (null);
+  void revoke() => _messageStreamController.add (null);
 }
