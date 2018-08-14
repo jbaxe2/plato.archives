@@ -1,38 +1,38 @@
 <material-stepper #workflowStepper>
-  <template step name="Authentication">
-    <div class="step-container" (continue)="verifyAuthenticated($event)">
+  <template step name="Authentication" [hideButtons]="true">
+    <div class="step-container">
       <patron></patron>
     </div>
   </template>
 
-  <template step name="Archive Course Selection">
+  <template step name="Archive Course Selection" [hideButtons]="true">
     <div class="step-container">
       <archive-selection></archive-selection>
     </div>
   </template>
 
-  <template step name="Tool Type / Content Selection">
+  <template step name="Tool Type / Content Selection" [hideButtons]="true">
     <div class="step-container">
       <p>Here will be options to select a tool type or content.</p>
     </div>
   </template>
 
-  <template step name="Specific Tool / Content Selection">
+  <template step name="Specific Tool / Content Selection" [hideButtons]="true">
     <div class="step-container">
       <p>Here will be options to select a specific tool or piece of content.</p>
     </div>
   </template>
 
-  <template step canContinue="false" name="Tool / Content View">
+  <template step canContinue="false" name="Tool / Content View" [hideButtons]="true">
     <div class="step-container">
       <p>Here will be a view of the specifically selected resource.</p>
     </div>
   </template>
-
-  <material-button
-      id="stepper-button" raised buttonDecorator
-      [style.display]="canStep ? '' : 'none'"
-      (trigger)="workflowStepper.stepForward($event, workflowStepper.activeStep)">
-    Continue
-  </material-button>
 </material-stepper>
+
+<material-button
+    id="stepper-button" raised buttonDecorator
+    [hidden]="!canStep"
+    (trigger)="progressInWorkflow($event)">
+  Progress Workflow
+</material-button>

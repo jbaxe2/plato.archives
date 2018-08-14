@@ -12,12 +12,16 @@ import '../../user/users_service.dart';
 
 import '../progress/progress_service.dart';
 
+import '../workflow/workflow_service.dart';
+
 /// The [PatronComponent] class...
 @Component(
   selector: 'patron',
   templateUrl: 'patron_component.html',
   directives: [AuthenticationComponent, NgIf],
-  providers: [AuthenticationService, SessionService, UsersService]
+  providers: [
+    AuthenticationService, SessionService, UsersService, WorkflowService
+  ]
 )
 class PatronComponent implements OnInit {
   SessionUser _patron;
@@ -38,10 +42,12 @@ class PatronComponent implements OnInit {
 
   final UsersService _usersService;
 
+  final WorkflowService _workflowService;
+
   /// The [PatronComponent] constructor...
   PatronComponent (
     this._authenticationService, this._progressService,
-    this._sessionService, this._usersService
+    this._sessionService, this._usersService, this._workflowService
   ) {
     _isAuthenticated = false;
     _isLtiSession = false;
@@ -89,6 +95,8 @@ class PatronComponent implements OnInit {
       try {
         _patron =
           await _usersService.retrieveUser (isLtiSession: _isLtiSession);
+
+        _workflowService.markPatronEstablished();
       } catch (_) {}
 
       _progressService.revoke();
