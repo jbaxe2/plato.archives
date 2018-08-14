@@ -15,6 +15,7 @@ import 'archives_service.dart';
 @Component(
   selector: 'archive-selection',
   templateUrl: 'archive_selection_component.html',
+  styleUrls: ['archive_selection_component.css'],
   directives: [
     MaterialRadioComponent, MaterialRadioGroupComponent, NgIf, NgFor
   ],

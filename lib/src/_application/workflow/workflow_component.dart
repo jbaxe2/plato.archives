@@ -18,7 +18,7 @@ import 'workflow_service.dart';
   templateUrl: 'workflow_component.html',
   styleUrls: ['workflow_component.css'],
   directives: [
-    MaterialStepperComponent, StepDirective,
+    MaterialButtonComponent, MaterialStepperComponent, StepDirective,
     ArchiveSelectionComponent, PatronComponent
   ],
   providers: [WorkflowService]
@@ -30,7 +30,7 @@ class WorkflowComponent {
   WorkflowComponent (this._workflowService);
 
   /// The [verifyAuthenticated] method...
-  Future<void> verifyAuthenticated (AsyncAction<bool> action) async {
+  void verifyAuthenticated (AsyncAction<bool> action) {
     action.cancelIf (Future.value (!_workflowService.hasAuthenticated));
   }
 }

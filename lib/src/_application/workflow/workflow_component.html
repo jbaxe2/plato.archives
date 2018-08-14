@@ -1,4 +1,4 @@
-<material-stepper>
+<material-stepper #workflowStepper>
   <template step name="Authentication">
     <div class="step-container" (continue)="verifyAuthenticated($event)">
       <patron></patron>
@@ -28,4 +28,11 @@
       <p>Here will be a view of the specifically selected resource.</p>
     </div>
   </template>
+
+  <material-button
+      id="stepper-button" raised buttonDecorator
+      [style.display]="canStep ? '' : 'none'"
+      (trigger)="workflowStepper.stepForward($event, workflowStepper.activeStep)">
+    Continue
+  </material-button>
 </material-stepper>

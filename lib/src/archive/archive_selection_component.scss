@@ -1,0 +1,14 @@
+@import 'package:angular_components/css/material/material';
+@import 'package:angular_components/material_radio/mixins';
+
+@include material-radio-color(
+  $primary-color: #47380a
+);
+
+::ng-deep .mat-radio-inner-circle {
+  background-color: #47380a;
+}
+
+::ng-deep .mat-radio-checked .mat-radio-outer-circle {
+  border-color: #47380a;
+}
