@@ -10,6 +10,8 @@ import '../../user/session/session_service.dart';
 import '../../user/session/session_user.dart';
 import '../../user/users_service.dart';
 
+import '../caching/caching_service.dart';
+
 import '../progress/progress_service.dart';
 
 import '../workflow/workflow_service.dart';
@@ -20,7 +22,8 @@ import '../workflow/workflow_service.dart';
   templateUrl: 'patron_component.html',
   directives: [AuthenticationComponent, NgIf],
   providers: [
-    AuthenticationService, SessionService, UsersService, WorkflowService
+    AuthenticationService, CachingService, ProgressService, SessionService,
+    UsersService, WorkflowService
   ]
 )
 class PatronComponent implements OnInit {
@@ -36,6 +39,8 @@ class PatronComponent implements OnInit {
 
   final AuthenticationService _authenticationService;
 
+  final CachingService _cachingService;
+
   final ProgressService _progressService;
 
   final SessionService _sessionService;
@@ -46,7 +51,7 @@ class PatronComponent implements OnInit {
 
   /// The [PatronComponent] constructor...
   PatronComponent (
-    this._authenticationService, this._progressService,
+    this._authenticationService, this._cachingService, this._progressService,
     this._sessionService, this._usersService, this._workflowService
   ) {
     _isAuthenticated = false;
@@ -56,10 +61,28 @@ class PatronComponent implements OnInit {
   /// The [ngOnInit] method...
   @override
   Future<void> ngOnInit() async {
-    if (_isAuthenticated) {
+    if (_loadFromCache()) {
       return;
     }
 
+    await _checkIfSessionExists();
+  }
+
+  /// The [_loadFromCache] method...
+  bool _loadFromCache() {
+    if (!_cachingService.haveCachedObject ('patron')) {
+      return false;
+    }
+
+    _patron = _cachingService.retrieveCachedObject ('patron') as SessionUser;
+    _isAuthenticated = true;
+    _isLtiSession = _sessionService.isLtiSession;
+
+    return true;
+  }
+
+  /// The [_checkIfSessionExists] method...
+  Future<void> _checkIfSessionExists() async {
     _progressService.invoke ('Determining if a current session exists.');
 
     try {
@@ -67,7 +90,7 @@ class PatronComponent implements OnInit {
         _isAuthenticated = true;
         _isLtiSession = _sessionService.isLtiSession;
 
-        await retrievePatronInfo();
+        await _retrievePatronInfo();
       } else {
         await _listenForAuthentication();
       }
@@ -81,14 +104,14 @@ class PatronComponent implements OnInit {
     _authenticationService.authenticationStream.listen (
       (bool authenticationResult) async {
         if (_isAuthenticated = authenticationResult) {
-          await retrievePatronInfo();
+          await _retrievePatronInfo();
         };
       }
     );
   }
 
-  /// The [retrievePatronInfo] method...
-  Future<void> retrievePatronInfo() async {
+  /// The [_retrievePatronInfo] method...
+  Future<void> _retrievePatronInfo() async {
     if (isAuthenticated && (null == patron)) {
       _progressService.invoke ('Retrieving the user information.');
 
@@ -96,6 +119,7 @@ class PatronComponent implements OnInit {
         _patron =
           await _usersService.retrieveUser (isLtiSession: _isLtiSession);
 
+        _cachingService.cacheObject ('patron', _patron);
         _workflowService.markPatronEstablished();
       } catch (_) {}
 

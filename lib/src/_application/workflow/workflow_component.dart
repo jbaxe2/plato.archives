@@ -18,7 +18,8 @@ import 'workflow_service.dart';
   styleUrls: ['workflow_component.css'],
   directives: [
     MaterialButtonComponent, MaterialStepperComponent, StepDirective,
-    ArchiveSelectionComponent, PatronComponent
+    ArchiveSelectionComponent, PatronComponent,
+    NgIf
   ],
   providers: [WorkflowService]
 )
@@ -50,5 +51,14 @@ class WorkflowComponent implements AfterViewInit {
     stepper.stepForward (event, stepper.steps[stepper.activeStepIndex + 1]);
 
     _workflowService.markProgressedWorkflow();
+  }
+
+  /// The [goBackInWorkflow] method...
+  void goBackInWorkflow (Event event) {
+    if (stepper.activeStep.isFirst) {
+      return;
+    }
+
+    stepper.stepBackward (event, stepper.steps[stepper.activeStepIndex - 1]);
   }
 }

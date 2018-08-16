@@ -39,6 +39,10 @@ class SimpleRegistry implements Registry<String, Object> {
     if (_registry.containsKey (key)) {
       return _registry[key];
     }
+
+    throw new ImproperRegistryEntry (
+      'Unable to retrieve the value from the registry when it has not been added.'
+    );
   }
 
   /// The [refresh] method...

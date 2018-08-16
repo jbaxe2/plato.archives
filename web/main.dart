@@ -7,6 +7,7 @@ import 'package:angular/angular.dart';
 import 'package:http/http.dart' show Client;
 import 'package:http/browser_client.dart' show BrowserClient;
 
+import 'package:plato.archives/src/_application/caching/caching_service.dart';
 import 'package:plato.archives/src/_application/error/error_service.dart';
 import 'package:plato.archives/src/_application/progress/progress_service.dart';
 import 'package:plato.archives/src/_application/workflow/workflow_service.dart';
@@ -31,11 +32,12 @@ void main() => (new PlatoArchives()).run();
 @GenerateInjector([
   ClassProvider (Client, useClass: BrowserClient),
 
-  ClassProvider (ErrorService), ClassProvider (ProgressService),
-  ClassProvider (WorkflowService), ClassProvider (ArchivesService),
-  ClassProvider (CoursesService), ClassProvider (EnrollmentsService),
-  ClassProvider (ResourcesService), ClassProvider (UsersService),
-  ClassProvider (AuthenticationService), ClassProvider (SessionService),
+  ClassProvider (ArchivesService), ClassProvider (AuthenticationService),
+  ClassProvider (CachingService), ClassProvider (CoursesService),
+  ClassProvider (EnrollmentsService), ClassProvider (ErrorService),
+  ClassProvider (ProgressService), ClassProvider (ResourcesService),
+  ClassProvider (SessionService), ClassProvider (UsersService),
+  ClassProvider (WorkflowService),
 ])
 final InjectorFactory clientInjector = pa_main.clientInjector$Injector;
 

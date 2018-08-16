@@ -32,7 +32,13 @@
 
 <material-button
     id="stepper-button" raised buttonDecorator
-    [hidden]="!canStep"
-    (trigger)="progressInWorkflow($event)">
-  Progress Workflow
+    *ngIf="canStep" (trigger)="progressInWorkflow($event)">
+  Continue
+</material-button>
+
+<material-button
+    id="stepper-back-button" raised buttonDecorator
+    *ngIf="workflowStepper.activeStepIndex != 0"
+    (trigger)="goBackInWorkflow($event)">
+  Go to Previous Step
 </material-button>
