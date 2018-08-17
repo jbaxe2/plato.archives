@@ -1,6 +1,6 @@
 library plato.archives.components.workflow;
 
-import 'dart:html' show Event;
+import 'dart:html' show Event, window;
 
 import 'package:angular/angular.dart';
 
@@ -42,14 +42,13 @@ class WorkflowComponent implements AfterViewInit {
   @override
   void ngAfterViewInit() {
     _workflowService.progressStream.listen (
-      (bool stepMarked) => (_canStep = stepMarked)
+      (bool stepMarked) => _canStep = stepMarked
     );
   }
 
   /// The [progressInWorkflow] method...
   void progressInWorkflow (Event event) {
     stepper.stepForward (event, stepper.steps[stepper.activeStepIndex + 1]);
-
     _workflowService.markProgressedWorkflow();
   }
 
@@ -60,5 +59,6 @@ class WorkflowComponent implements AfterViewInit {
     }
 
     stepper.stepBackward (event, stepper.steps[stepper.activeStepIndex - 1]);
+    _canStep = true;
   }
 }

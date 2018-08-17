@@ -26,7 +26,7 @@ import '../workflow/workflow_service.dart';
     UsersService, WorkflowService
   ]
 )
-class PatronComponent implements OnInit {
+class PatronComponent implements AfterViewInit {
   SessionUser _patron;
 
   SessionUser get patron => _patron;
@@ -58,9 +58,9 @@ class PatronComponent implements OnInit {
     _isLtiSession = false;
   }
 
-  /// The [ngOnInit] method...
+  /// The [ngAfterViewInit] method...
   @override
-  Future<void> ngOnInit() async {
+  Future<void> ngAfterViewInit() async {
     if (_loadFromCache()) {
       return;
     }

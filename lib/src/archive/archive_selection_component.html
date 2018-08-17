@@ -10,7 +10,9 @@
       contains.
     </p>
 
-    <material-radio-group [(ngModel)]="selected">
+    <material-radio-group
+        [ngModel]="archiveEnrollment"
+        (ngModelChange)="archiveEnrollmentSelected($event)">
       <span *ngFor="let enrollment of archiveEnrollments">
         <material-radio [value]="enrollment">
           [{{enrollment.courseId}}] {{enrollment.courseName}}

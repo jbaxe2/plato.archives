@@ -1,17 +1,13 @@
 library plato.archives.services.workflow;
 
-import 'dart:async' show Stream, StreamController;
+import 'dart:async' show StreamController, Stream;
 
 import 'package:angular/core.dart' show Injectable;
 
 /// The [WorkflowService] class...
 @Injectable()
 class WorkflowService {
-  bool _canProgressWorkflow;
-
-  bool get canProgressWorkflow => _canProgressWorkflow;
-
-  final StreamController<bool> _progressStreamController =
+  static StreamController<bool> _progressStreamController =
     new StreamController<bool>.broadcast();
 
   Stream<bool> get progressStream => _progressStreamController.stream;
@@ -24,4 +20,7 @@ class WorkflowService {
 
   /// The [markPatronEstablished] method...
   void markPatronEstablished() => _progressStreamController.add (true);
+
+  /// The [markArchiveEnrollmentSelected] method...
+  void markArchiveEnrollmentSelected() => _progressStreamController.add (true);
 }
