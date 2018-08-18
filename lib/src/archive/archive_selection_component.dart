@@ -1,7 +1,6 @@
 library plato.archives.components.archive.selection;
 
 import 'dart:async' show Future;
-import 'dart:html' show window;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
@@ -20,9 +19,11 @@ import 'archives_service.dart';
   templateUrl: 'archive_selection_component.html',
   styleUrls: ['archive_selection_component.css'],
   directives: [
-    MaterialRadioComponent, MaterialRadioGroupComponent, NgIf, NgFor
+    MaterialRadioComponent, MaterialRadioGroupComponent, NgIf, NgFor, NgModel
   ],
-  providers: [ArchivesService, ProgressService]
+  providers: [
+    ArchivesService, CachingService, ProgressService, WorkflowService
+  ]
 )
 class ArchiveSelectionComponent implements AfterViewInit {
   List<FacultyEnrollment> archiveEnrollments;
@@ -56,12 +57,11 @@ class ArchiveSelectionComponent implements AfterViewInit {
   }
 
   /// The [archiveEnrollmentSelected] method...
-  void archiveEnrollmentSelected (event) {
-    window.console.log ('enrollment selected');
-    window.console.debug (event);
-
+  void archiveEnrollmentSelected (FacultyEnrollment enrollment) {
     _cachingService.cacheObject ('archiveEnrollments', archiveEnrollments);
-    _cachingService.cacheObject ('selectedArchiveEnrollment', archiveEnrollment);
+    _cachingService.cacheObject (
+      'archiveEnrollment', (archiveEnrollment = enrollment)
+    );
 
     _workflowService.markArchiveEnrollmentSelected();
   }
@@ -73,7 +73,7 @@ class ArchiveSelectionComponent implements AfterViewInit {
     }
 
     archiveEnrollments = _cachingService.retrieveCachedObject ('archiveEnrollments');
-    archiveEnrollment = _cachingService.removeFromCache ('selectedArchiveEnrollment');
+    archiveEnrollment = _cachingService.removeFromCache ('archiveEnrollment');
 
     return true;
   }
