@@ -1,5 +1,9 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.16.7
+- Completed authentication and session workflow functionality.
+- Finishing course archive enrollment selection workflow functionality.
+
 ## 0.16.6+4
 - Some more workflow functionality relating to authentication/session.
 
