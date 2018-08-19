@@ -1,13 +1,13 @@
 library plato.archives.components.workflow;
 
-import 'dart:html' show Event, window;
+import 'dart:html' show Event;
 
 import 'package:angular/angular.dart';
 
 import 'package:angular_components/angular_components.dart';
 
 import '../../_application/patron/patron_component.dart';
-import '../../archive/archive_selection_component.dart';
+import '../../archive/selection/archive_selection_component.dart';
 
 import 'workflow_service.dart';
 
@@ -28,15 +28,15 @@ class WorkflowComponent implements AfterViewInit {
 
   bool get canStep => _canStep;
 
+  @ViewChild("workflowStepper")
+  MaterialStepperComponent stepper;
+
   final WorkflowService _workflowService;
 
   /// The [WorkflowComponent] constructor...
   WorkflowComponent (this._workflowService) {
     _canStep = false;
   }
-
-  @ViewChild("workflowStepper")
-  MaterialStepperComponent stepper;
 
   /// The [ngAfterViewInit] method...
   @override

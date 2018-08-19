@@ -23,4 +23,7 @@ class WorkflowService {
 
   /// The [markArchiveEnrollmentSelected] method...
   void markArchiveEnrollmentSelected() => _progressStreamController.add (true);
+
+  /// The [markArchiveTypeSelected] method...
+  void markArchiveTypeSelected() => _progressStreamController.add (true);
 }

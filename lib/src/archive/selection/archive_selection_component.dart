@@ -5,13 +5,13 @@ import 'dart:async' show Future;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import '../_application/caching/caching_service.dart';
-import '../_application/progress/progress_service.dart';
-import '../_application/workflow/workflow_service.dart';
+import '../../_application/caching/caching_service.dart';
+import '../../_application/progress/progress_service.dart';
+import '../../_application/workflow/workflow_service.dart';
 
-import '../enrollment/faculty_enrollment.dart';
+import '../../enrollment/faculty_enrollment.dart';
 
-import 'archives_service.dart';
+import '../archives_service.dart';
 
 /// The [ArchiveSelectionComponent] class...
 @Component(
@@ -19,7 +19,8 @@ import 'archives_service.dart';
   templateUrl: 'archive_selection_component.html',
   styleUrls: ['archive_selection_component.css'],
   directives: [
-    MaterialRadioComponent, MaterialRadioGroupComponent, NgIf, NgFor, NgModel
+    MaterialRadioComponent, MaterialRadioGroupComponent,
+    NgIf, NgFor, NgModel
   ],
   providers: [
     ArchivesService, CachingService, ProgressService, WorkflowService
@@ -73,7 +74,7 @@ class ArchiveSelectionComponent implements AfterViewInit {
     }
 
     archiveEnrollments = _cachingService.retrieveCachedObject ('archiveEnrollments');
-    archiveEnrollment = _cachingService.removeFromCache ('archiveEnrollment');
+    archiveEnrollment = _cachingService.retrieveCachedObject ('archiveEnrollment');
 
     return true;
   }

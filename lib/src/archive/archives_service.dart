@@ -13,6 +13,8 @@ import '../enrollment/faculty_enrollment.dart';
 
 const String _RETRIEVE_ARCHIVES_URI = '/plato/retrieve/archives';
 
+const String _INSPECT_ARCHIVE_URI = '/plato/inspect/archive';
+
 /// The [ArchivesService] class...
 @Injectable()
 class ArchivesService {
@@ -52,5 +54,15 @@ class ArchivesService {
         'The list of faculty archive enrollments was not retrievable.'
       );
     }
+  }
+
+  /// The [loadArchiveResourceTypes] method...
+  Future<void> loadArchiveResourceTypes() async {
+    ;
+  }
+
+  /// The [loadArchiveResourcesOfType] method...
+  Future<void> loadArchiveResourcesOfType (String type) async {
+    ;
   }
 }
