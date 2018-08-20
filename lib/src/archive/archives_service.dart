@@ -6,10 +6,12 @@ import 'dart:convert' show json, utf8;
 import 'package:angular/core.dart' show Injectable;
 import 'package:http/http.dart' show Client, Response;
 
-import 'non_retrievable_archive.dart';
-
 import '../enrollment/enrollment_factory.dart';
 import '../enrollment/faculty_enrollment.dart';
+
+import '../resource/typing/resource_typing.dart';
+
+import 'non_retrievable_archive.dart';
 
 const String _RETRIEVE_ARCHIVES_URI = '/plato/retrieve/archives';
 
@@ -57,8 +59,10 @@ class ArchivesService {
   }
 
   /// The [loadArchiveResourceTypes] method...
-  Future<void> loadArchiveResourceTypes() async {
-    ;
+  Future<List<ResourceTyping>> loadArchiveResourceTypes() async {
+    var resourceTypings = new List<ResourceTyping>();
+
+    return resourceTypings;
   }
 
   /// The [loadArchiveResourcesOfType] method...

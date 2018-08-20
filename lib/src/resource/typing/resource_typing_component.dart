@@ -19,7 +19,9 @@ import 'resource_typing.dart';
 @Component(
   selector: 'resource-typing',
   templateUrl: 'resource_typing_component.html',
-  providers: [WorkflowService]
+  providers: [
+    ArchivesService, CachingService, ProgressService, WorkflowService
+  ]
 )
 class ResourceTypingComponent implements AfterViewInit {
   FacultyEnrollment archiveEnrollment;
@@ -68,6 +70,15 @@ class ResourceTypingComponent implements AfterViewInit {
     }
 
     archiveEnrollment = _cachingService.retrieveCachedObject ('archiveEnrollment');
+    String cachedArchiveTypes = '${archiveEnrollment.id}_resource_types';
+
+    if (!_cachingService.haveCachedObject (cachedArchiveTypes)) {
+      return false;
+    }
+
+    resourceTypings = _cachingService.retrieveCachedObject (cachedArchiveTypes)
+      as List<ResourceTyping>;
+
     return true;
   }
 
@@ -76,7 +87,11 @@ class ResourceTypingComponent implements AfterViewInit {
     _progressService.invoke ('Attempting to load archive content and tool types.');
 
     try {
-      await _archivesService.loadArchiveResourceTypes();
+      resourceTypings = await _archivesService.loadArchiveResourceTypes();
+
+      _cachingService.cacheObject (
+        '${archiveEnrollment.id}_resource_types', resourceTypings
+      );
     } catch (_) {}
 
     _progressService.revoke();
