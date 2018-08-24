@@ -1,6 +1,22 @@
 <div>
-  <p>
-    Here will be some information relating to the content or tool typings of
-    some course archive.
+  <p *ngIf="resourceTypings.isEmpty">
+    There are no available tool types or content for the course archive.
   </p>
+
+  <div *ngIf="resourceTypings.isNotEmpty">
+    <p>
+      The following are available tool types and content for
+      <strong>{{archiveEnrollment.courseName}} ({{archiveEnrollment.courseId}})</strong>
+    </p>
+
+    <material-radio-group
+        [ngModel]="resourceTyping"
+        (ngModelChange)="resourceTypingSelected($event)">
+      <span *ngFor="let resourceType of resourceTypings">
+        <material-radio [value]="resourceType">
+          [{{resourceType.id}}] {{resourceType.title}}
+        </material-radio><br>
+      </span>
+    </material-radio-group>
+  </div>
 </div>

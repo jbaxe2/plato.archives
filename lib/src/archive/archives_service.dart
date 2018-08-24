@@ -9,7 +9,9 @@ import 'package:http/http.dart' show Client, Response;
 import '../enrollment/enrollment_factory.dart';
 import '../enrollment/faculty_enrollment.dart';
 
+import '../resource/typing/invalid_resource_type.dart';
 import '../resource/typing/resource_typing.dart';
+import '../resource/typing/resource_typing_factory.dart';
 
 import 'non_retrievable_archive.dart';
 
@@ -41,9 +43,7 @@ class ArchivesService {
   /// The [loadFacultyArchivesList] method...
   Future<void> loadFacultyArchivesList() async {
     try {
-      final Response retrieveArchivesResponse =
-        await _http.get (_RETRIEVE_ARCHIVES_URI);
-
+      Response retrieveArchivesResponse = await _http.get (_RETRIEVE_ARCHIVES_URI);
       String rawArchivesJson = utf8.decode (retrieveArchivesResponse.bodyBytes);
 
       List<Map<String, String>> rawArchives =
@@ -61,6 +61,18 @@ class ArchivesService {
   /// The [loadArchiveResourceTypes] method...
   Future<List<ResourceTyping>> loadArchiveResourceTypes() async {
     var resourceTypings = new List<ResourceTyping>();
+
+    try {
+      Response inspectArchiveResponse = await _http.get (_INSPECT_ARCHIVE_URI);
+      String rawResourceTypesJson = utf8.decode (inspectArchiveResponse.bodyBytes);
+      Map<String, String> rawResourceTypes = (json.decode (rawResourceTypesJson) as Map);
+
+      resourceTypings = (new ResourceTypingFactory()).createAllByMap (rawResourceTypes);
+    } catch (_) {
+      throw new InvalidResourceType (
+        'The list of tool types and content for the archived course were not valid.'
+      );
+    }
 
     return resourceTypings;
   }

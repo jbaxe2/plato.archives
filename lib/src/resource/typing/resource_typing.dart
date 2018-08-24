@@ -1,11 +1,11 @@
-library plato.archives.models.archive.typing;
+library plato.archives.models.resource.typing;
 
 /// The [ResourceTyping] class...
 class ResourceTyping {
-  String id;
+  final String id;
 
-  String title;
+  final String title;
 
   /// The [ResourceTyping] constructor...
-  ResourceTyping();
+  ResourceTyping (this.id, this.title);
 }

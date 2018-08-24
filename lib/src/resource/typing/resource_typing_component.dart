@@ -1,8 +1,9 @@
-library plato.archives.components.archive.typing;
+library plato.archives.components.resource.typing;
 
 import 'dart:async' show Future;
 
 import 'package:angular/angular.dart';
+import 'package:angular_components/angular_components.dart';
 
 import '../../_application/caching/caching_service.dart';
 import '../../_application/progress/progress_service.dart';
@@ -19,6 +20,10 @@ import 'resource_typing.dart';
 @Component(
   selector: 'resource-typing',
   templateUrl: 'resource_typing_component.html',
+  directives: [
+    MaterialRadioComponent, MaterialRadioGroupComponent,
+    NgIf, NgFor, NgModel
+  ],
   providers: [
     ArchivesService, CachingService, ProgressService, WorkflowService
   ]
@@ -27,6 +32,8 @@ class ResourceTypingComponent implements AfterViewInit {
   FacultyEnrollment archiveEnrollment;
 
   List<ResourceTyping> resourceTypings;
+
+  ResourceTyping resourceTyping;
 
   final ArchivesService _archivesService;
 
@@ -56,8 +63,11 @@ class ResourceTypingComponent implements AfterViewInit {
     } catch (_) {}
   }
 
-  /// The [resourceTypeSelected] method...
-  void resourceTypeSelected (event) {
+  /// The [resourceTypingSelected] method...
+  void resourceTypingSelected (ResourceTyping typing) {
+    _cachingService.cacheObject ('resourceTypings', resourceTypings);
+    _cachingService.cacheObject ('resourceTyping', (resourceTyping = typing));
+
     _workflowService.markArchiveTypeSelected();
   }
 
