@@ -59,6 +59,7 @@ class ResourceTypingComponent implements AfterViewInit {
         return;
       }
 
+      await _loadArchiveForTypings();
       await _loadArchiveResourceTypes();
     } catch (_) {}
   }
@@ -90,6 +91,17 @@ class ResourceTypingComponent implements AfterViewInit {
       as List<ResourceTyping>;
 
     return true;
+  }
+
+  /// The [_loadArchiveForTypings] method...
+  Future<void> _loadArchiveForTypings() async {
+    _progressService.invoke ('Loading the archive for review.');
+
+    try {
+      await _archivesService.loadArchive (archiveEnrollment.id);
+    } catch (_) {}
+
+    _progressService.revoke();
   }
 
   /// The [_loadArchiveResourceTypes] method...

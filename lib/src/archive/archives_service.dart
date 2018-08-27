@@ -17,6 +17,8 @@ import 'non_retrievable_archive.dart';
 
 const String _RETRIEVE_ARCHIVES_URI = '/plato/retrieve/archives';
 
+const String _PULL_ARCHIVE_URI = '/plato/pull/archive';
+
 const String _INSPECT_ARCHIVE_URI = '/plato/inspect/archive';
 
 /// The [ArchivesService] class...
@@ -54,6 +56,28 @@ class ArchivesService {
     } catch (_) {
       throw new NonRetrievableArchive (
         'The list of faculty archive enrollments was not retrievable.'
+      );
+    }
+  }
+
+  /// The [loadArchive] method...
+  Future<void> loadArchive (String archiveId) async {
+    final String termId = (archiveId.split ('_')).last;
+
+    try {
+      Response loadArchiveResponse = await _http.get (
+        '$_PULL_ARCHIVE_URI?archiveId=$archiveId&termId=$termId'
+      );
+
+      final String pulledArchive =
+        json.decode (utf8.decode (loadArchiveResponse.bodyBytes))['pulled'];
+
+      if (pulledArchive != archiveId) {
+        throw pulledArchive;
+      }
+    } catch (_) {
+      throw new NonRetrievableArchive (
+        'Unable to load the selected archive for reviewing types.'
       );
     }
   }
