@@ -81,7 +81,7 @@ class ResourceTypingComponent implements AfterViewInit {
     }
 
     archiveEnrollment = _cachingService.retrieveCachedObject ('archiveEnrollment');
-    String cachedArchiveTypes = '${archiveEnrollment.id}_resource_types';
+    String cachedArchiveTypes = '${archiveEnrollment.courseId}_resource_types';
 
     if (!_cachingService.haveCachedObject (cachedArchiveTypes)) {
       return false;
@@ -89,6 +89,9 @@ class ResourceTypingComponent implements AfterViewInit {
 
     resourceTypings = _cachingService.retrieveCachedObject (cachedArchiveTypes)
       as List<ResourceTyping>;
+
+    resourceTyping = _cachingService.retrieveCachedObject ('resourceTyping')
+      as ResourceTyping;
 
     return true;
   }
@@ -98,7 +101,7 @@ class ResourceTypingComponent implements AfterViewInit {
     _progressService.invoke ('Loading the archive for review.');
 
     try {
-      await _archivesService.loadArchive (archiveEnrollment.id);
+      await _archivesService.loadArchive (archiveEnrollment.courseId);
     } catch (_) {}
 
     _progressService.revoke();
@@ -109,10 +112,12 @@ class ResourceTypingComponent implements AfterViewInit {
     _progressService.invoke ('Attempting to load archive content and tool types.');
 
     try {
-      resourceTypings = await _archivesService.loadArchiveResourceTypes();
+      resourceTypings = await _archivesService.loadArchiveResourceTypes (
+        archiveEnrollment.courseId
+      );
 
       _cachingService.cacheObject (
-        '${archiveEnrollment.id}_resource_types', resourceTypings
+        '${archiveEnrollment.courseId}_resource_types', resourceTypings
       );
     } catch (_) {}
 

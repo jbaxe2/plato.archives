@@ -66,7 +66,7 @@ class ArchivesService {
 
     try {
       Response loadArchiveResponse = await _http.get (
-        '$_PULL_ARCHIVE_URI?archiveId=$archiveId&termId=$termId'
+        '$_PULL_ARCHIVE_URI?archiveId=$archiveId&archiveTerm=$termId'
       );
 
       final String pulledArchive =
@@ -83,19 +83,30 @@ class ArchivesService {
   }
 
   /// The [loadArchiveResourceTypes] method...
-  Future<List<ResourceTyping>> loadArchiveResourceTypes() async {
+  Future<List<ResourceTyping>> loadArchiveResourceTypes (String archiveId) async {
     var resourceTypings = new List<ResourceTyping>();
 
     try {
-      Response inspectArchiveResponse = await _http.get (_INSPECT_ARCHIVE_URI);
+      Response inspectArchiveResponse =
+        await _http.get ('$_INSPECT_ARCHIVE_URI?archiveId=$archiveId');
+
       String rawResourceTypesJson = utf8.decode (inspectArchiveResponse.bodyBytes);
       Map<String, String> rawResourceTypes = (json.decode (rawResourceTypesJson) as Map);
 
+      if (rawResourceTypes.containsKey ('error')) {
+        throw rawResourceTypes['error'];
+      }
+
       resourceTypings = (new ResourceTypingFactory()).createAllByMap (rawResourceTypes);
-    } catch (_) {
-      throw new InvalidResourceType (
-        'The list of tool types and content for the archived course were not valid.'
-      );
+    } catch (e) {
+      String error =
+        'The list of tool types and content for the archived course were not valid.';
+
+      if (e is String) {
+        error += '\n\n$e';
+      }
+
+      throw new InvalidResourceType (error);
     }
 
     return resourceTypings;

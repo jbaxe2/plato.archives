@@ -15,9 +15,13 @@ class ResourcesFactory implements PlatoFactory<Resource> {
     Resource resource;
 
     try {
-      resource = _createResource (
-        rawResource['id'], rawResource['title'], type, rawResource['extra']
-      );
+      if (rawResource.containsKey ('extra')) {
+        resource = _createResource (
+          rawResource['id'], rawResource['title'], type, rawResource['extra']
+        );
+      } else {
+        resource = _createResource (rawResource['id'], rawResource['title'], type);
+      }
     } catch (_) {
       ;
     }

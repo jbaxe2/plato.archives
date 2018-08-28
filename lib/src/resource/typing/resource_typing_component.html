@@ -6,7 +6,9 @@
   <div *ngIf="resourceTypings.isNotEmpty">
     <p>
       The following are available tool types and content for
-      <strong>{{archiveEnrollment.courseName}} ({{archiveEnrollment.courseId}})</strong>
+      <strong>{{archiveEnrollment.courseName}} [{{archiveEnrollment.courseId}}]</strong>.
+      After selecting one, please click the <strong>Continue</strong> button.  Then
+      we'll review what is contained in your course for that tool type or content.
     </p>
 
     <material-radio-group
@@ -14,7 +16,7 @@
         (ngModelChange)="resourceTypingSelected($event)">
       <span *ngFor="let resourceType of resourceTypings">
         <material-radio [value]="resourceType">
-          [{{resourceType.id}}] {{resourceType.title}}
+          {{resourceType.title}}
         </material-radio><br>
       </span>
     </material-radio-group>
