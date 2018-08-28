@@ -26,7 +26,9 @@ import '../resource.dart';
     MaterialRadioComponent, MaterialRadioGroupComponent,
     NgIf, NgFor, NgModel
   ],
-  providers: [WorkflowService]
+  providers: [
+    ArchivesService, CachingService, ProgressService, WorkflowService
+  ]
 )
 class ResourceSelectionComponent implements AfterViewInit {
   FacultyEnrollment archiveEnrollment;
@@ -73,6 +75,26 @@ class ResourceSelectionComponent implements AfterViewInit {
 
   /// The [_loadFromCache] method...
   bool _loadFromCache() {
+    try {
+      _loadRequiredFromCache();
+    } catch (_) {
+      rethrow;
+    }
+
+    final String cacheKey = _createCacheKey();
+
+    if (!_cachingService.haveCachedObject (cacheKey)) {
+      return false;
+    }
+
+    resources = _cachingService.retrieveCachedObject (cacheKey);
+    selectedResource = _cachingService.retrieveCachedObject ('selectedResource');
+
+    return true;
+  }
+
+  /// The [_loadRequiredFromCache] method...
+  void _loadRequiredFromCache() {
     if (!(_cachingService.haveCachedObject ('archiveEnrollment') &&
           _cachingService.haveCachedObject ('resourceTyping'))) {
       throw new NonRetrievableArchive (
@@ -83,15 +105,6 @@ class ResourceSelectionComponent implements AfterViewInit {
 
     archiveEnrollment = _cachingService.retrieveCachedObject ('archiveEnrollment');
     resourceTyping = _cachingService.retrieveCachedObject ('resourceTyping');
-
-    if (_cachingService.haveCachedObject (_createCacheKey())) {
-      resources = _cachingService.retrieveCachedObject (_createCacheKey());
-      selectedResource = _cachingService.retrieveCachedObject ('selectedResource');
-
-      return true;
-    }
-
-    return false;
   }
 
   /// The [_loadResourcesOfType] method...

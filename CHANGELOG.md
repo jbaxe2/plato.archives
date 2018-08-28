@@ -1,5 +1,8 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.16.9+1
+- Minor fixes.
+
 ## 0.16.9
 - Completed content or tool type selection workflow functionality.
 - Start of specific content or tool selection workflow.
