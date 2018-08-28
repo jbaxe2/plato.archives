@@ -39,14 +39,27 @@ class ResourcesFactory implements PlatoFactory<Resource> {
     return resources;
   }
 
+  /// The [createAllByMap] method...
+  List<Resource> createAllByMap (Map<String, String> rawResources, [String type]) {
+    var resources = new List<Resource>();
+
+    try {
+      rawResources.forEach ((String resourceId, String resourceTitle) {
+        resources.add (
+          create ({'id': resourceId, 'title': resourceTitle}, type)
+        );
+      });
+    } catch (_) {
+      rethrow;
+    }
+
+    return resources;
+  }
+
   /// The [_createResource] method...
   Resource _createResource (
     String id, String title, String type, [dynamic extra]
   ) {
-    Resource resource;
-
-    ; // Do stuff here to create the resource.
-
-    return resource;
+    return new Resource (id, title, type);
   }
 }

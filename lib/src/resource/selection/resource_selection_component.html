@@ -1,0 +1,23 @@
+<div>
+  <p *ngIf="resources.isEmpty">
+    There are no available specific tool/content for the course archive.
+  </p>
+
+  <div *ngIf="resources.isNotEmpty">
+    <p>
+      The following are available specific <strong>{{resourceTyping.title}}</strong>
+      resource instances that may be reviewed.  Please select one, then click on the
+      <strong>Continue</strong> button to view it.
+    </p>
+
+    <material-radio-group
+        [ngModel]="selectedResource"
+        (ngModelChange)="resourceSelected($event)">
+      <span *ngFor="let resource of resources">
+        <material-radio [value]="resource">
+          {{resource.title}}
+        </material-radio><br>
+      </span>
+    </material-radio-group>
+  </div>
+</div>

@@ -13,6 +13,9 @@ import '../resource/typing/invalid_resource_type.dart';
 import '../resource/typing/resource_typing.dart';
 import '../resource/typing/resource_typing_factory.dart';
 
+import '../resource/resource.dart';
+import '../resource/resources_factory.dart';
+
 import 'non_retrievable_archive.dart';
 
 const String _RETRIEVE_ARCHIVES_URI = '/plato/retrieve/archives';
@@ -91,7 +94,7 @@ class ArchivesService {
         await _http.get ('$_INSPECT_ARCHIVE_URI?archiveId=$archiveId');
 
       String rawResourceTypesJson = utf8.decode (inspectArchiveResponse.bodyBytes);
-      Map<String, String> rawResourceTypes = (json.decode (rawResourceTypesJson) as Map);
+      Map<String, String> rawResourceTypes = json.decode (rawResourceTypesJson) as Map;
 
       if (rawResourceTypes.containsKey ('error')) {
         throw rawResourceTypes['error'];
@@ -113,7 +116,22 @@ class ArchivesService {
   }
 
   /// The [loadArchiveResourcesOfType] method...
-  Future<void> loadArchiveResourcesOfType (String type) async {
-    ;
+  Future<List<Resource>> loadArchiveResourcesOfType (String archiveId, String type) async {
+    var resources = new List<Resource>();
+
+    try {
+      Response resourceResponse = await _http.get (
+        '$_INSPECT_ARCHIVE_URI?archiveId=$archiveId&resourceType=$type'
+      );
+
+      String rawResponseJson = utf8.decode (resourceResponse.bodyBytes);
+      Map<String, String> rawResources = json.decode (rawResponseJson) as Map;
+
+      resources = (new ResourcesFactory()).createAllByMap (rawResources, type);
+    } catch (_) {
+      throw new InvalidResourceType ('Unable to view the $type resources.');
+    }
+
+    return resources;
   }
 }

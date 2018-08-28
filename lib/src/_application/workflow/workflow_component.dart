@@ -10,6 +10,7 @@ import '../../_application/patron/patron_component.dart';
 
 import '../../archive/selection/archive_selection_component.dart';
 
+import '../../resource/selection/resource_selection_component.dart';
 import '../../resource/typing/resource_typing_component.dart';
 
 import 'workflow_service.dart';
@@ -21,7 +22,8 @@ import 'workflow_service.dart';
   styleUrls: ['workflow_component.css'],
   directives: [
     MaterialButtonComponent, MaterialStepperComponent, StepDirective,
-    ArchiveSelectionComponent, PatronComponent, ResourceTypingComponent,
+    ArchiveSelectionComponent, PatronComponent,
+    ResourceSelectionComponent, ResourceTypingComponent,
     NgIf
   ],
   providers: [WorkflowService]

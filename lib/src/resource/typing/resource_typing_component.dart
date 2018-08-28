@@ -69,7 +69,7 @@ class ResourceTypingComponent implements AfterViewInit {
     _cachingService.cacheObject ('resourceTypings', resourceTypings);
     _cachingService.cacheObject ('resourceTyping', (resourceTyping = typing));
 
-    _workflowService.markArchiveTypeSelected();
+    _workflowService.markResourceTypeSelected();
   }
 
   /// The [_loadFromCache] method...
@@ -98,7 +98,9 @@ class ResourceTypingComponent implements AfterViewInit {
 
   /// The [_loadArchiveForTypings] method...
   Future<void> _loadArchiveForTypings() async {
-    _progressService.invoke ('Loading the archive for review.');
+    _progressService.invoke (
+      'Loading the archive; this may take a few moments for larger courses.'
+    );
 
     try {
       await _archivesService.loadArchive (archiveEnrollment.courseId);
