@@ -1,6 +1,6 @@
 name: plato.archives
 description: An archived courses viewer for Plato.
-version: 0.16.9+1
+version: 0.16.9+2
 
 author: Joseph B. Axenroth
 
@@ -9,13 +9,13 @@ environment:
 
 dependencies:
   angular: ^5.0.0
-  angular_components: ^0.9.0
+  angular_components: ^0.9.1
   http: ^0.11.3+17
 
 dev_dependencies:
   angular_test: ^2.0.0
-  build_runner: ^0.10.1
+  build_runner: ^0.10.1+1
   build_test: ^0.10.3+1
-  build_web_compilers: ^0.4.2
+  build_web_compilers: ^0.4.3
   sass_builder: ^2.1.1
   test: ^1.3.0

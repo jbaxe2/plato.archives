@@ -1,5 +1,9 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.16.9+2
+- Switched order of workflow continue and go back buttons.
+- Updated dependencies.
+
 ## 0.16.9+1
 - Minor fixes.
 
