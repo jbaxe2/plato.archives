@@ -76,6 +76,8 @@ class ArchiveSelectionComponent implements AfterViewInit {
     archiveEnrollments = _cachingService.retrieveCachedObject ('archiveEnrollments');
     archiveEnrollment = _cachingService.retrieveCachedObject ('archiveEnrollment');
 
+    _workflowService.markArchiveEnrollmentSelected();
+
     return true;
   }
 

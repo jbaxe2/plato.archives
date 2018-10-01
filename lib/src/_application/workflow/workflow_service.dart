@@ -2,10 +2,7 @@ library plato.archives.services.workflow;
 
 import 'dart:async' show StreamController, Stream;
 
-import 'package:angular/core.dart' show Injectable;
-
 /// The [WorkflowService] class...
-@Injectable()
 class WorkflowService {
   static StreamController<bool> _progressStreamController =
     new StreamController<bool>.broadcast();

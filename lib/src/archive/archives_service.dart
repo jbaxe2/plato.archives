@@ -3,7 +3,6 @@ library plato.archives.services.archives;
 import 'dart:async' show Future;
 import 'dart:convert' show json, utf8;
 
-import 'package:angular/core.dart' show Injectable;
 import 'package:http/http.dart' show Client, Response;
 
 import '../enrollment/enrollment_factory.dart';
@@ -25,7 +24,6 @@ const String _PULL_ARCHIVE_URI = '/plato/pull/archive';
 const String _INSPECT_ARCHIVE_URI = '/plato/inspect/archive';
 
 /// The [ArchivesService] class...
-@Injectable()
 class ArchivesService {
   List<FacultyEnrollment> _facultyArchives;
 

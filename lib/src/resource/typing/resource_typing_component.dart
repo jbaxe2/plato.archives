@@ -93,6 +93,8 @@ class ResourceTypingComponent implements AfterViewInit {
     resourceTyping = _cachingService.retrieveCachedObject ('resourceTyping')
       as ResourceTyping;
 
+    _workflowService.markResourceTypeSelected();
+
     return true;
   }
 

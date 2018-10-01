@@ -2,10 +2,7 @@ library plato.archives.services.courses;
 
 import 'dart:async' show Future;
 
-import 'package:angular/core.dart' show Injectable;
-
 /// The [CoursesService] class...
-@Injectable()
 class CoursesService {
   static CoursesService _instance;
 

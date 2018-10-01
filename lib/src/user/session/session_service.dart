@@ -3,7 +3,6 @@ library plato.archives.services.session;
 import 'dart:async' show Future;
 import 'dart:convert' show json, utf8;
 
-import 'package:angular/core.dart' show Injectable;
 import 'package:http/http.dart' show Client, Response;
 
 import 'session_error.dart';
@@ -13,7 +12,6 @@ const String _RETRIEVE_URI = '/plato/retrieve/session';
 const String _CLEANUP_URI = '/plato/cleanup/session';
 
 /// The [SessionService] class...
-@Injectable()
 class SessionService {
   bool _sessionExists;
 

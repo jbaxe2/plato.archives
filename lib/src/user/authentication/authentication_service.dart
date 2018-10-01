@@ -3,7 +3,6 @@ library plato.archives.services.authentication;
 import 'dart:async' show Future, Stream, StreamController;
 import 'dart:convert' show json, utf8;
 
-import 'package:angular/core.dart' show Injectable;
 import 'package:http/http.dart' show Client, Response;
 
 import 'authentication_error.dart';
@@ -13,7 +12,6 @@ const String _AUTHENTICATE_URI = '/plato/authenticate/learn';
 const String _LOGOUT_URI = '/plato/cleanup/session';
 
 /// The [AuthenticationService] class...
-@Injectable()
 class AuthenticationService {
   bool _isAuthenticated;
 

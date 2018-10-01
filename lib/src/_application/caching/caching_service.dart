@@ -1,11 +1,8 @@
 library plato.archives.services.caching;
 
-import 'package:angular/angular.dart' show Injectable;
-
 import 'simple_registry.dart';
 
 /// The [CachingService] class...
-@Injectable()
 class CachingService {
   static final SimpleRegistry _simpleRegistry = new SimpleRegistry();
 

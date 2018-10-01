@@ -78,6 +78,8 @@ class PatronComponent implements AfterViewInit {
     _isAuthenticated = true;
     _isLtiSession = _sessionService.isLtiSession;
 
+    _workflowService.markPatronEstablished();
+
     return true;
   }
 

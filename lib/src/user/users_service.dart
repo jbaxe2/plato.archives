@@ -3,7 +3,6 @@ library plato.archives.services.user;
 import 'dart:async' show Future;
 import 'dart:convert' show json, utf8;
 
-import 'package:angular/core.dart' show Injectable;
 import 'package:http/http.dart' show Client, Response;
 
 import 'session/session_user.dart';
@@ -17,7 +16,6 @@ const String _RETRIEVE_USER_URI = '/plato/retrieve/user';
 const String _RETRIEVE_ROSTER_URI = '/plato/retrieve/roster/archive';
 
 /// The [UsersService] class...
-@Injectable()
 class UsersService {
   final Client _http;
 

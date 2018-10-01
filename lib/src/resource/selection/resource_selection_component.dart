@@ -77,9 +77,7 @@ class ResourceSelectionComponent implements AfterViewInit {
   bool _loadFromCache() {
     try {
       _loadRequiredFromCache();
-    } catch (_) {
-      rethrow;
-    }
+    } catch (_) {}
 
     final String cacheKey = _createCacheKey();
 
@@ -89,6 +87,8 @@ class ResourceSelectionComponent implements AfterViewInit {
 
     resources = _cachingService.retrieveCachedObject (cacheKey);
     selectedResource = _cachingService.retrieveCachedObject ('selectedResource');
+
+    _workflowService.markResourceSelected();
 
     return true;
   }

@@ -1,4 +1,4 @@
-<material-stepper #workflowStepper>
+<material-stepper legalJumps="backwards" #workflowStepper>
   <template step name="Authentication" [hideButtons]="true">
     <div class="step-container">
       <patron></patron>
@@ -25,7 +25,7 @@
 
   <template step canContinue="false" name="Tool / Content View" [hideButtons]="true">
     <div class="step-container">
-      <p>Here will be a view of the specifically selected resource.</p>
+      <resource-view></resource-view>
     </div>
   </template>
 </material-stepper>
@@ -34,11 +34,13 @@
     id="stepper-back-button" raised buttonDecorator
     *ngIf="workflowStepper.activeStepIndex != 0"
     (trigger)="goBackInWorkflow($event)">
-  Go to Previous Step
+  &nbsp; <material-icon icon="navigate_before" baseline></material-icon> &nbsp;
+  Go to Previous Step &nbsp;
 </material-button>
 
 <material-button
     id="stepper-button" raised buttonDecorator
     *ngIf="canStep" (trigger)="progressInWorkflow($event)">
-  Continue
+  &nbsp; Continue &nbsp;
+  <material-icon icon="navigate_next" baseline></material-icon> &nbsp;
 </material-button>

@@ -1,5 +1,12 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.16.10
+- Updated dependencies.
+- Added icons to buttons to help emphasize functional meaning.
+- Set up workflow stepper to allow backward movements of any completed step.
+- Start of resource view workflow functionality.
+- Removed the @Injectable annotation from services, as it is no longer needed.
+
 ## 0.16.9+2
 - Switched order of workflow continue and go back buttons.
 - Updated dependencies.
