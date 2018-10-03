@@ -39,7 +39,7 @@ void main() => (new PlatoArchives()).run();
   ClassProvider (SessionService), ClassProvider (UsersService),
   ClassProvider (WorkflowService),
 ])
-final InjectorFactory _clientInjector = pa_main.clientInjector$Injector;
+final InjectorFactory clientInjector = pa_main.clientInjector$Injector;
 
 /// The [PlatoArchives] class...
 class PlatoArchives {
@@ -56,5 +56,5 @@ class PlatoArchives {
   }
 
   /// The [_retrieveInjector] method...
-  InjectorFactory _retrieveInjector() => _clientInjector;
+  InjectorFactory _retrieveInjector() => clientInjector;
 }

@@ -1,7 +1,6 @@
 library plato.archives.components.resource.discussion;
 
 import 'package:angular/angular.dart';
-//import 'package:angular_components/angular_components.dart';
 
 import '../resources_service.dart';
 

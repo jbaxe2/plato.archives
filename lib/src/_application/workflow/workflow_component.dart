@@ -12,6 +12,7 @@ import '../../archive/selection/archive_selection_component.dart';
 
 import '../../resource/selection/resource_selection_component.dart';
 import '../../resource/typing/resource_typing_component.dart';
+import '../../resource/view/resource_view_component.dart';
 
 import 'workflow_service.dart';
 
@@ -24,7 +25,7 @@ import 'workflow_service.dart';
     MaterialButtonComponent, MaterialIconComponent, MaterialStepperComponent,
     StepDirective,
     ArchiveSelectionComponent, PatronComponent,
-    ResourceSelectionComponent, ResourceTypingComponent,
+    ResourceSelectionComponent, ResourceTypingComponent, ResourceViewComponent,
     NgIf
   ],
   providers: [WorkflowService]

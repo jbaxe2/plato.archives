@@ -12,6 +12,7 @@ import '../resource/typing/invalid_resource_type.dart';
 import '../resource/typing/resource_typing.dart';
 import '../resource/typing/resource_typing_factory.dart';
 
+import '../resource/invalid_resource.dart';
 import '../resource/resource.dart';
 import '../resource/resources_factory.dart';
 
@@ -22,6 +23,8 @@ const String _RETRIEVE_ARCHIVES_URI = '/plato/retrieve/archives';
 const String _PULL_ARCHIVE_URI = '/plato/pull/archive';
 
 const String _INSPECT_ARCHIVE_URI = '/plato/inspect/archive';
+
+const String _BROWSE_ARCHIVE_URI = '/plato/browse/archive';
 
 /// The [ArchivesService] class...
 class ArchivesService {
@@ -131,5 +134,27 @@ class ArchivesService {
     }
 
     return resources;
+  }
+
+  /// The [loadArchiveResource] method...
+  Future<Resource> loadArchiveResource (String archiveId, String resourceId) async {
+    Resource resource;
+
+    try {
+      Response resourceResponse = await _http.get (
+        '$_BROWSE_ARCHIVE_URI?archiveId=$archiveId&resourceId=$resourceId'
+      );
+
+      String rawResourceJson = utf8.decode (resourceResponse.bodyBytes);
+      Map<String, dynamic> rawResource = json.decode (rawResourceJson) as Map;
+
+      resource = (new ResourcesFactory()).create (rawResource);
+    } catch (_) {
+      throw new InvalidResource (
+        'Unable to retrieve the specified resource from the archive.'
+      );
+    }
+
+    return resource;
   }
 }

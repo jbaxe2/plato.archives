@@ -1,5 +1,8 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.16.10+1
+- More work for resource view workflow functionality.
+
 ## 0.16.10
 - Updated dependencies.
 - Added icons to buttons to help emphasize functional meaning.
