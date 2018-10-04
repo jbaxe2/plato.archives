@@ -12,5 +12,5 @@ class Discussion extends Resource {
 
   /// The [Discussion] constructor...
   Discussion (String id, String title, this.description, this.posts) :
-    super (id, title, 'resource/x-bb-discussionboard');
+    super (id, title, 'resource/x-bb-discussionboard', description);
 }

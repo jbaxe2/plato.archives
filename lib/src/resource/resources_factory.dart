@@ -15,12 +15,15 @@ class ResourcesFactory implements PlatoFactory<Resource> {
     Resource resource;
 
     try {
-      if (rawResource.containsKey ('extra')) {
+      if (rawResource.containsKey ('resource')) {
         resource = _createResource (
-          rawResource['id'], rawResource['title'], type, rawResource['extra']
+          rawResource['courseId'], rawResource['courseTitle'], type,
+          rawResource['resource']
         );
       } else {
-        resource = _createResource (rawResource['id'], rawResource['title'], type);
+        resource = _createResource (
+          rawResource['courseId'], rawResource['courseTitle'], type
+        );
       }
     } catch (_) {
       ;
@@ -58,8 +61,8 @@ class ResourcesFactory implements PlatoFactory<Resource> {
 
   /// The [_createResource] method...
   Resource _createResource (
-    String id, String title, String type, [dynamic extra]
+    String id, String title, String type, [String resource = '']
   ) {
-    return new Resource (id, title, type);
+    return new Resource (id, title, type, resource);
   }
 }

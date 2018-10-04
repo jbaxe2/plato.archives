@@ -8,5 +8,5 @@ class Content extends Resource {
 
   /// The [Content] constructor...
   Content (String id, String title, this.contents) :
-    super (id, title, 'resource/x-bb-document');
+    super (id, title, 'resource/x-bb-document', contents);
 }

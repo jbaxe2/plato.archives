@@ -15,5 +15,5 @@ class DiscussionPost extends Resource {
   /// The [DiscussionPost] constructor...
   DiscussionPost (
     String id, String title, this.text, this.userId, this.forumId, this.subPosts
-  ) : super (id, title, 'resource/x-bb-discussionboard');
+  ) : super (id, title, 'resource/x-bb-discussionboard', text);
 }

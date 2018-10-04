@@ -8,6 +8,8 @@ class Resource {
 
   final String type;
 
+  final String content;
+
   /// The [Resource] constructor...
-  Resource (this.id, this.title, this.type);
+  Resource (this.id, this.title, this.type, this.content);
 }
