@@ -1,3 +1,12 @@
-<div>
-  <p>Here will be a view of the specifically selected resource.</p>
+<div *ngIf="null == resource">
+  <p>Please wait while we attempt to load the archive resource.</p>
+</div>
+
+<div *ngIf="null != resource">
+  <material-expansionpanel
+      name="{{resource.title}}"
+      [expanded]="true"
+      [showSaveCancel]="false">
+    <div [innerHtml]="resource.content"></div>
+  </material-expansionpanel>
 </div>

@@ -2,6 +2,7 @@ library plato.archives.factory.resources;
 
 import '../_application/factory/plato_factory.dart';
 
+import 'invalid_resource.dart';
 import 'resource.dart';
 
 /// The [ResourcesFactory] class...
@@ -14,19 +15,29 @@ class ResourcesFactory implements PlatoFactory<Resource> {
   Resource create (Map<String, String> rawResource, [String type]) {
     Resource resource;
 
+    if (rawResource.containsKey ('courseId')) {
+      rawResource['id'] = rawResource['courseId'];
+    }
+
+    if (rawResource.containsKey ('courseTitle')) {
+      rawResource['title'] = rawResource['courseTitle'];
+    }
+
     try {
       if (rawResource.containsKey ('resource')) {
         resource = _createResource (
-          rawResource['courseId'], rawResource['courseTitle'], type,
+          rawResource['id'], rawResource['title'], type,
           rawResource['resource']
         );
       } else {
         resource = _createResource (
-          rawResource['courseId'], rawResource['courseTitle'], type
+          rawResource['id'], rawResource['title'], type
         );
       }
     } catch (_) {
-      ;
+      throw new InvalidResource (
+        'The provided information does not pertain to a valid archive resource.'
+      );
     }
 
     return resource;
