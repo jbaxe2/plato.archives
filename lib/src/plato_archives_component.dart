@@ -38,12 +38,12 @@ class PlatoArchivesComponent implements OnInit {
   /// The [ngOnInit] method...
   @override
   Future<void> ngOnInit() async {
-    window.onBeforeUnload.listen ((_) async => await _sessionService.cleanup());
-
-    window.onUnload.listen ((_) async {
-      if (_sessionService.sessionExists) {
-        await _sessionService.cleanup();
-      };
-    });
+    window
+      ..onBeforeUnload.listen ((_) async => await _sessionService.cleanup())
+      ..onUnload.listen ((_) async {
+          if (_sessionService.sessionExists) {
+            await _sessionService.cleanup();
+          }
+        });
   }
 }
