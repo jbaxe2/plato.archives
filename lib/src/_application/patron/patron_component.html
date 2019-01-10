@@ -1,7 +1,7 @@
 <div>
-  <authentication *ngIf="!isAuthenticated"></authentication>
+  <authorization *ngIf="!isAuthorized"></authorization>
 
-  <p *ngIf="isAuthenticated && null == patron">
+  <p *ngIf="isAuthorized && null == patron">
     <em>Retrieving your Plato user information; please wait.</em>
   </p>
 

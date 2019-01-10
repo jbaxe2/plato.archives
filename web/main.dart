@@ -18,7 +18,7 @@ import 'package:plato.archives/src/enrollment/enrollments_service.dart';
 import 'package:plato.archives/src/resource/resources_service.dart';
 
 import 'package:plato.archives/src/user/users_service.dart';
-import 'package:plato.archives/src/user/authentication/authentication_service.dart';
+import 'package:plato.archives/src/user/authorization/authorization_service.dart';
 import 'package:plato.archives/src/user/session/session_service.dart';
 
 import 'package:plato.archives/src/plato_archives_component.template.dart' as pa;
@@ -32,7 +32,7 @@ void main() => (new PlatoArchives()).run();
 @GenerateInjector([
   ClassProvider (Client, useClass: BrowserClient),
 
-  ClassProvider (ArchivesService), ClassProvider (AuthenticationService),
+  ClassProvider (ArchivesService), ClassProvider (AuthorizationService),
   ClassProvider (CachingService), ClassProvider (CoursesService),
   ClassProvider (EnrollmentsService), ClassProvider (ErrorService),
   ClassProvider (ProgressService), ClassProvider (ResourcesService),

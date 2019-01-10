@@ -1,48 +1,48 @@
-library plato.archives.services.authentication;
+library plato.archives.services.authorization;
 
 import 'dart:async' show Future, Stream, StreamController;
 import 'dart:convert' show json, utf8;
 
 import 'package:http/http.dart' show Client, Response;
 
-import 'authentication_error.dart';
+import 'authorization_error.dart';
 
 const String _AUTHENTICATE_URI = '/plato/authenticate/learn';
 
 const String _LOGOUT_URI = '/plato/cleanup/session';
 
-/// The [AuthenticationService] class...
-class AuthenticationService {
-  bool _isAuthenticated;
+/// The [AuthorizationService] class...
+class AuthorizationService {
+  bool _isAuthorized;
 
-  bool get isAuthenticated => _isAuthenticated;
+  bool get isAuthorized => _isAuthorized;
 
-  final StreamController<bool> _authenticationController =
+  final StreamController<bool> _authorizationController =
     new StreamController<bool>.broadcast();
 
-  Stream<bool> get authenticationStream => _authenticationController.stream;
+  Stream<bool> get authorizationStream => _authorizationController.stream;
 
   final Client _http;
 
-  static AuthenticationService _instance;
+  static AuthorizationService _instance;
 
-  /// The [AuthenticationService] factory constructor...
-  factory AuthenticationService (Client http) =>
-    _instance ?? (_instance = new AuthenticationService._ (http));
+  /// The [AuthorizationService] factory constructor...
+  factory AuthorizationService (Client http) =>
+    _instance ?? (_instance = new AuthorizationService._ (http));
 
-  /// The [AuthenticationService] private constructor...
-  AuthenticationService._ (this._http) {
-    _isAuthenticated = false;
+  /// The [AuthorizationService] private constructor...
+  AuthorizationService._ (this._http) {
+    _isAuthorized = false;
   }
 
   /// The [authenticate] method...
   Future<void> authenticate (String username, String password) async {
-    if (_isAuthenticated) {
+    if (_isAuthorized) {
       return;
     }
 
     if (username.isEmpty || password.isEmpty) {
-      throw new AuthenticationError (
+      throw new AuthorizationError (
         'Cannot authenticate without a username or password.'
       );
     }
@@ -58,12 +58,12 @@ class AuthenticationService {
         json.decode (utf8.decode (authResponse.bodyBytes)) as Map;
 
       if (true == rawAuth['learn.user.authenticated']) {
-        _authenticationController.add (_isAuthenticated = true);
+        _authorizationController.add (_isAuthorized = true);
       } else {
-        throw _isAuthenticated;
+        throw _isAuthorized;
       }
     } catch (_) {
-      throw new AuthenticationError ('Authentication for the Plato user has failed.');
+      throw new AuthorizationError ('Authorization for the Plato user has failed.');
     }
   }
 
@@ -71,6 +71,6 @@ class AuthenticationService {
   Future<void> logout() async {
     await _http.get (_LOGOUT_URI);
 
-    _authenticationController.add (_isAuthenticated = false);
+    _authorizationController.add (_isAuthorized = false);
   }
 }

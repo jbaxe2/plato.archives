@@ -1,4 +1,4 @@
-library plato.archives.components.user.authentication;
+library plato.archives.components.user.authorization;
 
 import 'dart:async' show Future;
 
@@ -7,39 +7,39 @@ import 'package:angular_components/angular_components.dart';
 
 import '../../_application/progress/progress_service.dart';
 
-import 'authentication_service.dart';
+import 'authorization_service.dart';
 
-/// The [AuthenticationComponent] class...
+/// The [AuthorizationComponent] class...
 @Component(
-  selector: 'authentication',
-  templateUrl: 'authentication_component.html',
+  selector: 'authorization',
+  templateUrl: 'authorization_component.html',
   styleUrls: ['authentication_component.css'],
   directives: [
     materialInputDirectives,
     MaterialButtonComponent, MaterialIconComponent, MaterialInputComponent,
     NgModel
   ],
-  providers: [AuthenticationService, ProgressService]
+  providers: [AuthorizationService, ProgressService]
 )
-class AuthenticationComponent {
+class AuthorizationComponent {
   String username;
 
   String password;
 
-  bool get isAuthenticated => _authenticationService.isAuthenticated;
+  bool get isAuthenticated => _authenticationService.isAuthorized;
 
-  final AuthenticationService _authenticationService;
+  final AuthorizationService _authenticationService;
 
   final ProgressService _progressService;
 
-  /// The [AuthenticationComponent] constructor...
-  AuthenticationComponent (this._authenticationService, this._progressService) {
+  /// The [AuthorizationComponent] constructor...
+  AuthorizationComponent (this._authenticationService, this._progressService) {
     username = '';
     password = '';
   }
 
-  /// The [authenticate] method...
-  Future<void> authenticate() async {
+  /// The [authorize] method...
+  Future<void> authorize() async {
     if (username.isEmpty || password.isEmpty) {
       return;
     }

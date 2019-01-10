@@ -1,0 +1,12 @@
+<div>
+  <p><strong>
+    Before we can review your archived courses, we first need to know who you are.<br><br>
+    Please authorize below to allow the archives viewer to retrieve and inspect your archives.
+  </strong></p>
+
+  <div>
+    <material-button raised [disabled]="isAuthorized" (trigger)="authorize()">
+      <material-icon icon="how_to_reg"></material-icon> &nbsp; Authorize
+    </material-button>
+  </div>
+</div>

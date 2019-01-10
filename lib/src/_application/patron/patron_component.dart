@@ -4,8 +4,8 @@ import 'dart:async' show Future;
 
 import 'package:angular/angular.dart';
 
-import '../../user/authentication/authentication_component.dart';
-import '../../user/authentication/authentication_service.dart';
+import '../../user/authorization/authorization_component.dart';
+import '../../user/authorization/authorization_service.dart';
 import '../../user/session/session_service.dart';
 import '../../user/session/session_user.dart';
 import '../../user/users_service.dart';
@@ -20,9 +20,9 @@ import '../workflow/workflow_service.dart';
 @Component(
   selector: 'patron',
   templateUrl: 'patron_component.html',
-  directives: [AuthenticationComponent, NgIf],
+  directives: [AuthorizationComponent, NgIf],
   providers: [
-    AuthenticationService, CachingService, ProgressService, SessionService,
+    AuthorizationService, CachingService, ProgressService, SessionService,
     UsersService, WorkflowService
   ]
 )
@@ -31,13 +31,13 @@ class PatronComponent implements AfterViewInit {
 
   SessionUser get patron => _patron;
 
-  bool _isAuthenticated;
+  bool _isAuthorized;
 
-  bool get isAuthenticated => _isAuthenticated;
+  bool get isAuthorized => _isAuthorized;
 
   bool _isLtiSession;
 
-  final AuthenticationService _authenticationService;
+  final AuthorizationService _authorizationService;
 
   final CachingService _cachingService;
 
@@ -51,10 +51,10 @@ class PatronComponent implements AfterViewInit {
 
   /// The [PatronComponent] constructor...
   PatronComponent (
-    this._authenticationService, this._cachingService, this._progressService,
+    this._authorizationService, this._cachingService, this._progressService,
     this._sessionService, this._usersService, this._workflowService
   ) {
-    _isAuthenticated = false;
+    _isAuthorized = false;
     _isLtiSession = false;
   }
 
@@ -75,7 +75,7 @@ class PatronComponent implements AfterViewInit {
     }
 
     _patron = _cachingService.retrieveCachedObject ('patron') as SessionUser;
-    _isAuthenticated = true;
+    _isAuthorized = true;
     _isLtiSession = _sessionService.isLtiSession;
 
     _workflowService.markPatronEstablished();
@@ -89,23 +89,23 @@ class PatronComponent implements AfterViewInit {
 
     try {
       if (await _sessionService.checkIfSessionExists()) {
-        _isAuthenticated = true;
+        _isAuthorized = true;
         _isLtiSession = _sessionService.isLtiSession;
 
         await _retrievePatronInfo();
       } else {
-        await _listenForAuthentication();
+        await _listenForAuthorization();
       }
     } catch (_) {}
 
     _progressService.revoke();
   }
 
-  /// The [_listenForAuthentication] method...
-  Future<void> _listenForAuthentication() async {
-    _authenticationService.authenticationStream.listen (
-      (bool authenticationResult) async {
-        if (_isAuthenticated = authenticationResult) {
+  /// The [_listenForAuthorization] method...
+  Future<void> _listenForAuthorization() async {
+    _authorizationService.authorizationStream.listen (
+      (bool authorizationResult) async {
+        if (_isAuthorized = authorizationResult) {
           await _retrievePatronInfo();
         };
       }
@@ -114,7 +114,7 @@ class PatronComponent implements AfterViewInit {
 
   /// The [_retrievePatronInfo] method...
   Future<void> _retrievePatronInfo() async {
-    if (isAuthenticated && (null == patron)) {
+    if (isAuthorized && (null == patron)) {
       _progressService.invoke ('Retrieving the user information.');
 
       try {
