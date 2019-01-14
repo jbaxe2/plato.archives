@@ -22,33 +22,22 @@ import 'authorization_service.dart';
   providers: [AuthorizationService, ProgressService]
 )
 class AuthorizationComponent {
-  String username;
-
-  String password;
-
-  bool get isAuthenticated => _authenticationService.isAuthorized;
+  bool get isAuthorized => _authenticationService.isAuthorized;
 
   final AuthorizationService _authenticationService;
 
   final ProgressService _progressService;
 
   /// The [AuthorizationComponent] constructor...
-  AuthorizationComponent (this._authenticationService, this._progressService) {
-    username = '';
-    password = '';
-  }
+  AuthorizationComponent (this._authenticationService, this._progressService);
 
   /// The [authorize] method...
   Future<void> authorize() async {
-    if (username.isEmpty || password.isEmpty) {
-      return;
-    }
-
     try {
       _progressService.invoke ('Attempting to verify Plato credentials.');
-      await _authenticationService.authenticate (username, password);
+      await _authenticationService.authorizeApplication();
 
-      isAuthenticated;
+      isAuthorized;
     } catch (_) {}
 
     _progressService.revoke();

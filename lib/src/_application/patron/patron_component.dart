@@ -8,6 +8,7 @@ import '../../user/authorization/authorization_component.dart';
 import '../../user/authorization/authorization_service.dart';
 import '../../user/session/session_service.dart';
 import '../../user/session/session_user.dart';
+import '../../user/improper_user.dart';
 import '../../user/users_service.dart';
 
 import '../caching/caching_service.dart';
@@ -118,6 +119,10 @@ class PatronComponent implements AfterViewInit {
       _progressService.invoke ('Retrieving the user information.');
 
       try {
+        if (!(await _authorizationService.authorizeUser())) {
+          throw new ImproperUser ('The user could not be authorized correctly.');
+        }
+
         _patron =
           await _usersService.retrieveUser (isLtiSession: _isLtiSession);
 

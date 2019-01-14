@@ -1,5 +1,8 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.17.1
+- Continuation of converting authentication scheme.
+
 ## 0.17.0
 - Updated Dart SDK version and dependency constraints.
 - Start of converting authentication scheme.
