@@ -13,7 +13,7 @@ import 'authorization_service.dart';
 @Component(
   selector: 'authorization',
   templateUrl: 'authorization_component.html',
-  styleUrls: ['authentication_component.css'],
+  styleUrls: ['authorization_component.css'],
   directives: [
     materialInputDirectives,
     MaterialButtonComponent, MaterialIconComponent, MaterialInputComponent,
