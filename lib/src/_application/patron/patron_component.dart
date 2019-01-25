@@ -66,6 +66,7 @@ class PatronComponent implements AfterViewInit {
       return;
     }
 
+    await _listenForAuthorization();
     await _checkIfSessionExists();
   }
 
@@ -94,8 +95,6 @@ class PatronComponent implements AfterViewInit {
         _isLtiSession = _sessionService.isLtiSession;
 
         await _retrievePatronInfo();
-      } else {
-        await _listenForAuthorization();
       }
     } catch (_) {}
 

@@ -16,26 +16,28 @@ import 'authorization_service.dart';
   styleUrls: ['authorization_component.css'],
   directives: [
     materialInputDirectives,
-    MaterialButtonComponent, MaterialIconComponent, MaterialInputComponent,
+    MaterialButtonComponent, MaterialIconComponent,
     NgModel
   ],
   providers: [AuthorizationService, ProgressService]
 )
 class AuthorizationComponent {
-  bool get isAuthorized => _authenticationService.isAuthorized;
+  bool get isAuthorized => _authorizationService.isAuthorized;
 
-  final AuthorizationService _authenticationService;
+  final AuthorizationService _authorizationService;
 
   final ProgressService _progressService;
 
   /// The [AuthorizationComponent] constructor...
-  AuthorizationComponent (this._authenticationService, this._progressService);
+  AuthorizationComponent (this._authorizationService, this._progressService);
 
   /// The [authorize] method...
   Future<void> authorize() async {
     try {
       _progressService.invoke ('Attempting to verify Plato credentials.');
-      await _authenticationService.authorizeApplication();
+
+      await _authorizationService.authorizeApplication();
+      await _authorizationService.authorizeUser();
 
       isAuthorized;
     } catch (_) {}
