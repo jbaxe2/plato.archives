@@ -1,5 +1,8 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.17.2+1
+- Updated dependency constraints.
+
 ## 0.17.2
 - Updated dependency constraints.
 - More work toward converting authentication scheme.

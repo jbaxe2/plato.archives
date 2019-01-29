@@ -48,6 +48,12 @@ class AuthorizationService {
       throw new AuthorizationError ('Authorization has already completed.');
     }
 
+    if (_haveCode()) {
+      await authorizeUser();
+
+      return;
+    }
+
     try {
       window.location.replace (_REST_AUTH_URI);
     } catch (_) {
@@ -71,7 +77,7 @@ class AuthorizationService {
           json.decode (utf8.decode (rawAuthResponse.bodyBytes)) as Map;
 
         if (true == authResponse['learn.user.authenticated']) {
-          _isAuthorized = true;
+          _authorizationController.add (_isAuthorized = true);
         } else {
           throw authResponse;
         }
@@ -92,5 +98,16 @@ class AuthorizationService {
     await _http.get (_LOGOUT_URI);
 
     _authorizationController.add (_isAuthorized = false);
+  }
+
+  /// The [_haveCode] method...
+  bool _haveCode() {
+    var location = Uri.parse (window.location.href);
+
+    if (location.queryParameters.containsKey ('code')) {
+      return true;
+    }
+
+    return false;
   }
 }
