@@ -44,8 +44,8 @@ class AuthorizationService {
 
   /// The [authorizeApplication] method...
   Future<void> authorizeApplication() async {
-    if (isAuthorized) {
-      throw new AuthorizationError ('Authorization has already completed.');
+    if (_isAuthorized) {
+      return;
     }
 
     if (_haveCode()) {
@@ -63,9 +63,13 @@ class AuthorizationService {
 
   /// The [authorizeUser] method...
   Future<bool> authorizeUser() async {
+    if (_isAuthorized) {
+      return true;
+    }
+
     var location = Uri.parse (window.location.href);
 
-    if (location.queryParameters.containsKey ('code')) {
+    if (_haveCode()) {
       try {
         final Response rawAuthResponse = await _http.post (
           Uri.parse (_AUTHENTICATE_URI),
@@ -76,11 +80,9 @@ class AuthorizationService {
         final Map<String, dynamic> authResponse =
           json.decode (utf8.decode (rawAuthResponse.bodyBytes)) as Map;
 
-        if (true == authResponse['learn.user.authenticated']) {
-          _authorizationController.add (_isAuthorized = true);
-        } else {
-          throw authResponse;
-        }
+        _authorizationController.add (
+          _isAuthorized = authResponse['learn.user.authenticated']
+        );
       } catch (_) {
         throw new AuthorizationError (
           'Establishing user context via authorization has failed.'

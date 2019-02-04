@@ -21,7 +21,7 @@ import 'authorization_service.dart';
   ],
   providers: [AuthorizationService, ProgressService]
 )
-class AuthorizationComponent {
+class AuthorizationComponent implements AfterViewInit {
   bool get isAuthorized => _authorizationService.isAuthorized;
 
   final AuthorizationService _authorizationService;
@@ -31,15 +31,19 @@ class AuthorizationComponent {
   /// The [AuthorizationComponent] constructor...
   AuthorizationComponent (this._authorizationService, this._progressService);
 
+  /// The [ngAfterViewInit] method...
+  @override
+  void ngAfterViewInit() {
+    isAuthorized;
+  }
+
   /// The [authorize] method...
   Future<void> authorize() async {
     try {
       _progressService.invoke ('Attempting to verify Plato credentials.');
 
       await _authorizationService.authorizeApplication();
-      await _authorizationService.authorizeUser();
-
-      isAuthorized;
+      //await _authorizationService.authorizeUser();
     } catch (_) {}
 
     _progressService.revoke();
