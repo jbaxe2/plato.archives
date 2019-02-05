@@ -19,6 +19,7 @@ import '../resource.dart';
 @Component(
   selector: 'resource-view',
   templateUrl: 'resource_view_component.html',
+  styleUrls: const ['resource_view_component.css'],
   directives: const [NgIf, MaterialExpansionPanel],
   providers: const [ArchivesService, CachingService, ProgressService]
 )
