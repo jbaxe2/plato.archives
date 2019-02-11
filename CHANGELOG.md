@@ -1,5 +1,8 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.17.3+1
+- Removed 'const' keyword from component annotations.
+
 ## 0.17.3
 - Updated some resource view features.
 
