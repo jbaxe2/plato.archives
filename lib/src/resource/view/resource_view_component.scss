@@ -1,12 +1,18 @@
 tr {
-  border-left: 1px solid #47380a;
+  border-left: 1px solid #47380a !important;
 }
 
 td {
-  margin: 4px;
-  padding: 4px;
+  margin: 4px !important;
+  padding: 4px !important;
 }
 
-td.setting {
-  background-color: #f8cca9;
+td.setting, div.bb-forum-thread {
+  background-color: #f8cca9 !important;
+}
+
+div.bb-forum-thread {
+  border-width: 0 0 1px 1px !important;
+  border-style: solid !important;
+  border-color: #47380a !important;
 }
