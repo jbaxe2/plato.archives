@@ -1,5 +1,8 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.17.3+3
+- Updated Dart SDK constraint.
+
 ## 0.17.3+2
 - Updated dependency constraints.
 
