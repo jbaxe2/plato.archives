@@ -1,5 +1,9 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.17.3+4
+- Minor updates to CSS class names for resource view to reflect changes coming
+from server code.
+
 ## 0.17.3+3
 - Updated Dart SDK constraint.
 
