@@ -1,5 +1,9 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.17.3+5
+- Updated Dart SDK lower constraint to version 2.2.0.
+- Updated dependency constraints.
+
 ## 0.17.3+4
 - Minor updates to CSS class names for resource view to reflect changes coming
 from server code.
