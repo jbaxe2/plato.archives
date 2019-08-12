@@ -23,13 +23,14 @@ Map<String, String> raw_archive_user = {
 };
 
 /// A sample raw session user.
-Map<String, String> raw_session_user = {
+Map<String, Object> raw_session_user = {
   'banner.user.cwid': 'facdemo',
   'learn.user.username': 'facdemo',
   'password': 'facdemo',
   'learn.user.firstName': 'faculty',
   'learn.user.lastName': 'demo',
-  'learn.user.email': 'cit@westfield.ma.edu'
+  'learn.user.email': 'cit@westfield.ma.edu',
+  'isLtiSession': true
 };
 
 /// A sample raw LTI-based session user.
