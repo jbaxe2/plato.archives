@@ -30,7 +30,7 @@ Map<String, Object> raw_session_user = {
   'learn.user.firstName': 'faculty',
   'learn.user.lastName': 'demo',
   'learn.user.email': 'cit@westfield.ma.edu',
-  'isLtiSession': true
+  'isLtiSession': false
 };
 
 /// A sample raw LTI-based session user.
