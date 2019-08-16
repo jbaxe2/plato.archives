@@ -1,7 +1,7 @@
 library plato.archives.services.archives;
 
 import 'dart:async' show Future;
-import 'dart:convert' show json, utf8;
+import 'dart:convert' show base64, json, utf8;
 
 import 'package:http/http.dart' show Client, Response;
 
@@ -121,8 +121,10 @@ class ArchivesService {
     var resources = new List<Resource>();
 
     try {
+      var encodedType = base64.encode (type.codeUnits);
+
       Response resourceResponse = await _http.get (
-        '$_INSPECT_ARCHIVE_URI?archiveId=$archiveId&resourceType=$type'
+        '$_INSPECT_ARCHIVE_URI?archiveId=$archiveId&resourceType=$encodedType'
       );
 
       String rawResponseJson = utf8.decode (resourceResponse.bodyBytes);
