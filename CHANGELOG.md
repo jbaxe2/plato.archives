@@ -1,5 +1,8 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.17.4+2
+- Reverted back so that the resource type is not Base64 encoded.
+
 ## 0.17.4+1
 - Base64 encoded the resource type when sending it to inspect archive API.
 
