@@ -1,5 +1,9 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.17.4+3
+- Updated Dart SDK lower constraint to version 2.5.0.
+- Updated dependency constraints.
+
 ## 0.17.4+2
 - Reverted back so that the resource type is not Base64 encoded.
 
