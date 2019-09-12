@@ -42,7 +42,7 @@ from server code.
 
 ## 0.17.2
 - Updated dependency constraints.
-- More work toward converting authentication scheme.
+- More work toward converting authentication scheme.angular
 
 ## 0.17.1+1
 - Resolved a build issue for authorization.
