@@ -13,8 +13,6 @@ import 'package:plato.archives/src/_application/progress/progress_service.dart';
 import 'package:plato.archives/src/_application/workflow/workflow_service.dart';
 
 import 'package:plato.archives/src/archive/archives_service.dart';
-import 'package:plato.archives/src/course/courses_service.dart';
-import 'package:plato.archives/src/enrollment/enrollments_service.dart';
 import 'package:plato.archives/src/resource/resources_service.dart';
 
 import 'package:plato.archives/src/user/users_service.dart';
@@ -33,8 +31,7 @@ void main() => (new PlatoArchives()).run();
   ClassProvider (Client, useClass: BrowserClient),
 
   ClassProvider (ArchivesService), ClassProvider (AuthorizationService),
-  ClassProvider (CachingService), ClassProvider (CoursesService),
-  ClassProvider (EnrollmentsService), ClassProvider (ErrorService),
+  ClassProvider (CachingService), ClassProvider (ErrorService),
   ClassProvider (ProgressService), ClassProvider (ResourcesService),
   ClassProvider (SessionService), ClassProvider (UsersService),
   ClassProvider (WorkflowService),
