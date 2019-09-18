@@ -1,5 +1,8 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.17.5+1
+- Minor refactoring.
+
 ## 0.17.5
 - Pruning of non-needed components/services created early in the project.
   - This does not include resource types that have not yet been fleshed out,

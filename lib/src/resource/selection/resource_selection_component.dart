@@ -77,7 +77,9 @@ class ResourceSelectionComponent implements AfterViewInit {
   bool _loadFromCache() {
     try {
       _loadRequiredFromCache();
-    } catch (_) {}
+    } catch (_) {
+      return false;
+    }
 
     final String cacheKey = _createCacheKey();
 
