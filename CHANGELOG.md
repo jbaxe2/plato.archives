@@ -1,5 +1,10 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.18.0
+- Updated dependencies.
+- Start of creating organization selection component and related code.
+- Minor refactoring.
+
 ## 0.17.5+1
 - Minor refactoring.
 

@@ -1,7 +1,9 @@
 library plato.archives.models.resource;
 
+import '../archive/manifestable.dart';
+
 /// The [Resource] class...
-class Resource {
+class Resource implements Manifestable {
   final String id;
 
   final String title;
