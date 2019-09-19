@@ -8,6 +8,8 @@ import 'item.dart';
 class Organization implements Manifestable {
   final List<Item> items;
 
+  bool get hasItems => items.isNotEmpty;
+
   /// The [Organization] class...
   Organization (this.items);
 }

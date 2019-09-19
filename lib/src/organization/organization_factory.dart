@@ -15,7 +15,7 @@ class OrganizationFactory implements PlatoFactory<Organization> {
   Organization create (Map<String, Object> rawOrganization, [String title]) {
     var items = new List<Item>();
 
-    rawOrganization.forEach ((identifier, ref) {
+    rawOrganization.forEach ((identifier, titleOrItems) {
       ;
     });
 
@@ -37,9 +37,11 @@ class OrganizationFactory implements PlatoFactory<Organization> {
   }
 
   /// The [_createItem] method...
-  Item _createItem (Map<String, Object> rawItem) {
-    var childItems = new List<Map<String, Object>>();
+  Item _createItem (
+    String identifier, String title, [Iterable<Map<String, Object>> items]
+  ) {
+    var childItems = new List<Item>();
 
-    return new Item ('', '', null);
+    return new Item (identifier, title, childItems);
   }
 }

@@ -16,6 +16,6 @@ class OrganizationSelectionComponent implements AfterViewInit {
   /// The [ngAfterViewInit] method...
   @override
   void ngAfterViewInit() {
-    // TODO: implement ngAfterViewInit
+    ;
   }
 }
