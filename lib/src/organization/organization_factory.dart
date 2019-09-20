@@ -2,7 +2,7 @@ library plato.archives.factory.organization;
 
 import '../_application/factory/plato_factory.dart';
 
-import 'item.dart';
+import 'item/item.dart';
 import 'organization.dart';
 
 /// The [OrganizationFactory] class...
@@ -16,7 +16,7 @@ class OrganizationFactory implements PlatoFactory<Organization> {
     var items = new List<Item>();
 
     rawOrganization.forEach ((identifier, titleOrItems) {
-      ;
+      items.add (_createItem (identifier, title, titleOrItems));
     });
 
     return new Organization (items);
@@ -41,7 +41,26 @@ class OrganizationFactory implements PlatoFactory<Organization> {
     String identifier, String title, [Iterable<Map<String, Object>> items]
   ) {
     var childItems = new List<Item>();
+    var item = new Item (identifier, title);
 
-    return new Item (identifier, title, childItems);
+    items?.forEach ((Map<String, Object> subItems) {
+      subItems?.forEach ((subIdentifier, subTitleOrItems) {
+        Item subItem;
+
+        if (subTitleOrItems is String) {
+          subItem = new Item (subIdentifier, subTitleOrItems);
+        } else if (subTitleOrItems is Map) {
+          subItem?.addItems ([
+            _createItem (subIdentifier, subItem.title, [subTitleOrItems])
+          ]);
+        }
+
+        childItems.add (subItem);
+      });
+    });
+
+    item.setItems (childItems);
+
+    return item;
   }
 }

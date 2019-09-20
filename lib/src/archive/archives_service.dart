@@ -4,6 +4,9 @@ import 'dart:async' show Future;
 import 'dart:convert' show json, utf8;
 
 import 'package:http/http.dart' show Client, Response;
+import 'package:plato.archives/src/organization/invalid_organization.dart';
+import 'package:plato.archives/src/organization/organization.dart';
+import 'package:plato.archives/src/organization/organization_factory.dart';
 
 import '../enrollment/enrollment_factory.dart';
 import '../enrollment/faculty_enrollment.dart';
@@ -114,6 +117,26 @@ class ArchivesService {
     }
 
     return resourceTypings;
+  }
+
+  /// The [loadArchiveOrganizations] method...
+  Future<List<Organization>> loadArchiveOrganizations (String archiveId) async {
+    var organizations = new List<Organization>();
+
+    try {
+      Response orgsResponse = await _http.get (
+        '$_INSPECT_ARCHIVE_URI?archiveId=$archiveId&resourceType=course/x-bb-outline'
+      );
+
+      String rawOrgsJson = utf8.decode (orgsResponse.bodyBytes);
+      Map<String, dynamic> rawOrgs = json.decode (rawOrgsJson) as Map;
+
+      organizations.add (((new OrganizationFactory()).create (rawOrgs, archiveId)));
+    } catch (_) {
+      throw new InvalidOrganization ('Unable to review the course outline.');
+    }
+
+    return organizations;
   }
 
   /// The [loadArchiveResourcesOfType] method...

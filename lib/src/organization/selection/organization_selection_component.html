@@ -1,18 +1,19 @@
 <div>
-  <p *ngIf="!organization.hasItems">
+  <p *ngIf="items.isEmpty">
     There is no available content outline structure for the course archive.
   </p>
 
-  <div *ngIf="organization.hasItems">
+  <div *ngIf="!items.isNotEmpty">
     <p>
       The following is an outline of the content contained in the course archive.
+      Please review the items in the outline, select one, and then click on the
+      <strong>Continue</strong> button to view it.
     </p>
 
     <material-tree
         [allowDeselectInHeirarchy]="true"
-        [factoryRenderer]=""
-        [options]=""
-        [selection]="">
+        [factoryRenderer]="itemsRenderer"
+        [options]="itemOptions">
     </material-tree>
   </div>
 </div>
