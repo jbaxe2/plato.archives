@@ -5,7 +5,9 @@ import 'package:angular/angular.dart';
 import '../../_application/caching/caching_service.dart';
 
 import '../../organization/selection/organization_selection_component.dart';
+
 import '../../resource/selection/resource_selection_component.dart';
+import '../../resource/typing/resource_typing.dart';
 
 import 'improper_archive_part.dart';
 
@@ -22,9 +24,9 @@ const String _ORGANIZATIONS_TYPE = 'course/x-bb-outline';
   providers: [CachingService]
 )
 class ArchivePartComponent implements AfterViewInit {
-  String _type;
+  ResourceTyping _typing;
 
-  bool get isForOrganizations => _ORGANIZATIONS_TYPE == _type;
+  bool get isForOrganizations => _ORGANIZATIONS_TYPE == _typing?.id;
 
   final CachingService _cachingService;
 
@@ -48,7 +50,7 @@ class ArchivePartComponent implements AfterViewInit {
       );
     }
 
-    _type = _cachingService.retrieveCachedObject ('resourceTyping');
+    _typing = _cachingService.retrieveCachedObject ('resourceTyping');
 
     return true;
   }

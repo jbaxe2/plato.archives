@@ -6,10 +6,14 @@ import 'item/item.dart';
 
 /// The [Organization] class...
 class Organization implements Manifestable {
-  final List<Item> items;
+  List<Item> _items;
 
-  bool get haveItems => items.isNotEmpty;
+  List<Item> get items => _items;
+
+  bool get haveItems => _items.isNotEmpty;
 
   /// The [Organization] class...
-  Organization (this.items);
+  Organization (this._items) {
+    _items ??= new List<Item>();
+  }
 }

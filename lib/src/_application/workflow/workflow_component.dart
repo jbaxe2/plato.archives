@@ -9,8 +9,8 @@ import 'package:angular_components/angular_components.dart';
 import '../../_application/patron/patron_component.dart';
 
 import '../../archive/part/archive_part_component.dart';
+import '../../archive/selection/archive_selection_component.dart';
 
-import '../../resource/selection/resource_selection_component.dart';
 import '../../resource/typing/resource_typing_component.dart';
 import '../../resource/view/resource_view_component.dart';
 
@@ -24,8 +24,8 @@ import 'workflow_service.dart';
   directives: [
     MaterialButtonComponent, MaterialIconComponent, MaterialStepperComponent,
     StepDirective,
-    ArchivePartComponent, PatronComponent,
-    ResourceSelectionComponent, ResourceTypingComponent, ResourceViewComponent,
+    ArchivePartComponent, ArchiveSelectionComponent, PatronComponent,
+    ResourceTypingComponent, ResourceViewComponent,
     NgIf
   ],
   providers: [WorkflowService]

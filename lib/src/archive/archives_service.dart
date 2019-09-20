@@ -4,12 +4,13 @@ import 'dart:async' show Future;
 import 'dart:convert' show json, utf8;
 
 import 'package:http/http.dart' show Client, Response;
-import 'package:plato.archives/src/organization/invalid_organization.dart';
-import 'package:plato.archives/src/organization/organization.dart';
-import 'package:plato.archives/src/organization/organization_factory.dart';
 
 import '../enrollment/enrollment_factory.dart';
 import '../enrollment/faculty_enrollment.dart';
+
+import '../organization/invalid_organization.dart';
+import '../organization/organization.dart';
+import '../organization/organization_factory.dart';
 
 import '../resource/typing/invalid_resource_type.dart';
 import '../resource/typing/resource_typing.dart';
