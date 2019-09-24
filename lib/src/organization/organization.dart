@@ -8,12 +8,12 @@ import 'item/item.dart';
 class Organization implements Manifestable {
   List<Item> _items;
 
-  List<Item> get items => _items;
+  List<Item> get items => new List<Item>.from (_items);
 
   bool get haveItems => _items.isNotEmpty;
 
   /// The [Organization] class...
-  Organization (this._items) {
-    _items ??= new List<Item>();
+  Organization (List<Item> orgItems) {
+    _items = orgItems ?? new List<Item>();
   }
 }

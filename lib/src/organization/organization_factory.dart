@@ -38,28 +38,23 @@ class OrganizationFactory implements PlatoFactory<Organization> {
 
   /// The [_createItem] method...
   Item _createItem (
-    String identifier, String title, [Iterable<Map<String, Object>> items]
+    String identifier, String title, [Object titleOrItems]
   ) {
-    var childItems = new List<Item>();
-    var item = new Item (identifier, title);
+    Item item;
 
-    items?.forEach ((Map<String, Object> subItems) {
-      subItems?.forEach ((subIdentifier, subTitleOrItems) {
-        Item subItem;
+    if (titleOrItems is String) {
+      item = new Item (identifier, titleOrItems);
+    } else if (titleOrItems is Map) {
+      item = new Item (identifier, title);
 
+      titleOrItems.cast<String, Object>().forEach ((subIdentifier, subTitleOrItems) {
         if (subTitleOrItems is String) {
-          subItem = new Item (subIdentifier, subTitleOrItems);
+          item.addItem (new Item (subIdentifier, subTitleOrItems));
         } else if (subTitleOrItems is Map) {
-          subItem?.addItems ([
-            _createItem (subIdentifier, subItem.title, [subTitleOrItems])
-          ]);
+          item.addItem (_createItem (subIdentifier, title, subTitleOrItems));
         }
-
-        childItems.add (subItem);
       });
-    });
-
-    item.setItems (childItems);
+    }
 
     return item;
   }
