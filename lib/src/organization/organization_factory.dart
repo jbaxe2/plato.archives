@@ -3,6 +3,7 @@ library plato.archives.factory.organization;
 import '../_application/factory/plato_factory.dart';
 
 import 'item/item.dart';
+
 import 'organization.dart';
 
 /// The [OrganizationFactory] class...
