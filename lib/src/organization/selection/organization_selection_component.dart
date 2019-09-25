@@ -29,9 +29,8 @@ ComponentFactory<ItemComponent> getItemComponentFactory (Item item) =>
   directives: [MaterialTreeComponent, NgIf],
   providers: [
     ArchivesService,
-    FactoryProvider (ItemComponent, getItemComponentFactory, deps: [Item]),
-    popupBindings
-  ]
+    FactoryProvider (ItemComponent, getItemComponentFactory, deps: [Item])
+  ],
 )
 class OrganizationSelectionComponent implements AfterViewInit {
   FacultyEnrollment _enrollment;
@@ -96,8 +95,9 @@ class OrganizationSelectionComponent implements AfterViewInit {
   /// The [_establishItems] method...
   void _establishItems() {
     if (_organization.haveItems) {
-      itemOptions =
-        new ItemOptions ([new OptionGroup (items = _organization.items)]);
+      items = _organization.items;
+
+      itemOptions = new ItemOptions ([new OptionGroup (items)]);
     }
   }
 }

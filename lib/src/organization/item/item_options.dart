@@ -1,7 +1,5 @@
 library plato.archives.models.item.options;
 
-//import 'dart:html' show window;
-
 import 'package:angular_components/angular_components.dart';
 
 import 'item_node.dart';

@@ -1,5 +1,9 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.18.0+2
+- Updated dependencies.
+- Work on organization selection proper functionality.
+
 ## 0.18.0+1
 - More work on organization selection code.
 
