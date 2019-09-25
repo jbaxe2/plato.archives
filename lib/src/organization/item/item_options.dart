@@ -12,9 +12,7 @@ class ItemOptions extends SelectionOptions<ItemNode>
 
   /// The [hasChildren] method...
   @override
-  bool hasChildren (ItemNode item) {
-    return item.items.isNotEmpty;
-  }
+  bool hasChildren (ItemNode item) => item.items.isNotEmpty;
 
   /// The [childrenOf] method...
   @override

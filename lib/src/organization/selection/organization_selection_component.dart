@@ -14,6 +14,7 @@ import '../item/item.dart';
 import '../item/item_options.dart';
 import '../item/item_component.dart';
 import '../item/item_component.template.dart' as ict;
+import '../item/item_node.dart';
 
 import '../organization.dart';
 import '../invalid_organization.dart';
@@ -37,11 +38,13 @@ class OrganizationSelectionComponent implements AfterViewInit {
 
   Organization _organization;
 
-  List<Item> items;
+  List<ItemNode> items;
 
   ItemOptions itemOptions;
 
   final FactoryRenderer<ItemComponent, Item> itemsRenderer = getItemComponentFactory;
+
+  final SelectionModel singleSelection = new SelectionModel.single();
 
   final ArchivesService _archivesService;
 
@@ -49,7 +52,7 @@ class OrganizationSelectionComponent implements AfterViewInit {
 
   /// The [OrganizationSelectionComponent] constructor...
   OrganizationSelectionComponent (this._archivesService, this._cachingService) {
-    items = new List<Item>();
+    items = new List<ItemNode>();
   }
 
   /// The [ngAfterViewInit] method...
@@ -95,7 +98,9 @@ class OrganizationSelectionComponent implements AfterViewInit {
   /// The [_establishItems] method...
   void _establishItems() {
     if (_organization.haveItems) {
-      items = _organization.items;
+      items
+        ..clear()
+        ..addAll (_organization.items.cast<ItemNode>());
 
       itemOptions = new ItemOptions ([new OptionGroup (items)]);
     }
