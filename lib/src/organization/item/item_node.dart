@@ -7,5 +7,7 @@ import 'item.dart';
 /// The [ItemNode] class...
 class ItemNode extends Item with MaterialTreeExpandState {
   /// The [ItemNode] constructor...
-  ItemNode (String id, String title) : super (id, title);
+  ItemNode (
+    String id, String title, [List<ItemNode> items]
+  ) : super (id, title, items);
 }

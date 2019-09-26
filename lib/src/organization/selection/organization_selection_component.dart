@@ -38,7 +38,7 @@ class OrganizationSelectionComponent implements AfterViewInit {
 
   Organization _organization;
 
-  List<ItemNode> items;
+  List<Item> items;
 
   ItemOptions itemOptions;
 
@@ -100,9 +100,9 @@ class OrganizationSelectionComponent implements AfterViewInit {
     if (_organization.haveItems) {
       items
         ..clear()
-        ..addAll (_organization.items.cast<ItemNode>());
+        ..addAll (_organization.items);
 
-      itemOptions = new ItemOptions ([new OptionGroup (items)]);
+      itemOptions = new ItemOptions ([new OptionGroup<ItemNode> (items)]);
     }
   }
 }

@@ -3,6 +3,7 @@ library plato.archives.factory.organization;
 import '../_application/factory/plato_factory.dart';
 
 import 'item/item.dart';
+import 'item/item_node.dart';
 
 import 'organization.dart';
 
@@ -44,13 +45,14 @@ class OrganizationFactory implements PlatoFactory<Organization> {
     Item item;
 
     if (titleOrItems is String) {
-      item = new Item (identifier, titleOrItems);
+      item = new ItemNode (identifier, titleOrItems);
     } else if (titleOrItems is Map) {
-      item = new Item (identifier, title);
+      var itemTitle = titleOrItems[identifier] as String;
+      item = new ItemNode (identifier, itemTitle);
 
       titleOrItems.cast<String, Object>().forEach ((subIdentifier, subTitleOrItems) {
         if (subTitleOrItems is String) {
-          item.addItem (new Item (subIdentifier, subTitleOrItems));
+          item.addItem (new ItemNode (subIdentifier, subTitleOrItems));
         } else if (subTitleOrItems is Map) {
           item.addItem (_createItem (subIdentifier, title, subTitleOrItems));
         }
