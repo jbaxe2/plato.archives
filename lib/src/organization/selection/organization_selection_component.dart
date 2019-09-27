@@ -5,10 +5,13 @@ import 'package:angular_components/angular_components.dart';
 import 'package:angular_components/model/ui/has_factory.dart';
 
 import '../../_application/caching/caching_service.dart';
+import '../../_application/workflow/workflow_service.dart';
 
 import '../../archive/archives_service.dart';
 
 import '../../enrollment/faculty_enrollment.dart';
+
+import '../../resource/resource.dart';
 
 import '../item/item.dart';
 import '../item/item_options.dart';
@@ -17,7 +20,6 @@ import '../item/item_component.template.dart' as ict;
 import '../item/item_node.dart';
 
 import '../organization.dart';
-import '../invalid_organization.dart';
 
 @Injectable()
 ComponentFactory<ItemComponent> getItemComponentFactory (Item item) =>
@@ -29,7 +31,7 @@ ComponentFactory<ItemComponent> getItemComponentFactory (Item item) =>
   templateUrl: 'organization_selection_component.html',
   directives: [MaterialTreeComponent, NgIf],
   providers: [
-    ArchivesService,
+    ArchivesService, CachingService, WorkflowService,
     FactoryProvider (ItemComponent, getItemComponentFactory, deps: [Item])
   ],
 )
@@ -50,48 +52,56 @@ class OrganizationSelectionComponent implements AfterViewInit {
 
   final CachingService _cachingService;
 
+  final WorkflowService _workflowService;
+
   /// The [OrganizationSelectionComponent] constructor...
-  OrganizationSelectionComponent (this._archivesService, this._cachingService) {
+  OrganizationSelectionComponent (
+    this._archivesService, this._cachingService, this._workflowService
+  ) {
     items = new List<ItemNode>();
   }
 
   /// The [ngAfterViewInit] method...
   @override
   Future<void> ngAfterViewInit() async {
-    try {
-      _loadFromCache();
-    } catch (_) {
+    _workflowService.markStepRevertedInWorkflow();
+
+    if (!_loadFromCache()) {
       return;
     }
 
-    await _loadArchiveOrganization();
+    if (null == _organization) {
+      await _loadArchiveOrganization();
+    }
+
     _establishItems();
+    _listenForSelection();
   }
 
   /// The [_loadFromCache] method...
   bool _loadFromCache() {
-    if (!_cachingService.haveCachedObject ('archiveEnrollment')) {
-      throw new InvalidOrganization (
-        'Unable to load the archive course structure.'
-      );
+    if (_cachingService.haveCachedObject ('archiveEnrollment')) {
+      _enrollment = _cachingService.retrieveCachedObject ('archiveEnrollment');
+
+      if (_cachingService.haveCachedObject ('organization')) {
+        _organization = _cachingService.retrieveCachedObject ('organization');
+      }
+
+      return true;
     }
 
-    _enrollment = _cachingService.retrieveCachedObject ('archiveEnrollment');
-
-    return true;
+    return false;
   }
 
   /// The [_loadArchiveOrganization] method...
   Future<void> _loadArchiveOrganization() async {
-    if (null != _organization) {
-      return;
-    }
-
     try {
       List<Organization> organizations =
         await _archivesService.loadArchiveOrganizations (_enrollment.courseId);
 
       _organization = organizations.first;
+
+      _cachingService.cacheObject ('organization', _organization);
     } catch (_) {}
   }
 
@@ -104,5 +114,26 @@ class OrganizationSelectionComponent implements AfterViewInit {
 
       itemOptions = new ItemOptions ([new OptionGroup<ItemNode> (items)]);
     }
+  }
+
+  /// The [_listenForSelection] method...
+  void _listenForSelection() {
+    singleSelection.selectionChanges.listen (
+      (List<SelectionChangeRecord<dynamic>> changedSelections) {
+        SelectionChangeRecord changedSelection = changedSelections.first;
+
+        if (changedSelection.removed.isNotEmpty) {
+          _workflowService.markStepRevertedInWorkflow();
+        }
+
+        if (changedSelection.added.isNotEmpty) {
+          var itemSelection = changedSelection.added.first as ItemNode;
+          var idResource = new Resource (itemSelection.id, null, null, null);
+
+          _cachingService.cacheObject ('selectedResource', idResource);
+          _workflowService.markItemSelected();
+        }
+      }
+    );
   }
 }

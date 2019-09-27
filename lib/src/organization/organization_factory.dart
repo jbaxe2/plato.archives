@@ -45,6 +45,10 @@ class OrganizationFactory implements PlatoFactory<Organization> {
     Item item;
 
     if (titleOrItems is String) {
+      if ((titleOrItems as String).startsWith ('divider_')) {
+        titleOrItems = '------------------------';
+      }
+
       item = new ItemNode (identifier, titleOrItems);
     } else if (titleOrItems is Map) {
       var itemTitle = titleOrItems[identifier] as String;

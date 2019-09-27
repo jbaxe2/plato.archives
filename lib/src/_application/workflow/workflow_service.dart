@@ -12,6 +12,9 @@ class WorkflowService {
   /// The [WorkflowService] constructor.....
   WorkflowService();
 
+  /// The [markStepRevertedInWorkflow] method...
+  void markStepRevertedInWorkflow() => _progressStreamController.add (false);
+
   /// The [markProgressedWorkflow] method...
   void markProgressedWorkflow() => _progressStreamController.add (false);
 
@@ -26,4 +29,7 @@ class WorkflowService {
 
   /// The [markResourceSelected] method...
   void markResourceSelected() => _progressStreamController.add (true);
+
+  /// The [markItemSelected] method...
+  void markItemSelected() => _progressStreamController.add (true);
 }
