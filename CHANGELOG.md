@@ -1,5 +1,12 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.18.1
+- Updated dependencies.
+- Work to resolve some issues.
+  - Reviewing organization in Step 4, then clicking back to Step 2 to select a
+  different archive pulled the previously selected organization.
+- Minor refactoring.
+
 ## 0.18.0+2
 - Updated dependencies.
 - Work on organization selection proper functionality.

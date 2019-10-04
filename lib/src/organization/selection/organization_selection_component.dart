@@ -83,8 +83,10 @@ class OrganizationSelectionComponent implements AfterViewInit {
     if (_cachingService.haveCachedObject ('archiveEnrollment')) {
       _enrollment = _cachingService.retrieveCachedObject ('archiveEnrollment');
 
-      if (_cachingService.haveCachedObject ('organization')) {
-        _organization = _cachingService.retrieveCachedObject ('organization');
+      String orgEnrollment = 'organization_${_enrollment.courseId}';
+
+      if (_cachingService.haveCachedObject (orgEnrollment)) {
+        _organization = _cachingService.retrieveCachedObject (orgEnrollment);
       }
 
       return true;
@@ -101,7 +103,9 @@ class OrganizationSelectionComponent implements AfterViewInit {
 
       _organization = organizations.first;
 
-      _cachingService.cacheObject ('organization', _organization);
+      String orgEnrollment = 'organization_${_enrollment.courseId}';
+
+      _cachingService.cacheObject (orgEnrollment, _organization);
     } catch (_) {}
   }
 

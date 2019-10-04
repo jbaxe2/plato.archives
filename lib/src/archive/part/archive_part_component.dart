@@ -37,9 +37,7 @@ class ArchivePartComponent implements AfterViewInit {
   Future<void> ngAfterViewInit() async {
     try {
       _loadFromCache();
-    } catch (_) {
-      return;
-    }
+    } catch (_) {}
   }
 
   /// The [_loadFromCache] method...
