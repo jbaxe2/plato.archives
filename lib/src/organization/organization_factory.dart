@@ -14,14 +14,16 @@ class OrganizationFactory implements PlatoFactory<Organization> {
 
   /// The [create] method...
   @override
-  Organization create (Map<String, Object> rawOrganization, [String title]) {
-    var items = new List<Item>();
+  Organization create (
+    Map<String, Object> rawOrganization, [String title = 'Archive Course Structure']
+  ) {
+    var archiveItemNode = new ItemNode ('res00001', '$title [click to expand]');
 
     rawOrganization?.forEach ((identifier, titleOrItems) {
-      items.add (_createItem (identifier, title, titleOrItems));
+      archiveItemNode.items.add (_createItem (identifier, titleOrItems));
     });
 
-    return new Organization (items);
+    return new Organization ([archiveItemNode]);
   }
 
   /// The [createAll] method...
@@ -39,28 +41,24 @@ class OrganizationFactory implements PlatoFactory<Organization> {
   }
 
   /// The [_createItem] method...
-  Item _createItem (
-    String identifier, String title, [Object titleOrItems]
-  ) {
+  Item _createItem (String identifier, Object titleOrItems) {
     Item item;
 
     if (titleOrItems is String) {
-      if ((titleOrItems as String).startsWith ('divider_')) {
-        titleOrItems = '------------------------';
-      }
-
       item = new ItemNode (identifier, titleOrItems);
     } else if (titleOrItems is Map) {
       var itemTitle = titleOrItems[identifier] as String;
-      item = new ItemNode (identifier, itemTitle);
+      item = new ItemNode (identifier, itemTitle ?? '[click to expand]');
 
-      titleOrItems.cast<String, Object>().forEach ((subIdentifier, subTitleOrItems) {
-        if (subTitleOrItems is String) {
-          item.addItem (new ItemNode (subIdentifier, subTitleOrItems));
-        } else if (subTitleOrItems is Map) {
-          item.addItem (_createItem (subIdentifier, title, subTitleOrItems));
-        }
-      });
+      if (1 < titleOrItems.keys.length) {
+        titleOrItems.cast<String, Object>().forEach (
+          (subIdentifier, subTitleOrItems) {
+            if (subTitleOrItems is Map) {
+              item.addItem (_createItem (subIdentifier, subTitleOrItems));
+            }
+          }
+        );
+      }
     }
 
     return item;

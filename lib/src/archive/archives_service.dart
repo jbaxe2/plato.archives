@@ -121,7 +121,9 @@ class ArchivesService {
   }
 
   /// The [loadArchiveOrganizations] method...
-  Future<List<Organization>> loadArchiveOrganizations (String archiveId) async {
+  Future<List<Organization>> loadArchiveOrganizations (
+    String archiveId, String archiveTitle
+) async {
     var organizations = new List<Organization>();
 
     try {
@@ -132,7 +134,7 @@ class ArchivesService {
       String rawOrgsJson = utf8.decode (orgsResponse.bodyBytes);
       Map<String, dynamic> rawOrgs = json.decode (rawOrgsJson) as Map;
 
-      organizations.add (((new OrganizationFactory()).create (rawOrgs, archiveId)));
+      organizations.add (((new OrganizationFactory()).create (rawOrgs, archiveTitle)));
     } catch (_) {
       throw new InvalidOrganization ('Unable to review the course outline.');
     }

@@ -99,7 +99,9 @@ class OrganizationSelectionComponent implements AfterViewInit {
   Future<void> _loadArchiveOrganization() async {
     try {
       List<Organization> organizations =
-        await _archivesService.loadArchiveOrganizations (_enrollment.courseId);
+        await _archivesService.loadArchiveOrganizations (
+          _enrollment.courseId, _enrollment.courseName
+        );
 
       _organization = organizations.first;
 

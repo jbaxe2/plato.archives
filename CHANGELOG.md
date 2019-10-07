@@ -1,5 +1,8 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.18.1+1
+- Work on organization selection tree view.
+
 ## 0.18.1
 - Updated dependencies.
 - Work to resolve some issues.
