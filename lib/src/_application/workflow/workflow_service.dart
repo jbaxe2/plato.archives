@@ -9,6 +9,11 @@ class WorkflowService {
 
   Stream<bool> get progressStream => _progressStreamController.stream;
 
+  static StreamController<bool> _doStepStreamController =
+    new StreamController<bool>.broadcast();
+
+  Stream<bool> get doStepStream => _doStepStreamController.stream;
+
   /// The [WorkflowService] constructor.....
   WorkflowService();
 
@@ -32,4 +37,7 @@ class WorkflowService {
 
   /// The [markItemSelected] method...
   void markItemSelected() => _progressStreamController.add (true);
+
+  /// The [establishNextStep] method...
+  void establishNextStep() => _doStepStreamController.add (true);
 }

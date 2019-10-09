@@ -51,6 +51,12 @@ class WorkflowComponent implements AfterViewInit {
     _workflowService.progressStream.listen (
       (bool stepMarked) => _canStep = stepMarked
     );
+
+    _workflowService.doStepStream.listen ((bool doStep) {
+      if (doStep) {
+        progressInWorkflow (new Event (''));
+      }
+    });
   }
 
   /// The [progressInWorkflow] method...

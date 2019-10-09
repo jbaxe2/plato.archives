@@ -87,6 +87,17 @@ class PatronComponent implements OnInit {
     return true;
   }
 
+  /// The [_listenForAuthorization] method...
+  Future<void> _listenForAuthorization() async {
+    _authorizationService.authorizationStream.listen (
+      (bool authorizationResult) async {
+        if ((_isAuthorized = authorizationResult) && (null == _patron)) {
+          await _retrievePatronInfo();
+        }
+      }
+    );
+  }
+
   /// The [_checkIfSessionExists] method...
   Future<void> _checkIfSessionExists() async {
     _progressService.invoke ('Determining if a current session exists.');
@@ -101,17 +112,6 @@ class PatronComponent implements OnInit {
     } catch (_) {}
 
     _progressService.revoke();
-  }
-
-  /// The [_listenForAuthorization] method...
-  Future<void> _listenForAuthorization() async {
-    _authorizationService.authorizationStream.listen (
-      (bool authorizationResult) async {
-        if ((_isAuthorized = authorizationResult) && (null == _patron)) {
-          await _retrievePatronInfo();
-        }
-      }
-    );
   }
 
   /// The [_retrievePatronInfo] method...

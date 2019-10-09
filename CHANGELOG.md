@@ -1,5 +1,8 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.19.0
+- Start work on allowing application to be launched from course request form.
+
 ## 0.18.1+1
 - Work on organization selection tree view.
 
