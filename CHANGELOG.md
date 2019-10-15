@@ -1,5 +1,11 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.19.0+1
+- Established the means for which the application can be launched from the
+course request form.
+  - Automates steps 1 and 2, and starts with pulling archive for step 3, whereby
+  the archive was selected from the course request form.
+
 ## 0.19.0
 - Start work on allowing application to be launched from course request form.
 

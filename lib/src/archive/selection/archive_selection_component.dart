@@ -1,6 +1,7 @@
 library plato.archives.components.archive.selection;
 
 import 'dart:async' show Future;
+import 'dart:html' show window;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
@@ -55,6 +56,7 @@ class ArchiveSelectionComponent implements AfterViewInit {
     }
 
     await _loadArchiveEnrollments();
+    _checkIfBrowsingFromCrf();
   }
 
   /// The [archiveEnrollmentSelected] method...
@@ -91,5 +93,27 @@ class ArchiveSelectionComponent implements AfterViewInit {
     } catch (_) {}
 
     _progressService.revoke();
+  }
+
+  /// The [_checkIfBrowsingFromCrf] method...
+  void _checkIfBrowsingFromCrf() {
+    Uri location = Uri.parse (window.location.toString());
+
+    if (location.queryParameters.containsKey ('crf_browse')) {
+      String crfBrowse = location.queryParameters['crf_browse'];
+      var haveEnrollment = false;
+
+      archiveEnrollments.forEach ((enrollment) {
+        if (enrollment.courseId == crfBrowse) {
+          archiveEnrollmentSelected (enrollment);
+
+          haveEnrollment = true;
+        }
+      });
+
+      if (haveEnrollment) {
+        _workflowService.establishNextStep();
+      }
+    }
   }
 }

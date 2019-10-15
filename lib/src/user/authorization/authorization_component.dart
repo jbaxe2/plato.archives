@@ -43,7 +43,6 @@ class AuthorizationComponent implements AfterViewInit {
       _progressService.invoke ('Attempting to verify Plato credentials.');
 
       await _authorizationService.authorizeApplication();
-      //await _authorizationService.authorizeUser();
     } catch (_) {}
 
     _progressService.revoke();

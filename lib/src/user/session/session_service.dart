@@ -9,8 +9,6 @@ import 'session_error.dart';
 
 const String _RETRIEVE_URI = '/plato/retrieve/session';
 
-const String _CLEANUP_URI = '/plato/cleanup/session';
-
 /// The [SessionService] class...
 class SessionService {
   bool _sessionExists;
@@ -62,7 +60,4 @@ class SessionService {
 
     return false;
   }
-
-  /// The [cleanup] method...
-  Future<void> cleanup() async => await _http.get (_CLEANUP_URI);
 }

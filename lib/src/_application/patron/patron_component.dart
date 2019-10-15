@@ -108,6 +108,8 @@ class PatronComponent implements OnInit {
         _isLtiSession = _sessionService.isLtiSession;
 
         await _retrievePatronInfo();
+
+        _workflowService.establishNextStep();
       }
     } catch (_) {}
 
@@ -116,14 +118,18 @@ class PatronComponent implements OnInit {
 
   /// The [_retrievePatronInfo] method...
   Future<void> _retrievePatronInfo() async {
-    if (isAuthorized && (null == patron)) {
+    if (null == patron) {
       _progressService.invoke ('Retrieving the user information.');
 
-      try {
-        if (!(await _authorizationService.authorizeUser())) {
-          throw new ImproperUser ('The user could not be authorized correctly.');
-        }
+      if (!isAuthorized) {
+        try {
+          if (!(await _authorizationService.authorizeUser())) {
+            throw new ImproperUser ('The user could not be authorized correctly.');
+          }
+        } catch (_) {}
+      }
 
+      try {
         _patron =
           await _usersService.retrieveUser (isLtiSession: _isLtiSession);
 
