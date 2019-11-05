@@ -7,6 +7,6 @@
       name="{{resource.title}}"
       [expanded]="true"
       [showSaveCancel]="false">
-    <div [innerHtml]="resource.content"></div>
+    <div [safeInnerHtml]="resourceContent"></div>
   </material-expansionpanel>
 </div>

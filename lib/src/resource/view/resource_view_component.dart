@@ -3,6 +3,7 @@ library plato.archives.components.resource.view;
 import 'dart:async' show Future;
 
 import 'package:angular/angular.dart';
+import 'package:angular/security.dart';
 import 'package:angular_components/angular_components.dart';
 
 import '../../_application/caching/caching_service.dart';
@@ -20,24 +21,31 @@ import '../resource.dart';
   selector: 'resource-view',
   templateUrl: 'resource_view_component.html',
   styleUrls: ['resource_view_component.css'],
-  directives: [NgIf, MaterialExpansionPanel],
-  providers: [ArchivesService, CachingService, ProgressService]
+  directives: [MaterialExpansionPanel, SafeInnerHtmlDirective, NgIf],
+  providers: [
+    ArchivesService, CachingService, ProgressService
+  ]
 )
 class ResourceViewComponent implements AfterViewInit {
+  Resource resource;
+
+  SafeHtml resourceContent;
+
+  ArchiveEnrollment _archiveEnrollment;
+
+  Resource _selectedResource;
+
+  final DomSanitizationService _sanitizationService;
+
   final ArchivesService _archivesService;
 
   final CachingService _cachingService;
 
   final ProgressService _progressService;
 
-  ArchiveEnrollment _archiveEnrollment;
-
-  Resource _selectedResource;
-
-  Resource resource;
-
   /// The [ResourceViewComponent] constructor...
   ResourceViewComponent (
+    this._sanitizationService,
     this._archivesService, this._cachingService, this._progressService
   );
 
@@ -59,6 +67,8 @@ class ResourceViewComponent implements AfterViewInit {
 
     if (_cachingService.haveCachedObject ('resourceView')) {
       resource = _cachingService.retrieveCachedObject ('resourceView');
+
+      _setResourceHtml();
 
       return true;
     }
@@ -87,8 +97,15 @@ class ResourceViewComponent implements AfterViewInit {
       resource = await _archivesService.loadArchiveResource (
         _archiveEnrollment.courseId, _selectedResource.id
       );
+
+      _setResourceHtml();
     } catch (_) {}
 
     _progressService.revoke();
+  }
+
+  /// The [_setResourceHtml] method...
+  void _setResourceHtml() {
+    resourceContent = _sanitizationService.bypassSecurityTrustHtml (resource.content);
   }
 }
