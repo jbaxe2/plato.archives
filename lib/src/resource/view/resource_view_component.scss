@@ -7,12 +7,20 @@ td {
   padding: 4px !important;
 }
 
-td.bb-course-setting, div.bb-forum-thread {
+::ng-deep td.bb-course-setting, div.bb-forum-thread {
   background-color: #f8cca9 !important;
 }
 
-div.bb-forum-thread {
+::ng-deep div.bb-forum-thread {
+  margin: 4px !important;
   border-width: 0 0 1px 1px !important;
   border-style: solid !important;
   border-color: #47380a !important;
+  padding: 4px !important;
+}
+
+::ng-deep div.bb-document-files {
+  margin-top: 23px !important;
+  border-top: 1px solid #47380a !important;
+  padding: 8px !important;
 }

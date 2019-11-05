@@ -1,5 +1,9 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.19.0+2
+- Work on styling effects of resources.
+- Updated dependency constraints.
+
 ## 0.19.0+1
 - Established the means for which the application can be launched from the
 course request form.
