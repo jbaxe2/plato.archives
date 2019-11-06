@@ -1,5 +1,9 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.19.0+4
+- Resolved an issue whereby an archive course outline was loaded from the
+server twice.
+
 ## 0.19.0+3
 - Work on providing better interpretation and display of resource content.
 

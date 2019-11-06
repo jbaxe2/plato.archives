@@ -111,6 +111,10 @@ class ResourceSelectionComponent implements AfterViewInit {
 
   /// The [_loadResourcesOfType] method...
   Future<void> _loadResourcesOfType() async {
+    if ('course/x-bb-outline' == resourceTyping.id) {
+      return;
+    }
+
     _progressService.invoke ('Attempting to load ${resourceTyping.title} resources.');
 
     try {
