@@ -123,7 +123,7 @@ class ArchivesService {
   /// The [loadArchiveOrganizations] method...
   Future<List<Organization>> loadArchiveOrganizations (
     String archiveId, String archiveTitle
-) async {
+  ) async {
     var organizations = new List<Organization>();
 
     try {
@@ -143,7 +143,9 @@ class ArchivesService {
   }
 
   /// The [loadArchiveResourcesOfType] method...
-  Future<List<Resource>> loadArchiveResourcesOfType (String archiveId, String type) async {
+  Future<List<Resource>> loadArchiveResourcesOfType (
+    String archiveId, String type
+  ) async {
     var resources = new List<Resource>();
 
     try {
