@@ -39,9 +39,9 @@ class AuthorizationComponent implements AfterViewInit {
 
   /// The [authorize] method...
   Future<void> authorize() async {
-    try {
-      _progressService.invoke ('Attempting to verify Plato credentials.');
+    _progressService.invoke ('Attempting to verify Plato credentials.');
 
+    try {
       await _authorizationService.authorizeApplication();
     } catch (_) {}
 
