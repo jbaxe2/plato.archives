@@ -17,7 +17,7 @@ class OrganizationFactory implements PlatoFactory<Organization> {
   Organization create (
     Map<String, Object> rawOrganization, [String title = 'Archive Course Structure']
   ) {
-    var archiveItemNode = new ItemNode ('res00001', '$title [click to expand]');
+    var archiveItemNode = new ItemNode ('res00001', '$title [click to show]');
 
     rawOrganization?.forEach ((identifier, titleOrItems) {
       archiveItemNode.items.add (_createItem (identifier, titleOrItems));
@@ -48,7 +48,7 @@ class OrganizationFactory implements PlatoFactory<Organization> {
       item = new ItemNode (identifier, titleOrItems);
     } else if (titleOrItems is Map) {
       var itemTitle = titleOrItems[identifier] as String;
-      item = new ItemNode (identifier, itemTitle ?? '[click to expand]');
+      item = new ItemNode (identifier, itemTitle ?? '[click to show]');
 
       if (1 < titleOrItems.keys.length) {
         titleOrItems.cast<String, Object>().forEach (

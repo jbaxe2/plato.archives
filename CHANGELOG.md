@@ -1,5 +1,10 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.19.0+5
+- Tweaked some styling effects so that the workflow step container has a
+scroller; this helps the user know better what to do.
+- Minor refactoring.
+
 ## 0.19.0+4
 - Resolved an issue whereby an archive course outline was loaded from the
 server twice.

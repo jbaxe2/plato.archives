@@ -34,3 +34,14 @@ td {
   border-top: 1px solid #47380a !important;
   padding: 8px !important;
 }
+
+::ng-deep span.bb-announcement-title {
+  display: block !important;
+  font-size: large !important;
+  font-weight: bold !important;
+}
+
+::ng-deep span.bb-announcement-posted {
+  display: block !important;
+  font-style: italic !important;
+}
