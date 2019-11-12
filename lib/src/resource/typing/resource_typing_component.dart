@@ -120,6 +120,11 @@ class ResourceTypingComponent implements AfterViewInit {
         archiveEnrollment.courseId
       );
 
+      resourceTypings.removeWhere ((typing) => (
+        (typing.id == 'course/x-bb-coursetoc') ||
+        (typing.id == 'resource/x-bb-document')
+      ));
+
       _cachingService.cacheObject (
         '${archiveEnrollment.courseId}_resource_types', resourceTypings
       );

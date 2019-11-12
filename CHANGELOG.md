@@ -1,5 +1,8 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.19.0+6
+- Usability improvements relating to selecting resource types.
+
 ## 0.19.0+5
 - Tweaked some styling effects so that the workflow step container has a
 scroller; this helps the user know better what to do.
