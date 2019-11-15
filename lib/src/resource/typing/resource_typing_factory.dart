@@ -50,13 +50,30 @@ class ResourceTypingFactory implements PlatoFactory<ResourceTyping> {
     var resourceTypings = new List<ResourceTyping>();
 
     try {
-      rawResourceTypings.forEach ((String typeId, String typeTitle) {
-        resourceTypings.add (create ({typeId: typeTitle}));
+      _typingsPreferredOrder().forEach ((String typeId) {
+        if (rawResourceTypings.containsKey (typeId)) {
+          resourceTypings.add (create ({typeId: rawResourceTypings[typeId]}));
+        };
       });
     } catch (_) {
       rethrow;
     }
 
     return resourceTypings;
+  }
+
+  /// The [_typingsPreferredOrder] method...
+  List<String> _typingsPreferredOrder() {
+    return const [
+      'course/x-bb-coursesetting',
+      'course/x-bb-coursetoc',
+      'resource/x-bb-document',
+      'course/x-bb-outline',
+      'course/x-bb-user',
+      'membership/x-bb-coursemembership',
+      'course/x-bb-gradebook',
+      'resource/x-bb-announcement',
+      'resource/x-bb-discussionboard'
+    ];
   }
 }

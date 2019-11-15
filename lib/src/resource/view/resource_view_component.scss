@@ -45,3 +45,28 @@ td {
   display: block !important;
   font-style: italic !important;
 }
+
+::ng-deep div.bb-gradebook {
+  border: 1px solid #47380a;
+  border-bottom: 0;
+  overflow-x: auto !important;
+}
+
+::ng-deep div.bb-gradebook table {
+  border-collapse: collapse !important;
+}
+
+::ng-deep div.bb-gradebook tr {
+  border-bottom: 2px solid #1f4f21 !important;
+}
+
+::ng-deep div.bb-gradebook th {
+  background-color: #f8cca9;
+  margin: 4px !important;
+  border-right: 1px solid #47380a !important;
+  padding: 4px !important;
+}
+
+::ng-deep div.bb-gradebook td {
+  border-right: 1px solid #47380a !important;
+}

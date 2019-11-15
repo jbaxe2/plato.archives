@@ -1,5 +1,10 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.19.1
+- Set up a 'preferred' ordering over resource typings, to provide a better
+usability experience.
+- Added some styling for the grade center view.
+
 ## 0.19.0+6
 - Usability improvements relating to selecting resource types.
 
