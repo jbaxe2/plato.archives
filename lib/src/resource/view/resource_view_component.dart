@@ -35,6 +35,8 @@ class ResourceViewComponent implements AfterViewInit {
 
   Resource _selectedResource;
 
+  bool loadingResourceFailed;
+
   final DomSanitizationService _sanitizationService;
 
   final ArchivesService _archivesService;
@@ -47,7 +49,9 @@ class ResourceViewComponent implements AfterViewInit {
   ResourceViewComponent (
     this._sanitizationService,
     this._archivesService, this._cachingService, this._progressService
-  );
+  ) {
+    loadingResourceFailed = false;
+  }
 
   /// The [ngAfterViewInit] method...
   @override
@@ -99,7 +103,9 @@ class ResourceViewComponent implements AfterViewInit {
       );
 
       _setResourceHtml();
-    } catch (_) {}
+    } catch (_) {
+      loadingResourceFailed = true;
+    }
 
     _progressService.revoke();
   }

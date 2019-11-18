@@ -173,6 +173,10 @@ class ArchivesService {
         '$_BROWSE_ARCHIVE_URI?archiveId=$archiveId&resourceId=$resourceId'
       );
 
+      if (403 == resourceResponse.statusCode) {
+        throw resourceResponse;
+      }
+
       String rawResourceJson = utf8.decode (resourceResponse.bodyBytes);
       Map<String, dynamic> rawResource = json.decode (rawResourceJson) as Map;
 

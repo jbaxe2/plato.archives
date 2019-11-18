@@ -1,5 +1,12 @@
 <div *ngIf="null == resource">
-  <p>Please wait while we attempt to load the archive resource.</p>
+  <p *ngIf="!loadingResourceFailed">
+    Please wait while we attempt to load the archive resource.
+  </p>
+
+  <p *ngIf="loadingResourceFailed">
+    Loading the resource failed! Please reload the application by clicking
+    <a href="/archives"><strong>here</strong></a>...
+  </p>
 </div>
 
 <div *ngIf="null != resource">

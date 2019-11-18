@@ -1,5 +1,8 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.19.2
+- Added usability improvements when the application fails on the server side.
+
 ## 0.19.1
 - Set up a 'preferred' ordering over resource typings, to provide a better
 usability experience.
