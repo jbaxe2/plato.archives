@@ -130,8 +130,7 @@ class PatronComponent implements OnInit {
       }
 
       try {
-        _patron =
-          await _usersService.retrieveUser (isLtiSession: _isLtiSession);
+        _patron = await _usersService.retrieveUser (isLtiSession: _isLtiSession);
 
         _cachingService.cacheObject ('patron', _patron);
         _workflowService.markPatronEstablished();
