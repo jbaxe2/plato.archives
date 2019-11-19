@@ -1,3 +1,6 @@
+/**
+ * Common.
+ */
 tr {
   border-left: 1px solid #47380a !important;
 }
@@ -7,10 +10,16 @@ td {
   padding: 4px !important;
 }
 
+/**
+ * Course settings.
+ */
 ::ng-deep td.bb-course-setting {
   background-color: #f8cca9 !important;
 }
 
+/**
+ * Forums, threads, and posts.
+ */
 ::ng-deep div.bb-forum-thread {
   background-color: #f8cca9 !important;
 }
@@ -23,6 +32,9 @@ td {
   padding: 4px !important;
 }
 
+/**
+ * Bb Documents.
+ */
 ::ng-deep div.bb-document-link {
   margin-top: 23px !important;
   border-top: 1px solid #47380a !important;
@@ -35,6 +47,9 @@ td {
   padding: 8px !important;
 }
 
+/**
+ * Announcements.
+ */
 ::ng-deep span.bb-announcement-title {
   display: block !important;
   font-size: large !important;
@@ -46,6 +61,9 @@ td {
   font-style: italic !important;
 }
 
+/**
+ * Gradebook.
+ */
 ::ng-deep div.bb-gradebook {
   border: 1px solid #47380a;
   border-bottom: 0;
@@ -70,4 +88,25 @@ td {
 
 ::ng-deep div.bb-gradebook td {
   border-right: 1px solid #47380a !important;
+}
+
+/**
+ * Assignment receipts.
+ */
+::ng-deep div.bb-assignment-attempts {
+  background-color: #f8cca9;
+  margin: 0 0 0 16px !important;
+  border: 1px solid #47380a !important;
+  padding: 4px !important;
+}
+
+::ng-deep div.bb-attempt-receipt {
+  background-color: #c3e0c4;
+  margin: 8px !important;
+  border: 1px solid #1f4f21 !important;
+  padding: 16px !important;
+}
+
+::ng-deep p.bb-assignment-title {
+  padding-left: 8px;
 }
