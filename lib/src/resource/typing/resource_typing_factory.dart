@@ -69,10 +69,11 @@ class ResourceTypingFactory implements PlatoFactory<ResourceTyping> {
       'course/x-bb-coursetoc',
       'resource/x-bb-document',
       'course/x-bb-outline',
+      'resource/x-bb-announcement',
       'course/x-bb-user',
       'membership/x-bb-coursemembership',
       'course/x-bb-gradebook',
-      'resource/x-bb-announcement',
+      'course/x-bb-attemptreceipts',
       'resource/x-bb-discussionboard'
     ];
   }
