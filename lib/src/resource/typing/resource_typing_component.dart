@@ -121,7 +121,7 @@ class ResourceTypingComponent implements AfterViewInit {
       );
 
       resourceTypings.removeWhere (
-        (typing) => _hiddenResources().contains (typing.id)
+        (typing) => _hiddenResourceTypings().contains (typing.id)
       );
 
       _cachingService.cacheObject (
@@ -132,12 +132,12 @@ class ResourceTypingComponent implements AfterViewInit {
     _progressService.revoke();
   }
 
-  /// The [_hiddenResources] method...
-  List<String> _hiddenResources() {
+  /// The [_hiddenResourceTypings] method...
+  List<String> _hiddenResourceTypings() {
     return const [
       'course/x-bb-coursetoc',
       'course/x-bb-user',
-      'membership/x-bb-coursemembership'
+      'membership/x-bb-coursemembership',
       'resource/x-bb-document',
     ];
   }

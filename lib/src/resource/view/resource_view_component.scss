@@ -18,21 +18,6 @@ td {
 }
 
 /**
- * Forums, threads, and posts.
- */
-::ng-deep div.bb-forum-thread {
-  background-color: #f8cca9 !important;
-}
-
-::ng-deep div.bb-forum-thread {
-  margin: 4px !important;
-  border-width: 0 0 1px 1px !important;
-  border-style: solid !important;
-  border-color: #47380a !important;
-  padding: 4px !important;
-}
-
-/**
  * Bb Documents.
  */
 ::ng-deep div.bb-document-link {
@@ -48,17 +33,46 @@ td {
 }
 
 /**
- * Announcements.
+ * Roster.
  */
-::ng-deep span.bb-announcement-title {
-  display: block !important;
-  font-size: large !important;
+::ng-deep div.bb-roster-instructors {
+  margin: 8px !important;
+  border: 2px solid #47380a !important;
+  padding: 8px !important;
+}
+
+::ng-deep div.bb-roster-instructors p {
+  background-color: #f8cca9 !important;
+  margin-top: 0 !important;
+  padding: 8px !important;
   font-weight: bold !important;
 }
 
-::ng-deep span.bb-announcement-posted {
-  display: block !important;
-  font-style: italic !important;
+::ng-deep div.bb-roster-instructors span {
+  display: block;
+  margin: 8px !important;
+  border-left: 1px solid #f8cca9;
+  padding-left: 4px;
+}
+
+::ng-deep div.bb-roster-memberships {
+  margin: 8px !important;
+  border: 2px solid #1f4f21 !important;
+  padding: 8px !important;
+}
+
+::ng-deep div.bb-roster-memberships p {
+  background-color: #c3e0c4 !important;
+  margin-top: 0 !important;
+  padding: 8px !important;
+  font-weight: bold !important;
+}
+
+::ng-deep div.bb-roster-memberships span {
+  display: block;
+  margin: 8px !important;
+  border-left: 1px solid #c3e0c4;
+  padding-left: 4px;
 }
 
 /**
@@ -66,7 +80,6 @@ td {
  */
 ::ng-deep div.bb-gradebook {
   border: 1px solid #47380a;
-  border-bottom: 0;
   overflow-x: auto !important;
 }
 
@@ -109,4 +122,41 @@ td {
 
 ::ng-deep p.bb-assignment-title {
   padding-left: 8px;
+}
+
+/**
+ * Announcements.
+ */
+::ng-deep span.bb-announcement-title {
+  display: block !important;
+  font-size: large !important;
+  font-weight: bold !important;
+}
+
+::ng-deep span.bb-announcement-posted {
+  display: block !important;
+  font-style: italic !important;
+}
+
+/**
+ * Forums, threads, and posts.
+ */
+::ng-deep div.bb-forum-thread {
+  background-color: #f8cca9 !important;
+}
+
+::ng-deep div.bb-forum-thread {
+  margin: 4px !important;
+  border-width: 0 0 1px 1px !important;
+  border-style: solid !important;
+  border-color: #47380a !important;
+  padding: 8px !important;
+}
+
+::ng-deep div.forum-post {
+  margin-left: 4px;
+  border-width: 1px 0 0 1px !important;
+  border-style: solid !important;
+  border-color: #47380a !important;
+  padding: 8px;
 }
