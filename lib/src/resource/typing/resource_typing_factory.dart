@@ -67,9 +67,9 @@ class ResourceTypingFactory implements PlatoFactory<ResourceTyping> {
   List<String> _typingsPreferredOrder() {
     return const [
       'course/x-bb-coursesetting',
+      'course/x-bb-outline',
       'course/x-bb-coursetoc',
       'resource/x-bb-document',
-      'course/x-bb-outline',
       'resource/x-bb-announcement',
       'course/x-bb-user',
       'membership/x-bb-coursemembership',

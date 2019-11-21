@@ -120,10 +120,9 @@ class ResourceTypingComponent implements AfterViewInit {
         archiveEnrollment.courseId
       );
 
-      resourceTypings.removeWhere ((typing) => (
-        (typing.id == 'course/x-bb-coursetoc') ||
-        (typing.id == 'resource/x-bb-document')
-      ));
+      resourceTypings.removeWhere (
+        (typing) => _hiddenResources().contains (typing.id)
+      );
 
       _cachingService.cacheObject (
         '${archiveEnrollment.courseId}_resource_types', resourceTypings
@@ -131,5 +130,15 @@ class ResourceTypingComponent implements AfterViewInit {
     } catch (_) {}
 
     _progressService.revoke();
+  }
+
+  /// The [_hiddenResources] method...
+  List<String> _hiddenResources() {
+    return const [
+      'course/x-bb-coursetoc',
+      'resource/x-bb-document',
+      'course/x-bb-user',
+      'membership/x-bb-coursemembership'
+    ];
   }
 }
