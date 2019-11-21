@@ -6,6 +6,8 @@ class ResourceTyping {
 
   final String title;
 
+  final bool isCulled;
+
   /// The [ResourceTyping] constructor...
-  ResourceTyping (this.id, this.title);
+  ResourceTyping (this.id, this.title, this.isCulled);
 }

@@ -19,7 +19,8 @@ class ResourceTypingFactory implements PlatoFactory<ResourceTyping> {
       }
 
       return new ResourceTyping (
-        rawResourceTyping.keys.first, rawResourceTyping.values.first
+        rawResourceTyping.keys.first, rawResourceTyping.values.first,
+        _culledResourceTypes().contains (rawResourceTyping.keys.first)
       );
     } catch (_) {
       throw new InvalidResourceType ('The provided resource typing is not usable.');
@@ -72,9 +73,17 @@ class ResourceTypingFactory implements PlatoFactory<ResourceTyping> {
       'resource/x-bb-announcement',
       'course/x-bb-user',
       'membership/x-bb-coursemembership',
+      'membership/x-bb-roster',
       'course/x-bb-gradebook',
       'course/x-bb-attemptreceipts',
       'resource/x-bb-discussionboard'
+    ];
+  }
+
+  /// The [_culledResourceTypes method...
+  List<String> _culledResourceTypes() {
+    return const [
+      'membership/x-bb-roster'
     ];
   }
 }

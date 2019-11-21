@@ -2,6 +2,7 @@ library plato.archives.services.archives;
 
 import 'dart:async' show Future;
 import 'dart:convert' show json, utf8;
+import 'dart:typed_data';
 
 import 'package:http/http.dart' show Client, Response;
 
@@ -144,19 +145,20 @@ class ArchivesService {
 
   /// The [loadArchiveResourcesOfType] method...
   Future<List<Resource>> loadArchiveResourcesOfType (
-    String archiveId, String type
+    String archiveId, String type, bool isCulled
   ) async {
     var resources = new List<Resource>();
 
     try {
       Response resourceResponse = await _http.get (
-        '$_INSPECT_ARCHIVE_URI?archiveId=$archiveId&resourceType=$type'
+        '$_INSPECT_ARCHIVE_URI?archiveId=$archiveId&resourceType=$type&cull=$isCulled'
       );
 
       String rawResponseJson = utf8.decode (resourceResponse.bodyBytes);
       Map<String, String> rawResources = json.decode (rawResponseJson) as Map;
 
-      resources = (new ResourcesFactory()).createAllByMap (rawResources, type);
+      resources =
+        (new ResourcesFactory()).createAllByMap (rawResources, type, isCulled);
     } catch (_) {
       throw new InvalidResourceType ('Unable to view the $type resources.');
     }
@@ -177,10 +179,7 @@ class ArchivesService {
         throw resourceResponse;
       }
 
-      String rawResourceJson = utf8.decode (resourceResponse.bodyBytes);
-      Map<String, dynamic> rawResource = json.decode (rawResourceJson) as Map;
-
-      resource = (new ResourcesFactory()).create (rawResource);
+      resource = _createResource (resourceResponse.bodyBytes, false);
     } catch (_) {
       throw new InvalidResource (
         'Unable to retrieve the specified resource from the archive.'
@@ -188,5 +187,38 @@ class ArchivesService {
     }
 
     return resource;
+  }
+
+  /// The [loadArchiveCulledResource] method...
+  Future<Resource> loadArchiveCulledResource (
+    String archiveId, String cull, String focus
+  ) async {
+    Resource resource;
+
+    try {
+      Response resourceResponse = await _http.get (
+        '$_BROWSE_ARCHIVE_URI?archiveId=$archiveId&resourceId=none&cull=$cull&focus=$focus'
+      );
+
+      if (403 == resourceResponse.statusCode) {
+        throw resourceResponse;
+      }
+
+      resource = _createResource (resourceResponse.bodyBytes, true);
+    } catch (_) {
+      throw new InvalidResource (
+        'Unable to retrieve the culled resource from the archive.'
+      );
+    }
+
+    return resource;
+  }
+
+  /// The [_createResource] method...
+  Resource _createResource (Uint8List responseBytes, bool isCulled) {
+    String rawResourceJson = utf8.decode (responseBytes);
+    Map<String, dynamic> rawResource = json.decode (rawResourceJson) as Map;
+
+    return (new ResourcesFactory()).create (rawResource, '', isCulled);
   }
 }

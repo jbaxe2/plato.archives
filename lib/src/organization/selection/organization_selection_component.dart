@@ -134,7 +134,7 @@ class OrganizationSelectionComponent implements AfterViewInit {
 
         if (changedSelection.added.isNotEmpty) {
           var itemSelection = changedSelection.added.first as ItemNode;
-          var idResource = new Resource (itemSelection.id, null, null, null);
+          var idResource = new Resource (itemSelection.id, null, null, null, null);
 
           _cachingService.cacheObject ('selectedResource', idResource);
           _workflowService.markItemSelected();

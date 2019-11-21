@@ -119,7 +119,7 @@ class ResourceSelectionComponent implements AfterViewInit {
 
     try {
       resources = await _archivesService.loadArchiveResourcesOfType (
-        archiveEnrollment.courseId, resourceTyping.id
+        archiveEnrollment.courseId, resourceTyping.id, resourceTyping.isCulled
       );
     } catch (_) {}
 

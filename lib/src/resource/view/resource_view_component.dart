@@ -98,9 +98,21 @@ class ResourceViewComponent implements AfterViewInit {
     _progressService.invoke ('Attempting to load the resource.');
 
     try {
-      resource = await _archivesService.loadArchiveResource (
-        _archiveEnrollment.courseId, _selectedResource.id
-      );
+      if (_selectedResource.isCulled) {
+        String cullingFocus = '';
+
+        if (_cachingService.haveCachedObject ('cullingFocus')) {
+          cullingFocus = _cachingService.retrieveCachedObject ('cullingFocus');
+        }
+
+        resource = await _archivesService.loadArchiveCulledResource (
+          _archiveEnrollment.courseId, _selectedResource.type, cullingFocus
+        );
+      } else {
+        resource = await _archivesService.loadArchiveResource (
+          _archiveEnrollment.courseId, _selectedResource.id
+        );
+      }
 
       _setResourceHtml();
     } catch (_) {

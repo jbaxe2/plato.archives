@@ -1,5 +1,8 @@
 # plato.archives:  An archived courses viewer for Plato.
 
+## 0.19.2+2
+- Added ability to load culled resources from the archive.
+
 ## 0.19.2+1
 - Added attempt receipts to resource typings.
 

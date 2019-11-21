@@ -12,6 +12,8 @@ class Resource implements Manifestable {
 
   final String content;
 
+  final bool isCulled;
+
   /// The [Resource] constructor...
-  Resource (this.id, this.title, this.type, this.content);
+  Resource (this.id, this.title, this.type, this.content, this.isCulled);
 }
