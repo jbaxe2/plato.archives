@@ -136,9 +136,9 @@ class ResourceTypingComponent implements AfterViewInit {
   List<String> _hiddenResources() {
     return const [
       'course/x-bb-coursetoc',
-      'resource/x-bb-document',
       'course/x-bb-user',
       'membership/x-bb-coursemembership'
+      'resource/x-bb-document',
     ];
   }
 }
